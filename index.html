@@ -2,1003 +2,2012 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>广东中考化学·满分冲刺 | 修正版</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>🧪 化学肌肉记忆训练</title>
     <style>
-        :root {
-            --primary: #2B6EF0;
-            --primary-light: #5B8EF5;
-            --primary-soft: #EBF2FE;
-            --accent: #FF9F43;
-            --success: #10B981;
-            --danger: #EF4444;
-            --warning: #F59E0B;
-            --key-yellow: #FFF9C4;
-            --key-border: #F9A825;
-            --trap-orange: #FFF0E0;
-            --trap-border: #E67E22;
-            --card: #FFFFFF;
-            --text: #1E293B;
-            --border: #E2EAF5;
-            --shadow: 0 4px 16px rgba(0,0,0,0.04);
-            --radius-xl: 24px;
-            --radius-lg: 16px;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
-
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #818cf8;
+            --primary-dark: #3730a3;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --bg: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-light: #94a3b8;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --safe-bottom: env(safe-area-inset-bottom, 16px);
+        }
         body {
-            font-family: system-ui, 'PingFang SC', 'Segoe UI', 'Noto Sans', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(160deg, #EEF2FF 0%, #E0E7FF 50%, #F0F4FF 100%);
-            color: #1E293B;
-            line-height: 1.6;
-            font-size: 15px;
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
             min-height: 100vh;
-            padding: 12px 0 50px;
-            -webkit-font-smoothing: antialiased;
+            padding: 0 0 calc(80px + var(--safe-bottom)) 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            user-select: none;
         }
 
-        .container { max-width: 600px; margin: 0 auto; padding: 0 14px; }
-
-        .header {
-            background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 50%, #2563EB 100%);
-            border-radius: 28px;
-            padding: 22px 18px;
-            margin-bottom: 18px;
-            color: white;
-            box-shadow: 0 12px 28px rgba(30,64,175,0.3);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+        .app-header {
+            width: 100%;
+            max-width: 480px;
+            padding: 14px 16px 10px 16px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 0;
+            z-index: 50;
         }
-        .header::after {
-            content: '';
-            position: absolute;
-            top: -40px;
-            right: -30px;
-            width: 120px;
-            height: 120px;
-            background: rgba(255,255,255,0.08);
-            border-radius: 50%;
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
         }
-        .header-icon { font-size: 42px; margin-bottom: 4px; position: relative; z-index: 1; }
-        .header h1 { font-size: 1.3rem; font-weight: 700; position: relative; z-index: 1; }
-        .header p { font-size: 0.7rem; opacity: 0.88; margin-top: 2px; position: relative; z-index: 1; }
-
-        .card {
-            background: var(--card);
-            border-radius: var(--radius-xl);
-            padding: 18px 16px;
-            margin-bottom: 14px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-            border: 1px solid rgba(59,130,246,0.06);
-        }
-        .card h2 {
-            font-size: 1.1rem;
+        .header-title {
+            font-size: 17px;
             font-weight: 700;
-            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding-left: 10px;
-            border-left: 4px solid var(--primary);
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
             gap: 6px;
-            padding: 11px 18px;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: all 0.18s;
-            cursor: pointer;
-            background: #F1F5F9;
-            color: #334155;
-            user-select: none;
-            -webkit-user-select: none;
         }
-        .btn:active { transform: scale(0.95); }
-        .btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(43,110,240,0.28); }
-        .btn-success { background: var(--success); color: white; }
-        .btn-warning { background: #F59E0B; color: #1E293B; }
-        .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
-        .btn-sm { padding: 7px 14px; font-size: 0.78rem; }
-        .btn-xs { padding: 5px 10px; font-size: 0.7rem; }
-        .btn-block { width: 100%; }
-        .btn-group { display: flex; flex-direction: column; gap: 8px; }
-        .btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+        .header-title span {
+            background: var(--primary);
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+        .header-stats {
+            display: flex;
+            gap: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .header-stats .stat-value {
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .stat-value.green {
+            color: var(--success);
+        }
+        .stat-value.red {
+            color: var(--danger);
+        }
+        .stat-value.orange {
+            color: var(--warning);
+        }
+        .progress-bar-wrap {
+            width: 100%;
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
 
-        .hidden { display: none !important; }
+        .main-card {
+            width: 100%;
+            max-width: 480px;
+            padding: 0 14px;
+            margin-top: 12px;
+            flex: 1;
+        }
 
-        .module-grid {
+        #homePage {
+            display: block;
+        }
+        #homePage.hidden {
+            display: none;
+        }
+        .home-title {
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            margin: 4px 0 14px;
+        }
+        .home-title small {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--text-light);
+            display: block;
+            margin-top: 4px;
+        }
+        .block-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
         }
-        .module-card {
-            background: linear-gradient(135deg, #EBF2FE 0%, #F5F8FF 100%);
-            border-radius: 20px;
-            padding: 14px 8px;
-            text-align: center;
+        .block-btn {
+            background: var(--card-bg);
+            border: none;
+            border-radius: var(--radius-sm);
+            padding: 14px 12px;
+            box-shadow: var(--shadow);
             cursor: pointer;
-            transition: all 0.2s;
-            border: 1.5px solid rgba(43,110,240,0.2);
-            position: relative;
+            transition: all 0.15s ease;
+            text-align: left;
+            touch-action: manipulation;
         }
-        .module-card:active { transform: scale(0.95); background: #DCE8FF; border-color: var(--primary); }
-        .module-card .emoji { font-size: 2rem; display: block; }
-        .module-card .name { font-weight: 700; font-size: 0.82rem; margin-top: 4px; color: #1E3A8A; }
-        .module-card .badge {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background: #EF4444;
-            color: white;
-            font-size: 0.6rem;
-            padding: 2px 7px;
-            border-radius: 20px;
-            font-weight: 700;
+        .block-btn:active {
+            transform: scale(0.96);
         }
-
-        .question-header { display: flex; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 6px; }
-        .tag {
-            background: #EEF2FF;
-            padding: 4px 12px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: #2B6EF0;
-        }
-        .tag-green { background: #D1FAE5; color: #059669; }
-        .tag-gd {
-            background: #FEF3C7;
-            color: #B45309;
-            font-size: 0.6rem;
-            padding: 2px 6px;
-            border-radius: 4px;
-            margin-left: 4px;
-            font-weight: 700;
-        }
-
-        .material-box {
-            background: linear-gradient(135deg, #FFFDF5 0%, #FFF9E6 100%);
-            border-left: 5px solid var(--accent);
-            padding: 14px;
-            border-radius: 16px;
-            margin-bottom: 14px;
-            font-size: 0.85rem;
-            line-height: 1.7;
-            color: #4A3728;
-        }
-        .material-box .mat-title {
-            font-weight: 800;
-            font-size: 0.9rem;
+        .block-btn .emoji {
+            font-size: 24px;
             display: block;
-            margin-bottom: 6px;
-            color: #D97706;
+            margin-bottom: 2px;
         }
-        .material-box .flow {
-            background: #FFF;
-            border: 1px dashed #E5C07B;
-            padding: 10px 12px;
+        .block-btn .name {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+        .block-btn .desc {
+            font-size: 11px;
+            color: var(--text-light);
+            margin-top: 1px;
+        }
+        .block-btn .count {
+            font-size: 11px;
+            color: var(--text-light);
+            margin-top: 4px;
+            background: var(--bg);
+            display: inline-block;
+            padding: 0 10px;
             border-radius: 12px;
-            margin: 8px 0;
-            text-align: center;
-            font-size: 0.82rem;
-            color: #5C4033;
         }
-        .material-box ul { list-style: none; padding: 0; margin: 6px 0; }
-        .material-box ul li {
-            padding: 3px 0 3px 18px;
-            position: relative;
+        .block-btn .badge-done {
+            float: right;
+            font-size: 12px;
+            color: var(--success);
         }
-        .material-box ul li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: bold;
+        .block-btn.block-done {
+            opacity: 0.7;
+        }
+        .block-btn.block-done .name::after {
+            content: " ✅";
+            font-size: 13px;
         }
 
-        .question-text {
-            font-weight: 700;
-            background: #F8FAFF;
-            padding: 14px;
-            border-radius: 16px;
-            margin-bottom: 14px;
-            border: 1px solid #E6EDF8;
-            font-size: 0.9rem;
-        }
-
-        .options-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-        .option-item {
-            border: 2px solid #E6EDF8;
-            border-radius: 50px;
-            padding: 11px 16px;
-            background: white;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            transition: all 0.15s;
-            font-size: 0.88rem;
-        }
-        .option-item:active { background: #F5F8FF; }
-        .option-item.selected { border-color: var(--primary); background: #EBF2FE; }
-        .option-item.correct { border-color: var(--success); background: #D1FAE5; }
-        .option-item.wrong { border-color: var(--danger); background: #FEE2E2; }
-        .option-letter {
-            width: 30px;
-            height: 30px;
-            min-width: 30px;
-            background: #F1F5F9;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 0.8rem;
-        }
-
-        .feedback {
-            margin-top: 10px;
-            padding: 12px 14px;
-            border-radius: 16px;
+        #quizPage {
             display: none;
-            font-size: 0.85rem;
-            line-height: 1.6;
-            animation: fadeIn 0.3s;
         }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
-        .feedback.show { display: block; }
-        .feedback.correct-fb { background: #F0FDF4; border-left: 5px solid var(--success); }
-        .feedback.wrong-fb { background: #FFF5F5; border-left: 5px solid var(--danger); }
-        .feedback .key-point {
-            display: inline-block;
-            background: var(--key-yellow);
-            border-left: 3px solid var(--key-border);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 700;
-            margin: 4px 2px;
-            font-size: 0.82rem;
-        }
-        .feedback .trap-point {
-            display: inline-block;
-            background: var(--trap-orange);
-            border-left: 3px solid var(--trap-border);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 700;
-            margin: 4px 2px;
-            font-size: 0.82rem;
+        #quizPage.active {
+            display: block;
         }
 
-        .thinking-panel {
-            margin-top: 10px;
-            border: 2px dashed #CBD5E1;
-            border-radius: 16px;
-            overflow: hidden;
-        }
-        .thinking-header {
-            background: #F8FAFC;
-            padding: 10px 14px;
-            cursor: pointer;
+        .element-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: var(--card-bg);
+            border-radius: var(--radius-sm);
+            padding: 10px 14px;
+            box-shadow: var(--shadow);
+            margin-bottom: 12px;
+        }
+        .element-nav .el-name {
             font-weight: 700;
-            font-size: 0.82rem;
-            color: #475569;
-            user-select: none;
-            -webkit-user-select: none;
+            font-size: 18px;
         }
-        .thinking-header:active { background: #EEF2FF; }
-        .thinking-body {
+        .element-nav .el-progress {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .element-nav .el-progress .done {
+            color: var(--success);
+            font-weight: 700;
+        }
+        .element-nav .el-progress .total {
+            color: var(--text-light);
+        }
+
+        .knowledge-card {
+            background: #eef2ff;
+            border-left: 4px solid var(--primary);
+            border-radius: var(--radius-sm);
+            margin-bottom: 14px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        .knowledge-card .kc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 12px 14px;
-            background: #FFFBEB;
-            font-size: 0.8rem;
-            line-height: 1.7;
+            cursor: pointer;
+            touch-action: manipulation;
+            user-select: none;
+        }
+        .knowledge-card .kc-header:active {
+            background: rgba(79, 70, 229, 0.06);
+        }
+        .knowledge-card .kc-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            font-size: 15px;
+        }
+        .knowledge-card .kc-toggle {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: var(--primary-light);
+            cursor: pointer;
+            padding: 0 4px;
+            transition: transform 0.3s;
+        }
+        .knowledge-card .kc-toggle.open {
+            transform: rotate(180deg);
+        }
+        .knowledge-card .kc-body {
+            padding: 0 14px 14px 14px;
+            font-size: 13.5px;
+            line-height: 1.8;
+            color: var(--text-secondary);
             display: none;
-            border-top: 1px solid #FDE68A;
         }
-        .thinking-body.open { display: block; }
-        .thinking-body .step {
-            padding: 3px 0 3px 22px;
-            position: relative;
-            margin: 2px 0;
+        .knowledge-card .kc-body.open {
+            display: block;
         }
-        .thinking-body .step::before {
-            content: attr(data-num);
-            position: absolute;
+        .knowledge-card .kc-body table {
+            width: 100%;
+            font-size: 13px;
+            border-collapse: collapse;
+            margin-top: 6px;
+        }
+        .knowledge-card .kc-body table td,
+        .knowledge-card .kc-body table th {
+            padding: 4px 6px;
+            border-bottom: 1px solid rgba(79, 70, 229, 0.15);
+            text-align: left;
+        }
+        .knowledge-card .kc-body table th {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .knowledge-card .kc-body .memo-box {
+            background: rgba(79, 70, 229, 0.08);
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin: 6px 0;
+            color: var(--primary-dark);
+            font-weight: 500;
+        }
+
+        .question-item {
+            background: var(--card-bg);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px 12px 16px;
+            box-shadow: var(--shadow);
+            margin-bottom: 12px;
+        }
+        .question-item .q-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 6px;
+        }
+        .question-item .q-head .q-idx {
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+        .question-item .q-text {
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        .question-item .options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .question-item .option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            background: var(--bg);
+            border-radius: var(--radius-sm);
+            border: 2px solid transparent;
+            transition: all 0.15s ease;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            touch-action: manipulation;
+        }
+        .question-item .option:active {
+            transform: scale(0.98);
+        }
+        .question-item .option .label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+        .question-item .option .text {
+            flex: 1;
+        }
+        .question-item .option.selected-correct {
+            border-color: var(--success);
+            background: #f0fdf4;
+        }
+        .question-item .option.selected-correct .label {
+            background: var(--success);
+            color: white;
+        }
+        .question-item .option.selected-wrong {
+            border-color: var(--danger);
+            background: #fef2f2;
+        }
+        .question-item .option.selected-wrong .label {
+            background: var(--danger);
+            color: white;
+        }
+        .question-item .option.show-correct {
+            border-color: var(--success);
+            background: #f0fdf4;
+        }
+        .question-item .option.show-correct .label {
+            background: var(--success);
+            color: white;
+        }
+        .question-item .option.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        .question-item .option.disabled.show-correct,
+        .question-item .option.disabled.selected-correct,
+        .question-item .option.disabled.selected-wrong {
+            opacity: 1;
+        }
+
+        .question-item .feedback {
+            margin-top: 10px;
+            padding: 10px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            line-height: 1.6;
+            display: none;
+            animation: fadeSlide 0.2s ease;
+        }
+        .question-item .feedback.correct {
+            display: block;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            color: #166534;
+        }
+        .question-item .feedback.wrong {
+            display: block;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+        }
+        .question-item .feedback .fb-title {
+            font-weight: 700;
+        }
+        .question-item .feedback .fb-tip {
+            margin-top: 2px;
+            font-size: 12px;
+            opacity: 0.85;
+        }
+
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(4px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .element-done-banner {
+            background: #f0fdf4;
+            border: 2px solid #bbf7d0;
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        .element-done-banner .big {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--success);
+        }
+        .element-done-banner .sub {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
             left: 0;
-            top: 3px;
-            width: 18px;
-            height: 18px;
-            background: #F59E0B;
+            right: 0;
+            max-width: 480px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            padding: 10px 14px calc(10px + var(--safe-bottom));
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            z-index: 100;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.04);
+        }
+        .bottom-nav .nav-left,
+        .bottom-nav .nav-right {
+            display: flex;
+            gap: 8px;
+            flex: 1;
+        }
+        .bottom-nav .nav-right {
+            justify-content: flex-end;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 10px 14px;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            touch-action: manipulation;
+            min-height: 42px;
+            white-space: nowrap;
+        }
+        .btn:active {
+            transform: scale(0.95);
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.30);
+        }
+        .btn-primary:disabled {
+            opacity: 0.4;
+            pointer-events: none;
+            box-shadow: none;
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1.5px solid #e2e8f0;
+        }
+        .btn-outline:active {
+            background: var(--bg);
+        }
+        .btn-danger-outline {
+            background: transparent;
+            color: var(--danger);
+            border: 1.5px solid #fecaca;
+        }
+        .btn-danger-outline:active {
+            background: #fef2f2;
+        }
+        .btn-home {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1.5px solid #e2e8f0;
+            padding: 10px 12px;
+        }
+        .btn-home:active {
+            background: var(--bg);
+        }
+        .btn .badge {
+            background: var(--danger);
             color: white;
             border-radius: 50%;
-            font-size: 0.65rem;
+            padding: 0 6px;
+            font-size: 11px;
+            min-width: 18px;
             text-align: center;
             line-height: 18px;
-            font-weight: 700;
         }
-        .thinking-body .breakthrough {
-            background: #FEF3C7;
-            padding: 6px 10px;
-            border-radius: 8px;
-            margin-top: 6px;
-            font-weight: 700;
+        .btn .badge.hidden {
+            display: none;
         }
 
-        .result-card { text-align: center; }
-        .result-emoji { font-size: 3rem; }
-        .result-score { font-size: 2rem; font-weight: 800; color: #1E40AF; }
-        .accuracy-bar {
-            height: 10px;
-            background: #E2E8F0;
-            border-radius: 20px;
-            margin: 12px auto;
-            overflow: hidden;
-            max-width: 300px;
-        }
-        .accuracy-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #3B82F6, #2563EB);
-            border-radius: 20px;
-            transition: width 0.6s;
-        }
-
-        .wrong-item {
-            background: #FFF5F5;
-            border-left: 4px solid var(--danger);
-            padding: 12px 14px;
-            margin-bottom: 8px;
-            border-radius: 14px;
-            font-size: 0.82rem;
-            line-height: 1.5;
-        }
-
-        .toast {
+        .modal-overlay {
             position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1E293B;
-            color: white;
-            padding: 10px 22px;
-            border-radius: 50px;
-            font-size: 0.82rem;
-            z-index: 1000;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-            animation: slideUp 0.3s;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            padding: 20px;
+            animation: fadeIn 0.25s ease;
         }
-        @keyframes slideUp { from { opacity: 0; transform: translateX(-50%) translateY(10px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+        .modal-overlay.open {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        .modal {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            max-width: 440px;
+            width: 100%;
+            max-height: 80vh;
+            padding: 18px 16px 16px;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.20);
+            overflow-y: auto;
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .modal-header h3 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .modal-header .badge {
+            background: var(--danger);
+            color: white;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 22px;
+            line-height: 1;
+            color: var(--text-light);
+            cursor: pointer;
+            padding: 0 4px;
+        }
+        .modal-close:active {
+            transform: scale(0.9);
+        }
+        .modal-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .modal-list li {
+            padding: 10px 12px;
+            background: var(--bg);
+            border-radius: var(--radius-sm);
+            margin-bottom: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            border-left: 3px solid var(--danger);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-list li .qid {
+            color: var(--text-light);
+            font-weight: 400;
+            font-size: 12px;
+        }
+        .modal-empty {
+            text-align: center;
+            padding: 28px 0;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+        .modal-actions .btn {
+            flex: 1;
+            min-width: 60px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .flex {
+            display: flex;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .w-full {
+            width: 100%;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="header">
-        <div class="header-icon">🧪🏆</div>
-        <h1>广东中考化学·满分冲刺</h1>
-        <p>11模块·110题·全选择·已修正</p>
-    </div>
 
-    <div id="main-menu">
-        <div class="card">
-            <h2>📚 选择模块</h2>
-            <div id="module-grid-container" class="module-grid"></div>
-            <div class="btn-row" style="margin-top:14px;">
-                <button class="btn btn-outline btn-sm" onclick="showStatistics()">📊 学习统计</button>
-                <button class="btn btn-warning btn-sm" onclick="showWrongBook()">📖 错题本</button>
-                <button class="btn btn-outline btn-sm" onclick="resetAllData()">🔄 重置</button>
+    <header class="app-header" id="appHeader">
+        <div class="header-top">
+            <div class="header-title">
+                🧪 化学记忆
+                <span id="totalBadge">133题</span>
+            </div>
+            <div class="header-stats" id="headerStats" style="display:none;">
+                <div>✅ <span class="stat-value green" id="correctCount">0</span></div>
+                <div>❌ <span class="stat-value red" id="wrongCount">0</span></div>
+                <div>📊 <span class="stat-value orange" id="accuracyDisplay">0%</span></div>
+            </div>
+        </div>
+        <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+    </header>
+
+    <main class="main-card" id="mainCard">
+
+        <div id="homePage">
+            <div class="home-title">
+                📚 选择练习区块
+                <small>每个元素独立页面 · 知识卡片可折叠</small>
+            </div>
+            <div class="block-grid" id="blockGrid"></div>
+        </div>
+
+        <div id="quizPage">
+            <div class="element-nav" id="elementNav">
+                <span class="el-name" id="elName">氢</span>
+                <span class="el-progress" id="elProgress">进度 <span class="done" id="elDone">0</span>/<span class="total" id="elTotal">5</span></span>
+            </div>
+
+            <div class="knowledge-card" id="knowledgeCard">
+                <div class="kc-header" onclick="toggleKnowledge()">
+                    <span class="kc-title" id="kcTitle">📖 氢元素 · 知识卡片</span>
+                    <button class="kc-toggle" id="kcToggle">▼</button>
+                </div>
+                <div class="kc-body" id="kcBody"></div>
+            </div>
+
+            <div id="questionsContainer"></div>
+
+            <div class="element-done-banner hidden" id="elementDoneBanner">
+                <div class="big">🎉 元素完成！</div>
+                <div class="sub" id="elementDoneDesc">已全部答对，继续下一元素</div>
+            </div>
+        </div>
+    </main>
+
+    <nav class="bottom-nav" id="bottomNav">
+        <div class="nav-left">
+            <button class="btn btn-home" onclick="goHome()">🏠</button>
+            <button class="btn btn-outline" id="prevElBtn" onclick="prevElement()">◀ 上一元素</button>
+        </div>
+        <div class="nav-right">
+            <button class="btn btn-primary" id="nextElBtn" onclick="nextElement()">下一元素 ▶</button>
+            <button class="btn btn-danger-outline" id="wrongBtn" onclick="openWrongModal()">
+                📕 <span class="badge hidden" id="wrongBadge">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="modal-overlay" id="wrongModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>📕 错题本</h3>
+                <span class="badge" id="wrongModalBadge">0</span>
+                <button class="modal-close" onclick="closeWrongModal()">✕</button>
+            </div>
+            <ul class="modal-list" id="wrongList">
+                <li class="modal-empty">🎉 暂无错题</li>
+            </ul>
+            <div class="modal-actions">
+                <button class="btn btn-success-outline" onclick="retryWrong()">🔁 重练</button>
+                <button class="btn btn-outline" onclick="clearWrong()">🗑️ 清空</button>
+                <button class="btn btn-primary" onclick="closeWrongModal()">关闭</button>
             </div>
         </div>
     </div>
 
-    <div id="quiz-area" class="card hidden">
-        <div class="question-header">
-            <span class="tag" id="quiz-chapter">模块</span>
-            <span class="tag tag-green" id="quiz-progress">0/0</span>
-        </div>
-        <div id="material-box" class="material-box hidden">
-            <span class="mat-title">📖 题干材料</span>
-            <div id="material-text"></div>
-        </div>
-        <div class="question-text" id="quiz-question"></div>
-        <ul class="options-list" id="quiz-options"></ul>
-        <div class="feedback" id="quiz-feedback">
-            <div id="feedback-text"></div>
-            <div id="feedback-exp" style="margin-top:6px;"></div>
-        </div>
-        <div id="thinking-area"></div>
-        <div class="btn-row" style="margin-top:12px;">
-            <button class="btn btn-primary hidden" id="btn-next" onclick="nextQuestion()">下一题 →</button>
-            <button class="btn btn-success hidden" id="btn-finish" onclick="finishQuiz()">🏁 完成</button>
-            <button class="btn btn-outline btn-sm" onclick="confirmQuit()">← 退出</button>
-        </div>
-    </div>
+    <script>
+        // ============================================================
+        //  题库数据 — 每个元素一个对象，含 qs 数组
+        // ============================================================
+        const ELEMENTS = [{
+            id: 1,
+            block: 0,
+            element: '氢',
+            symbol: 'H',
+            knowledge: {
+                title: '📖 氢元素 · 知识卡片',
+                body: `<table>
+                    <tr><th>项目</th><th>内容</th></tr>
+                    <tr><td>符号</td><td><b>H</b></td></tr>
+                    <tr><td>原子结构</td><td>1（最外层1个电子）</td></tr>
+                    <tr><td>常见化合价</td><td><b>+1</b>（多数化合物）、<b>-1</b>（金属氢化物中）</td></tr>
+                    <tr><td>单质</td><td>H₂（氢气）</td></tr>
+                    <tr><td>高中常考</td><td>还原金属氧化物；NaH中H为-1价；H₂具有可燃性和还原性</td></tr>
+                </table>
+                <div class="memo-box">💡 记忆口诀："氢是H，最外层1个电子，多数+1，金属氢化物中-1"</div>`
+            },
+            qs: [
+                { q: '表示"氢"元素的符号是（ ）', opts: ['He', 'H', 'Hi', 'Ha'], ans: 1, tip: 'H是氢，He是氦' },
+                { q: '氢原子最外层有（ ）个电子', opts: ['0', '1', '2', '3'], ans: 1, tip: '氢原子核外只有1个电子' },
+                { q: '氢元素在H₂O中显（ ）价，在NaH中显（ ）价', opts: ['+1，-1', '-1，+1', '+1，0', '-1，-2'],
+                ans: 0, tip: 'H₂O中+1，NaH中-1' },
+                { q: '关于氢气的性质，下列说法正确的是（ ）', opts: ['具有助燃性', '具有可燃性和还原性', '是惰性气体',
+                        '与水反应生成酸'
+                    ], ans: 1, tip: '2H₂+O₂→2H₂O；CuO+H₂→Cu+H₂O' },
+                { q: 'NaH中氢元素的化合价为（ ），与水反应产生（ ）', opts: ['+1，氧气', '-1，氢气', '+1，氢气',
+                        '-1，氧气'
+                    ], ans: 1, tip: 'NaH+H₂O→NaOH+H₂↑' }
+            ]
+        }, {
+            id: 2,
+            block: 0,
+            element: '碳',
+            symbol: 'C',
+            knowledge: {
+                title: '📖 碳元素 · 知识卡片',
+                body: `<table>
+                    <tr><th>项目</th><th>内容</th></tr>
+                    <tr><td>符号</td><td><b>C</b></td></tr>
+                    <tr><td>原子结构</td><td>2-4（最外层4个电子）</td></tr>
+                    <tr><td>常见化合价</td><td><b>+2</b>（CO）、<b>+4</b>（CO₂）</td></tr>
+                    <tr><td>单质</td><td>金刚石、石墨、C₆₀</td></tr>
+                    <tr><td>高中常考</td><td>CO的还原性（炼铁）；碳与浓硫酸反应</td></tr>
+                </table>
+                <div class="memo-box">💡 "二四碳"——CO中+2，CO₂中+4</div>`
+            },
+            qs: [
+                { q: '表示"碳"元素的符号是（ ）', opts: ['Ca', 'C', 'Co', 'Ct'], ans: 1, tip: 'C是碳，Ca是钙' },
+                { q: '碳原子最外层有（ ）个电子', opts: ['2', '3', '4', '6'], ans: 2, tip: '碳原子结构2-4' },
+                { q: '碳元素在CO中显（ ）价，在CO₂中显（ ）价', opts: ['+2，+4', '+4，+2', '-2，-4', '+2，+3'],
+                    ans: 0, tip: '"二四碳"——CO中+2，CO₂中+4' },
+                { q: '关于CO的性质，下列说法正确的是（ ）', opts: ['具有酸性', '具有还原性，可用于炼铁', '具有可燃性但无毒',
+                        '与NaOH反应生成盐和水'
+                    ], ans: 1, tip: 'Fe₂O₃+3CO→2Fe+3CO₂' },
+                { q: '碳与浓硫酸加热反应，碳的化合价变化是（ ）', opts: ['0→+4', '0→+2', '0→-4', '+2→+4'], ans: 0,
+                    tip: 'C+2H₂SO₄(浓)→CO₂↑+2SO₂↑+2H₂O' }
+            ]
+        }, {
+            id: 3,
+            block: 0,
+            element: '氮',
+            symbol: 'N',
+            knowledge: {
+                title: '📖 氮元素 · 知识卡片',
+                body: `<table>
+                    <tr><th>项目</th><th>内容</th></tr>
+                    <tr><td>符号</td><td><b>N</b></td></tr>
+                    <tr><td>原子结构</td><td>2-5（最外层5个电子）</td></tr>
+                    <tr><td>常见化合价</td><td><b>-3</b>（NH₃）、<b>+2</b>（NO）、<b>+4</b>（NO₂）、<b>+5</b>（HNO₃）</td></tr>
+                    <tr><td>单质</td><td>N₂（氮气，稳定）</td></tr>
+                    <tr><td>高中常考</td><td>NH₃的还原性（催化氧化）；硝酸的氧化性</td></tr>
+                </table>
+                <div class="memo-box">💡 氮气有N≡N三键，非常稳定</div>`
+            },
+            qs: [
+                { q: '表示"氮"元素的符号是（ ）', opts: ['Na', 'N', 'Ne', 'Ni'], ans: 1, tip: 'N是氮，Na是钠' },
+                { q: '氮原子最外层有（ ）个电子', opts: ['2', '3', '5', '7'], ans: 2, tip: '氮原子结构2-5' },
+                { q: '氮元素在NH₃中显（ ）价，在HNO₃中显（ ）价', opts: ['-3，+5', '+3，+5', '-3，+3', '+5，-3'],
+                    ans: 0, tip: 'NH₃中-3，HNO₃中+5' },
+                { q: 'NH₃在铂催化下被O₂氧化为NO，NH₃做（ ）', opts: ['氧化剂', '还原剂', '催化剂', '既不是氧化剂也不是还原剂'],
+                    ans: 1, tip: '4NH₃+5O₂→4NO+6H₂O，N从-3升高到+2' },
+                { q: '关于氮气的说法错误的是（ ）', opts: ['有N≡N三键，结构稳定', '常温下化学性质不活泼',
+                        '与O₂在放电条件下反应生成NO₂', '可用作保护气'
+                    ], ans: 2, tip: 'N₂+O₂→放电→2NO（不是直接生成NO₂）' }
+            ]
+        }, {
+            id: 4,
+            block: 0,
+            element: '氧',
+            symbol: 'O',
+            knowledge: {
+                title: '📖 氧元素 · 知识卡片',
+                body: `<table>
+                    <tr><th>项目</th><th>内容</th></tr>
+                    <tr><td>符号</td><td><b>O</b></td></tr>
+                    <tr><td>原子结构</td><td>2-6（最外层6个电子）</td></tr>
+                    <tr><td>常见化合价</td><td><b>-2</b>（绝大多数）、<b>-1</b>（过氧化物）、<b>0</b>（单质）</td></tr>
+                    <tr><td>单质</td><td>O₂（氧气）、O₃（臭氧）</td></tr>
+                    <tr><td>高中常考</td><td>氧化还原中做<b>氧化剂</b>；H₂O₂中O为-1价</td></tr>
+                </table>
+                <div class="memo-box">💡 特别提醒：H₂O₂（过氧化氢）中O为-1价，是高中常考特例！</div>`
+            },
+            qs: [
+                { q: '表示"氧"元素的符号是（ ）', opts: ['O', 'O₂', 'Ou', 'Os'], ans: 0, tip: 'O是氧' },
+                { q: '氧原子最外层有6个电子，容易得到（ ）个电子', opts: ['1', '2', '6', '8'], ans: 1,
+                    tip: '最外层6个→得2个→稳定' },
+                { q: '下列物质中，氧元素显-1价的是（ ）', opts: ['O₂', 'H₂O', 'H₂O₂', 'CO₂'], ans: 2,
+                    tip: 'H₂O₂中O为-1价' },
+                { q: '关于氧气的性质，下列说法正确的是（ ）', opts: ['具有可燃性', '具有助燃性', '具有还原性', '是惰性气体'],
+                    ans: 1, tip: '氧气支持燃烧（助燃性），本身不可燃' },
+                { q: '在氧化还原反应中，氧气通常做（ ）', opts: ['氧化剂', '还原剂', '催化剂', '既不是氧化剂也不是还原剂'],
+                    ans: 0, tip: 'O₂中O为0价，反应中常降低到-2价，做氧化剂' }
+            ]
+        }, {
+            id: 5,
+            block: 1,
+            element: '氟',
+            symbol: 'F',
+            knowledge: {
+                title: '📖 氟元素 · 知识卡片',
+                body: `<table>
+                    <tr><th>项目</th><th>内容</th></tr>
+                    <tr><td>符号</td><td><b>F</b></td></tr>
+                    <tr><td>原子结构</td><td>2-7（最外层7个电子）</td></tr>
+                    <tr><td>常见化合价</td><td><b>-1</b></td></tr>
+                    <tr><td>单质</td><td>F₂（氟气，最强氧化性）</td></tr>
+                    <tr><td>高中常考</td><td>最强非金属、最强氧化性；F₂与水反应生成O₂</td></tr>
+                </table>
+                <div class="memo-box">💡 氟是卤素中氧化性最强的，恒显-1价，无正价</div>`
+            },
+            qs: [
+                { q: '表示"氟"元素的符号是（ ）', opts: ['F', 'Fe', 'Fr', 'Fl'], ans: 0, tip: 'F是氟，Fe是铁' },
+                { q: '氟原子最外层有7个电子，容易得到（ ）个电子', opts: ['1', '2', '3', '7'], ans: 0,
+                    tip: '最外层7个→得1个→稳定' },
+                { q: '氟元素的常见化合价为（ ）', opts: ['+1', '-1', '+7', '0'], ans: 1, tip: '氟恒显-1价，无正价' },
+                { q: '关于氟的说法正确的是（ ）', opts: ['氧化性最弱', '与水反应生成HF和O₂', '有+7价', '是黄绿色气体'],
+                    ans: 1, tip: '2F₂+2H₂O=4HF+O₂↑' }
+            ]
+        }, {
+            id: 6,
+            block: 1,
+            element: '硅',
+            symbol: 'Si',
+            knowledge: {
+                title: '📖 硅元素 · 知识卡片',
+                body: `<table>
+                    <tr><th>项目</th><th>内容</th></tr>
+                    <tr><td>符号</td><td><b>Si</b></td></tr>
+                    <tr><td>原子结构</td><td>2-8-4（最外层4个电子）</td></tr>
+                    <tr><td>常见化合价</td><td><b>+4</b></td></tr>
+                    <tr><td>单质</td><td>晶体硅、无定形硅</td></tr>
+                    <tr><td>高中常考</td><td>半导体材料；SiO₂与HF反应（刻蚀玻璃）</td></tr>
+                </table>
+                <div class="memo-box">💡 "四硅"——Si为+4价，是重要的半导体材料</div>`
+            },
+            qs: [
+                { q: '表示"硅"元素的符号是（ ）', opts: ['S', 'Si', 'Se', 'Sr'], ans: 1, tip: 'Si是硅' },
+                { q: '硅原子最外层有（ ）个电子', opts: ['2', '3', '4', '5'], ans: 2, tip: '硅原子结构2-8-4' },
+                { q: '硅元素的常见化合价为（ ）', opts: ['+2', '+4', '-4', '0'], ans: 1, tip: '"四硅"——Si为+4' },
+                { q: '关于硅的说法正确的是（ ）', opts: ['是优良导体', '是半导体，用于芯片', '与盐酸反应生成氢气',
+                        '自然界以单质形式存在'
+                    ], ans: 1, tip: '硅是半导体，用于芯片和太阳能电池' },
+                { q: 'SiO₂能与下列哪种物质反应？（ ）', opts: ['盐酸', '硫酸', 'HF（氢氟酸）', '硝酸'], ans: 2,
+                    tip: 'SiO₂+4HF=SiF₄↑+2H₂O' }
+            ]
+        }, {
+            id: 7,
+            block: 1,
+            element: '磷',
+            symbol: 'P',
+            knowledge: {
+                title: '📖 磷元素 · 知识卡片',
+                body: `<table>
+                    <tr><th>项目</th><th>内容</th></tr>
+                    <tr><td>符号</td><td><b>P</b></td></tr>
+                    <tr><td>原子结构</td><td>2-8-5（最外层5个电子）</td></tr>
+                    <tr><td>常见化合价</td><td><b>-3</b>（PH₃）、<b>+5</b>（P₂O₅）</td></tr>
+                    <tr><td>单质</td><td>白磷、红磷</td></tr>
+                    <tr><td>高中常考</td><td>白磷自燃；P₂O₅是酸性氧化物</td></tr>
+                </table>
+                <div class="memo-box">💡 "五价磷"——磷常见-3（PH₃）和+5（P₂O₅）</div>`
+            },
+            qs: [
+                { q: '表示"磷"元素的符号是（ ）', opts: ['P', 'Pt', 'Ph', 'Po'], ans: 0, tip: 'P是磷，Pt是铂' },
+                { q: '磷原子最外层有（ ）个电子', opts: ['3', '4', '5', '7'], ans: 2, tip: '磷原子结构2-8-5' },
+                { q: '磷元素的常见化合价有（ ）', opts: ['-3、+3', '-3、+5', '+3、+5', '-5、+5'], ans: 1,
+                    tip: '"五价磷"——-3和+5' },
+                { q: '关于白磷的说法错误的是（ ）', opts: ['在空气中自燃', '应保存在水中', '燃烧生成P₂O₅', '与红磷是同一种物质'],
+                    ans: 3, tip: '白磷和红磷是磷的同素异形体' }
+            ]
+        }, {
+            id: 8,
+            block: 1,
+            element: '硫',
+            symbol: 'S',
+            knowledge: {
+                title: '📖 硫元素 · 知识卡片',
+                body: `<table>
+                    <tr><th>项目</th><th>内容</th></tr>
+                    <tr><td>符号</td><td><b>S</b></td></tr>
+                    <tr><td>原子结构</td><td>2-8-6（最外层6个电子）</td></tr>
+                    <tr><td>常见化合价</td><td><b>-2</b>（硫化物）、<b>+4</b>（SO₂）、<b>+6</b>（H₂SO₄）</td></tr>
+                    <tr><td>单质</td><td>S₈（淡黄色固体）</td></tr>
+                    <tr><td>高中常考</td><td>浓硫酸的强氧化性；SO₂的漂白性</td></tr>
+                </table>
+                <div class="memo-box">💡 "二四六硫都齐全"——Na₂S中-2，SO₂中+4，H₂SO₄中+6</div>`
+            },
+            qs: [
+                { q: '表示"硫"元素的符号是（ ）', opts: ['Su', 'Sl', 'S', 'Sh'], ans: 2, tip: 'S是硫' },
+                { q: '硫原子最外层有（ ）个电子', opts: ['2', '4', '6', '8'], ans: 2, tip: '硫原子结构2-8-6' },
+                { q: '硫在Na₂S中显（ ）价，在SO₂中显（ ）价，在H₂SO₄中显（ ）价', opts: ['-2，+4，+6', '-2，+6，+4',
+                        '+4，+6，-2', '+6，+4，-2'
+                    ], ans: 0, tip: '"二四六硫都齐全"' },
+                { q: '浓硫酸与铜加热反应，硫从+6降到+4，说明浓硫酸具有（ ）', opts: ['酸性', '氧化性', '还原性', '脱水性'],
+                    ans: 1, tip: 'Cu+2H₂SO₄(浓)→CuSO₄+SO₂↑+2H₂O' },
+                { q: '关于SO₂的性质，下列说法正确的是（ ）', opts: ['漂白永久有效', '漂白加热后恢复', '不支持燃烧',
+                        '与水反应生成硫酸'
+                    ], ans: 1, tip: 'SO₂漂白是化合漂白，加热可逆' }
+            ]
+        }, {
+            id: 9,
+            block: 1,
+            element: '氯',
+            symbol: 'Cl',
+            knowledge: {
+                title: '📖 氯元素 · 知识卡片',
+                body: `<table>
+                    <tr><th>项目</th><th>内容</th></tr>
+                    <tr><td>符号</td><td><b>Cl</b></td></tr>
+                    <tr><td>原子结构</td><td>2-8-7（最外层7个电子）</td></tr>
+                    <tr><td>常见化合价</td><td><b>-1</b>（氯化物）、<b>+1</b>（次氯酸）、<b>+5</b>（氯酸）、<b>+7</b>（高氯酸）</td></tr>
+                    <tr><td>单质</td><td>Cl₂（黄绿色气体）</td></tr>
+                    <tr><td>高中常考</td><td>Cl₂与H₂O反应（歧化）；漂白粉有效成分Ca(ClO)₂</td></tr>
+                </table>
+                <div class="memo-box">💡 氯气与水的反应：Cl₂+H₂O⇌HCl+HClO（歧化反应）</div>`
+            },
+            qs: [
+                { q: '表示"氯"元素的符号是（ ）', opts: ['Cl', 'C', 'Cr', 'Ce'], ans: 0, tip: 'Cl是氯' },
+                { q: '氯原子最外层有（ ）个电子', opts: ['1', '3', '5', '7'], ans: 3, tip: '氯原子结构2-8-7' },
+                { q: '氯元素的常见化合价有（ ）', opts: ['-1、+1、+5、+7', '-1、+3、+5、+7', '-1、+1、+3、+7',
+                        '-2、+1、+5、+7'
+                    ], ans: 0, tip: '氯常考-1、+1、+5、+7' },
+                { q: 'Cl₂+H₂O⇌HCl+HClO中，氯元素既升高又降低，说明Cl₂（ ）', opts: ['只做氧化剂', '只做还原剂',
+                        '既做氧化剂又做还原剂（歧化）', '不做氧化剂也不做还原剂'
+                    ], ans: 2, tip: '0价的Cl歧化为-1和+1' },
+                { q: '漂白粉的有效成分是（ ）', opts: ['CaCl₂', 'Ca(ClO)₂', 'Ca(ClO₃)₂', 'CaCl₂和Ca(ClO)₂的混合物'],
+                    ans: 1, tip: '漂白粉有效成分为Ca(ClO)₂' }
+            ]
+        }, {
+            id: 10,
+            block: 2,
+            element: '钠',
+            symbol: 'Na',
+            knowledge: {
+                title: '📖 钠元素 · 知识卡片',
+                body: `<table>
+                    <tr><th>项目</th><th>内容</th></tr>
+                    <tr><td>符号</td><td><b>Na</b></td></tr>
+                    <tr><td>原子结构</td><td>2-8-1（最外层1个电子）</td></tr>
+                    <tr><td>常见化合价</td><td><b>+1</b></td></tr>
+                    <tr><td>单质</td><td>Na（银白色，质软）</td></tr>
+                    <tr><td>高中常考</td><td>Na与H₂O反应（浮熔游响红）；Na₂O₂中O为-1价</td></tr>
+                </table>
+                <div class="memo-box">💡 "那(Na)是钠"；钠与水反应：2Na+2H₂O=2NaOH+H₂↑</div>`
+            },
+            qs: [
+                { q: '表示"钠"元素的符号是（ ）', opts: ['Nd', 'Ne', 'Na', 'N'], ans: 2, tip: 'Na是钠' },
+                { q: '钠原子结构为2-8-1，最外层有（ ）个电子', opts: ['1', '2', '3', '8'], ans: 0,
+                    tip: '钠原子结构2-8-1' },
+                { q: '钠原子最外层1个电子，容易（ ）电子，显（ ）价', opts: ['得到1个，-1', '失去1个，+1', '失去2个，+2',
+                        '得到2个，-2'
+                    ], ans: 1, tip: '最外层1个→失1个→+1' },
+                { q: '钠与水反应的现象不包括（ ）', opts: ['浮在水面', '熔成小球', '加酚酞变红', '四处游动，嘶嘶响'], ans: 2,
+                    tip: '加酚酞变红是后续验证，不是现象' },
+                { q: 'Na₂O₂中O的化合价为（ ），与水反应生成（ ）', opts: ['-1，NaOH和O₂', '-2，NaOH和O₂', '-1，Na₂O和O₂',
+                        '-2，NaOH和H₂'
+                    ], ans: 0, tip: '2Na₂O₂+2H₂O=4NaOH+O₂↑' }
+            ]
+        }, {
+            id: 11,
+            block: 2,
+            element: '钾',
+            symbol: 'K',
+            knowledge: {
+                title: '📖 钾元素 · 知识卡片',
+                body: `<table>
+                    <tr><th>项目</th><th>内容</th></tr>
+                    <tr><td>符号</td><td><b>K</b></td></tr>
+                    <tr><td>原子结构</td><td>2-8-8-1（最外层1个电子）</td></tr>
+                    <tr><td>常见化合价</td><td><b>+1</b></td></tr>
+                    <tr><td>高中常考</td><td>比钠更活泼；K在空气中燃烧生成KO₂（超氧化钾）</td></tr>
+                </table>
+                <div class="memo-box">💡 同族从上到下金属性增强，K比Na更活泼</div>`
+            },
+            qs: [
+                { q: '表示"钾"元素的符号是（ ）', opts: ['P', 'K', 'Ka', 'Ki'], ans: 1, tip: 'K是钾' },
+                { q: '钾原子最外层有（ ）个电子', opts: ['1', '2', '3', '8'], ans: 0, tip: '钾原子结构2-8-8-1' },
+                { q: '钾元素的常见化合价为（ ）', opts: ['+1', '+2', '-1', '0'], ans: 0, tip: '钾恒为+1' },
+                { q: '钾的活泼性与钠相比（ ）', opts: ['钾更活泼', '钠更活泼', '相同', '无法比较'], ans: 0,
+                    tip: '同族从上到下金属性增强' }
+            ]
+        }, {
+            id: 12,
+            block: 2,
+            element: '镁',
+            symbol: 'Mg',
+            knowledge: {
+                title: '📖 镁元素 · 知识卡片',
+                body: `<table>
+                    <tr><th>项目</th><th>内容</th></tr>
+                    <tr><td>符号</td><td><b>Mg</b></td></tr>
+                    <tr><td>原子结构</td><td>2-8-2（最外层2个电子）</td></tr>
+                    <tr><td>常见化合价</td><td><b>+2</b></td></tr>
+                    <tr><td>高中常考</td><td>Mg与CO₂反应（2Mg+CO₂→2MgO+C）——特殊考点！</td></tr>
+                </table>
+                <div class="memo-box">💡 "美丽镁女"——Mg是镁；镁点燃发出耀眼白光</div>`
+            },
+            qs: [
+                { q: '表示"镁"元素的符号是（ ）', opts: ['Mn', 'Mg', 'Ma', 'Md'], ans: 1, tip: 'Mg是镁，Mn是锰' },
+                { q: '镁原子最外层有（ ）个电子', opts: ['1', '2', '3', '6'], ans: 1, tip: '镁原子结构2-8-2' },
+                { q: '镁元素的常见化合价为（ ）', opts: ['+1', '+2', '+3', '-2'], ans: 1, tip: '镁恒为+2' },
+                { q: '镁在空气中燃烧的产物不包括（ ）', opts: ['MgO', 'Mg₃N₂', 'MgC₂', 'C（与CO₂反应生成）'], ans: 2,
+                    tip: '2Mg+CO₂→2MgO+C' },
+                { q: '关于镁的说法正确的是（ ）', opts: ['常温与水剧烈反应', '点燃发出耀眼白光，用于照明弹', '不能与酸反应',
+                        '是极活泼金属'
+                    ], ans: 1, tip: '镁点燃时发出耀眼白光' }
+            ]
+        }, {
+            id: 13,
+            block: 2,
+            element: '钙',
+            symbol: 'Ca',
+            knowledge: {
+                title: '📖 钙元素 · 知识卡片',
+                body: `<table>
+                    <tr><th>项目</th><th>内容</th></tr>
+                    <tr><td>符号</td><td><b>Ca</b></td></tr>
+                    <tr><td>原子结构</td><td>2-8-8-2（最外层2个电子）</td></tr>
+                    <tr><td>常见化合价</td><td><b>+2</b></td></tr>
+                    <tr><td>高中常考</td><td>Ca(OH)₂俗名熟石灰；CaCO₃与酸反应</td></tr>
+                </table>
+                <div class="memo-box">💡 "该(Ca)死(钙)"——Ca是钙；Ca(OH)₂是熟石灰</div>`
+            },
+            qs: [
+                { q: '表示"钙"元素的符号是（ ）', opts: ['Ca', 'C', 'Cu', 'Cl'], ans: 0, tip: 'Ca是钙' },
+                { q: '钙原子最外层有（ ）个电子', opts: ['1', '2', '3', '4'], ans: 1, tip: '钙原子结构2-8-8-2' },
+                { q: '钙元素的常见化合价为（ ）', opts: ['+1', '+2', '+3', '-2'], ans: 1, tip: '钙恒为+2' },
+                { q: 'Ca(OH)₂的俗名是（ ），CaO的俗名是（ ）', opts: ['熟石灰，生石灰', '生石灰，熟石灰', '熟石灰，石灰石',
+                        '石灰石，生石灰'
+                    ], ans: 0, tip: 'Ca(OH)₂熟石灰，CaO生石灰' },
+                { q: '可用于改良酸性土壤的是（ ）', opts: ['NaCl', 'Ca(OH)₂', 'CaCO₃', 'Na₂CO₃'], ans: 1,
+                    tip: 'Ca(OH)₂呈碱性，改良酸性土壤' }
+            ]
+        }, {
+            id: 14,
+            block: 3,
+            element: '铝',
+            symbol: 'Al',
+            knowledge: {
+                title: '📖 铝元素 · 知识卡片',
+                body: `<table>
+                    <tr><th>项目</th><th>内容</th></tr>
+                    <tr><td>符号</td><td><b>Al</b></td></tr>
+                    <tr><td>原子结构</td><td>2-8-3（最外层3个电子）</td></tr>
+                    <tr><td>常见化合价</td><td><b>+3</b></td></tr>
+                    <tr><td>高中常考</td><td><b>两性</b>（与酸和强碱均反应）；铝热反应；钝化</td></tr>
+                </table>
+                <div class="memo-box">💡 "爱(Al)旅(铝)"——Al是铝；铝是两性金属，既能与酸又能与强碱反应</div>`
+            },
+            qs: [
+                { q: '表示"铝"元素的符号是（ ）', opts: ['Al', 'Ar', 'Ag', 'Au'], ans: 0, tip: 'Al是铝' },
+                { q: '铝原子结构为2-8-3，最外层有（ ）个电子', opts: ['1', '2', '3', '5'], ans: 2,
+                    tip: '铝原子结构2-8-3' },
+                { q: '铝元素的常见化合价为（ ）', opts: ['+1', '+2', '+3', '-3'], ans: 2, tip: '"三铝"——Al恒为+3' },
+                { q: '铝既能与酸反应又能与NaOH反应放出H₂，说明铝具有（ ）', opts: ['氧化性', '两性', '还原性', '酸性'], ans: 1,
+                    tip: '铝是两性金属' },
+                { q: '铝在空气中表面形成致密氧化膜，成分是（ ）', opts: ['Al₂O₃', 'Al(OH)₃', 'Al', 'AlCl₃'], ans: 0,
+                    tip: '4Al+3O₂=2Al₂O₃' },
+                { q: '铝热反应中，铝的作用是（ ）', opts: ['氧化剂', '还原剂', '催化剂', '熔剂'], ans: 1,
+                    tip: '2Al+Fe₂O₃→2Fe+Al₂O₃，Al做还原剂' },
+                { q: '常温下铝在浓硫酸或浓硝酸中发生（ ）', opts: ['剧烈反应', '钝化', '不反应', '溶解'], ans: 1,
+                    tip: '常温下铝遇浓H₂SO₄/浓HNO₃钝化' },
+                { q: 'Al(OH)₃能溶于NaOH溶液，生成（ ）', opts: ['Al³⁺', 'AlO₂⁻（偏铝酸根）', 'Al(OH)₄⁻', 'Al₂O₃'],
+                    ans: 1, tip: 'Al(OH)₃+NaOH=NaAlO₂+2H₂O' },
+                { q: '下列离子在强碱性溶液中能大量存在的是（ ）', opts: ['Al³⁺', 'AlO₂⁻', 'Fe³⁺', 'Mg²⁺'], ans: 1,
+                    tip: '强碱性溶液中Al³⁺转化为AlO₂⁻' },
+                { q: '铝与NaOH溶液反应的离子方程式正确的是（ ）', opts: ['2Al+6H₂O=2Al(OH)₃↓+3H₂↑',
+                        '2Al+2OH⁻+6H₂O=2[Al(OH)₄]⁻+3H₂↑', '2Al+6OH⁻=2AlO₂⁻+3H₂↑',
+                        'Al+OH⁻+H₂O=AlO₂⁻+H₂↑'
+                    ], ans: 1, tip: '2Al+2OH⁻+6H₂O=2[Al(OH)₄]⁻+3H₂↑' }
+            ]
+        }, {
+            id: 15,
+            block: 4,
+            element: '铁',
+            symbol: 'Fe',
+            knowledge: {
+                title: '📖 铁元素 · 知识卡片',
+                body: `<table>
+                    <tr><th>项目</th><th>内容</th></tr>
+                    <tr><td>符号</td><td><b>Fe</b></td></tr>
+                    <tr><td>常见化合价</td><td><b>+2</b>（亚铁）、<b>+3</b>（铁）</td></tr>
+                    <tr><td>高中常考</td><td>Fe²⁺与Fe³⁺的转化；Fe₃O₄中Fe为+2/+3混合</td></tr>
+                </table>
+                <div class="memo-box">💡 "铁(Fe)人"——Fe是铁；"二三铁"——Fe常见+2和+3</div>`
+            },
+            qs: [
+                { q: '表示"铁"元素的符号是（ ）', opts: ['Fe', 'Fi', 'Fr', 'F'], ans: 0, tip: 'Fe是铁' },
+                { q: '铁的常见化合价有（ ）', opts: ['+1、+2', '+2、+3', '+3、+4', '+1、+3'], ans: 1,
+                    tip: '"二三铁"——+2和+3' },
+                { q: 'FeCl₂中铁显（ ）价，FeCl₃中铁显（ ）价', opts: ['+2，+3', '+3，+2', '+2，+2', '+3，+3'],
+                    ans: 0, tip: 'FeCl₂（氯化亚铁）+2；FeCl₃（氯化铁）+3' },
+                { q: 'Fe₃O₄中Fe平均化合价为（ ），实际是（ ）的混合', opts: ['+8/3，FeO·Fe₂O₃', '+3，FeO和Fe₂O₃',
+                        '+2，FeO和Fe₃O₄', '+4，Fe₂O₃和FeO'
+                    ], ans: 0, tip: 'Fe₃O₄可看作FeO·Fe₂O₃' },
+                { q: 'FeCl₂滴入KMnO₄酸性溶液，KMnO₄褪色，说明Fe²⁺具有（ ）', opts: ['氧化性', '还原性', '酸性', '碱性'],
+                    ans: 1, tip: 'Fe²⁺被KMnO₄氧化为Fe³⁺，做还原剂' },
+                { q: '检验Fe³⁺的试剂是（ ），现象是（ ）', opts: ['KSCN，变红色', 'NaOH，白色沉淀', 'KSCN，变蓝色',
+                        '淀粉，变紫色'
+                    ], ans: 0, tip: 'Fe³⁺+3SCN⁻=Fe(SCN)₃（血红色）' },
+                { q: '铁与水蒸气高温反应的产物是（ ）', opts: ['FeO和H₂', 'Fe₃O₄和H₂', 'Fe₂O₃和H₂', 'Fe和H₂O'],
+                    ans: 1, tip: '3Fe+4H₂O(g)→Fe₃O₄+4H₂↑' },
+                { q: '下列离子中，既有氧化性又有还原性的是（ ）', opts: ['Fe²⁺', 'Fe³⁺', 'Fe', 'Na⁺'], ans: 0,
+                    tip: 'Fe²⁺可升为Fe³⁺（还原性），可降为Fe（氧化性）' }
+            ]
+        }, {
+            id: 16,
+            block: 4,
+            element: '铜',
+            symbol: 'Cu',
+            knowledge: {
+                title: '📖 铜元素 · 知识卡片',
+                body: `<table>
+                    <tr><th>项目</th><th>内容</th></tr>
+                    <tr><td>符号</td><td><b>Cu</b></td></tr>
+                    <tr><td>常见化合价</td><td><b>+1</b>（亚铜）、<b>+2</b>（铜）</td></tr>
+                    <tr><td>高中常考</td><td>Cu与浓H₂SO₄/浓HNO₃反应（加热）</td></tr>
+                </table>
+                <div class="memo-box">💡 "亲(Cu)铜"——Cu是铜；"铜汞二价最常见"</div>`
+            },
+            qs: [
+                { q: '表示"铜"元素的符号是（ ）', opts: ['Ca', 'Co', 'Cu', 'Cr'], ans: 2, tip: 'Cu是铜' },
+                { q: '铜的常见化合价有（ ）', opts: ['+1、+2', '+2、+3', '+1、+3', '+2、+4'], ans: 0,
+                    tip: '"铜汞二价最常见"' },
+                { q: 'CuO中Cu显（ ）价，Cu₂O中Cu显（ ）价', opts: ['+2，+1', '+1，+2', '+2，+2', '+3，+1'],
+                    ans: 0, tip: 'CuO（+2）；Cu₂O（+1）' },
+                { q: '铜与浓硫酸加热反应，体现了浓硫酸的（ ）性', opts: ['氧化性和酸性', '仅酸性', '仅氧化性', '还原性'], ans: 0,
+                    tip: 'Cu+2H₂SO₄(浓)→CuSO₄+SO₂↑+2H₂O' },
+                { q: '关于铜的说法正确的是（ ）', opts: ['常温与盐酸反应放出H₂', '在空气中加热生成CuO', '是活泼金属',
+                        '与浓硝酸反应不加热'
+                    ], ans: 1, tip: '2Cu+O₂→2CuO' },
+                { q: 'Cu₂O和CuO混合物与稀硫酸反应，溶液呈蓝色且有红色固体析出，说明含有（ ）', opts: ['只有Cu₂O', '只有CuO',
+                        'CuO和Cu₂O', '无法判断'
+                    ], ans: 2, tip: 'Cu₂O+H₂SO₄=CuSO₄+Cu↓+H₂O' },
+                { q: '下列金属中，不能与稀硫酸反应放出H₂的是（ ）', opts: ['Fe', 'Zn', 'Cu', 'Mg'], ans: 2,
+                    tip: 'Cu在H之后' },
+                { q: '湿法炼铜的原理是（ ）', opts: ['Fe+CuSO₄→FeSO₄+Cu', 'CuO+CO→Cu+CO₂', 'Cu₂S+O₂→2Cu+SO₂',
+                        'Cu+2AgNO₃→Cu(NO₃)₂+2Ag'
+                    ], ans: 0, tip: 'Fe+CuSO₄=FeSO₄+Cu' }
+            ]
+        }, {
+            id: 17,
+            block: 5,
+            element: '锌',
+            symbol: 'Zn',
+            knowledge: {
+                title: '📖 锌元素 · 知识卡片',
+                body: `<table>
+                    <tr><th>项目</th><th>内容</th></tr>
+                    <tr><td>符号</td><td><b>Zn</b></td></tr>
+                    <tr><td>常见化合价</td><td><b>+2</b></td></tr>
+                    <tr><td>高中常考</td><td>实验室制H₂（Zn+稀H₂SO₄）；锌是两性金属</td></tr>
+                </table>
+                <div class="memo-box">💡 Zn是锌，恒为+2价，常用于实验室制氢气</div>`
+            },
+            qs: [
+                { q: '表示"锌"元素的符号是（ ）', opts: ['Zi', 'Zn', 'Zr', 'Z'], ans: 1, tip: 'Zn是锌' },
+                { q: '锌元素的常见化合价为（ ）', opts: ['+1', '+2', '+3', '-2'], ans: 1, tip: '锌恒为+2' },
+                { q: '实验室制取氢气的反应是（ ）', opts: ['Zn+稀H₂SO₄→ZnSO₄+H₂↑', 'Zn+浓H₂SO₄→ZnSO₄+H₂↑',
+                        'Fe+稀H₂SO₄→FeSO₄+H₂↑', 'Cu+稀H₂SO₄→CuSO₄+H₂↑'
+                    ], ans: 0, tip: '实验室用Zn和稀硫酸反应制H₂' },
+                { q: '锌与NaOH溶液反应放出H₂，说明锌具有（ ）', opts: ['只有金属性', '两性', '只有非金属性', '还原性'], ans: 1,
+                    tip: 'Zn+2NaOH+2H₂O=Na₂[Zn(OH)₄]+H₂↑' }
+            ]
+        }, {
+            id: 18,
+            block: 5,
+            element: '银',
+            symbol: 'Ag',
+            knowledge: {
+                title: '📖 银元素 · 知识卡片',
+                body: `<table>
+                    <tr><th>项目</th><th>内容</th></tr>
+                    <tr><td>符号</td><td><b>Ag</b></td></tr>
+                    <tr><td>常见化合价</td><td><b>+1</b></td></tr>
+                    <tr><td>高中常考</td><td>AgNO₃检验Cl⁻（白色沉淀）；银镜反应</td></tr>
+                </table>
+                <div class="memo-box">💡 Ag是银（Au是金，注意区分！）；Ag⁺+Cl⁻=AgCl↓（白色沉淀）</div>`
+            },
+            qs: [
+                { q: '表示"银"元素的符号是（ ）', opts: ['Ag', 'Au', 'Al', 'Ar'], ans: 0, tip: 'Ag是银，Au是金' },
+                { q: '银元素的常见化合价为（ ）', opts: ['+1', '+2', '-1', '0'], ans: 0, tip: '银常见+1' },
+                { q: '检验Cl⁻的试剂是（ ），现象是（ ）', opts: ['AgNO₃，白色沉淀', 'BaCl₂，白色沉淀', 'AgNO₃，黄色沉淀',
+                        'Ba(NO₃)₂，白色沉淀'
+                    ], ans: 0, tip: 'Ag⁺+Cl⁻=AgCl↓（白色沉淀）' },
+                { q: '银镜反应中Ag⁺被还原为Ag，说明Ag⁺具有（ ）', opts: ['氧化性', '还原性', '酸性', '碱性'], ans: 0,
+                    tip: 'Ag⁺做氧化剂' }
+            ]
+        }, {
+            id: 19,
+            block: 5,
+            element: '汞',
+            symbol: 'Hg',
+            knowledge: {
+                title: '📖 汞元素 · 知识卡片',
+                body: `<table>
+                    <tr><th>项目</th><th>内容</th></tr>
+                    <tr><td>符号</td><td><b>Hg</b></td></tr>
+                    <tr><td>常见化合价</td><td><b>+2</b></td></tr>
+                    <tr><td>单质</td><td>Hg（液态银白色金属）</td></tr>
+                    <tr><td>高中常考</td><td>常温液态，有毒性；HgO加热分解</td></tr>
+                </table>
+                <div class="memo-box">💡 Hg是汞（Mg是镁），常温下唯一液态金属，汞蒸气有毒</div>`
+            },
+            qs: [
+                { q: '表示"汞"元素的符号是（ ）', opts: ['Hg', 'Mg', 'He', 'H'], ans: 0, tip: 'Hg是汞' },
+                { q: '汞最常见的化合价为（ ）', opts: ['+1', '+2', '+3', '0'], ans: 1, tip: '"铜汞二价最常见"' },
+                { q: '关于汞的说法正确的是（ ）', opts: ['常温下是固体', '常温下是液体，有毒性', '与稀盐酸反应放出H₂',
+                        '不挥发，无毒性'
+                    ], ans: 1, tip: '汞是常温下唯一液态金属，汞蒸气有毒' },
+                { q: 'HgO加热分解的产物是（ ）', opts: ['Hg+O₂', 'Hg+H₂O', 'Hg₂O+O₂', 'Hg+O₃'], ans: 0,
+                    tip: '2HgO→2Hg+O₂↑' }
+            ]
+        }, {
+            id: 20,
+            block: 6,
+            element: '原子团',
+            symbol: '—',
+            knowledge: {
+                title: '📖 原子团 · 知识卡片',
+                body: `<table>
+                    <tr><th>名称</th><th>符号</th><th>化合价</th></tr>
+                    <tr><td>氢氧根</td><td>OH⁻</td><td>-1</td></tr>
+                    <tr><td>硝酸根</td><td>NO₃⁻</td><td>-1</td></tr>
+                    <tr><td>硫酸根</td><td>SO₄²⁻</td><td>-2</td></tr>
+                    <tr><td>碳酸根</td><td>CO₃²⁻</td><td>-2</td></tr>
+                    <tr><td>铵根</td><td>NH₄⁺</td><td>+1</td></tr>
+                </table>
+                <div class="memo-box">💡 "铵正一（按一下）"——NH₄⁺是唯一带正电的原子团</div>`
+            },
+            qs: [
+                { q: '氢氧根的符号是（ ），化合价是（ ）', opts: ['OH⁻，-1', 'OH，-1', 'OH⁻，-2', 'HO⁻，-1'], ans: 0,
+                    tip: 'OH⁻，-1' },
+                { q: '硝酸根的符号是（ ），化合价是（ ）', opts: ['NO₃⁻，-1', 'NO₃，-1', 'NO₂⁻，-1', 'NO₃⁻，-2'],
+                    ans: 0, tip: 'NO₃⁻，-1' },
+                { q: '硫酸根的符号是（ ），化合价是（ ）', opts: ['SO₄²⁻，-2', 'SO₄，-2', 'SO₃²⁻，-2', 'SO₄²⁻，-1'],
+                    ans: 0, tip: 'SO₄²⁻，-2' },
+                { q: '碳酸根的符号是（ ），化合价是（ ）', opts: ['CO₃²⁻，-2', 'CO₃，-2', 'CO₂²⁻，-2', 'CO₃²⁻，-1'],
+                    ans: 0, tip: 'CO₃²⁻，-2' },
+                { q: '铵根的符号是（ ），化合价是（ ）', opts: ['NH₄⁺，+1', 'NH₄，+1', 'NH₃⁺，+1', 'NH₄⁺，-1'],
+                    ans: 0, tip: 'NH₄⁺，+1' },
+                { q: '下列哪个是硫酸根？（ ）', opts: ['SO₃²⁻', 'SO₄²⁻', 'SO₃', 'SO₄'], ans: 1, tip: 'SO₄²⁻' },
+                { q: '下列原子团中，带正电的是（ ）', opts: ['OH⁻', 'NO₃⁻', 'SO₄²⁻', 'NH₄⁺'], ans: 3,
+                tip: '只有NH₄⁺带正电' },
+                { q: 'OH⁻中O为-2价，则H的化合价为（ ）', opts: ['+1', '-1', '+2', '0'], ans: 0,
+                tip: 'x+(-2)=-1→x=+1' },
+                { q: 'NO₃⁻中O为-2价，则N的化合价为（ ）', opts: ['+3', '+4', '+5', '-3'], ans: 2,
+                    tip: 'x+(-2)×3=-1→x=+5' },
+                { q: 'SO₄²⁻中O为-2价，则S的化合价为（ ）', opts: ['+4', '+6', '-2', '+2'], ans: 1,
+                    tip: 'x+(-2)×4=-2→x=+6' },
+                { q: '(NH₄)₂SO₄中，N的化合价为（ ）（H为+1）', opts: ['-3', '+3', '+5', '-1'], ans: 0,
+                    tip: 'NH₄⁺中x+4=+1→x=-3' },
+                { q: 'NH₄HCO₃中，碳元素的化合价为（ ）', opts: ['+2', '+4', '-4', '0'], ans: 1,
+                    tip: 'CO₃²⁻中C为+4' },
+                { q: '铵盐与碱共热反应的产物是（ ）', opts: ['NH₄Cl', 'NH₃↑和H₂O', 'NO₂↑和H₂O', 'N₂↑和H₂O'], ans: 1,
+                    tip: 'NH₄⁺+OH⁻→NH₃↑+H₂O' }
+            ]
+        }, {
+            id: 21,
+            block: 7,
+            element: '综合·氧化还原',
+            symbol: '—',
+            knowledge: {
+                title: '📖 氧化还原反应 · 核心讲解',
+                body: `
+                <div class="memo-box" style="font-size:15px;margin-bottom:10px;">
+                    🔑 核心口诀：<b>升失氧，降得还</b><br>
+                    化合价<b>升高</b> → <b>失</b>电子 → 被<b>氧</b>化 → 做<b>还原剂</b><br>
+                    化合价<b>降低</b> → <b>得</b>电子 → 被<b>还</b>原 → 做<b>氧化剂</b>
+                </div>
+                <p style="margin-bottom:8px;"><b>⚠️ 重要提醒：</b>"氧化还原"与<b>氧元素无关</b>！<br>
+                现代化学中：氧化 = 失电子（化合价升高），还原 = 得电子（化合价降低）。</p>
+                <table>
+                    <tr><th>变化</th><th>名称</th><th>角色</th><th>举例</th></tr>
+                    <tr><td>化合价 ↑</td><td>被<b>氧化</b></td><td>做<b>还原剂</b></td><td>Na→Na⁺（0→+1）</td></tr>
+                    <tr><td>化合价 ↓</td><td>被<b>还原</b></td><td>做<b>氧化剂</b></td><td>Cl₂→Cl⁻（0→-1）</td></tr>
+                </table>
+                <div style="background:#f0fdf4;padding:8px 12px;border-radius:8px;margin-top:8px;border:1px solid #bbf7d0;">
+                    <b>📌 生活比喻：</b>电子就像快递包裹。<br>
+                    失电子（把包裹送出去）→ 化合价升高 → 被氧化<br>
+                    得电子（收到包裹）→ 化合价降低 → 被还原
+                </div>
+                `
+            },
+            qs: [
+                { q: '下列金属中，活泼性最强的是（ ）', opts: ['Na', 'Mg', 'Al', 'K'], ans: 3, tip: 'K>Na>Mg>Al' },
+                { q: '不能与稀硫酸反应放出H₂的是（ ）', opts: ['Fe', 'Zn', 'Cu', 'Mg'], ans: 2, tip: 'Cu位于H之后' },
+                { q: '2Na+2H₂O=2NaOH+H₂↑中，做还原剂的是（ ）', opts: ['Na', 'H₂O', 'NaOH', 'H₂'], ans: 0,
+                    tip: 'Na从0→+1，做还原剂' },
+                { q: 'Cl₂+2NaOH=NaCl+NaClO+H₂O中，Cl₂的作用是（ ）', opts: ['只有氧化性', '只有还原性',
+                        '既做氧化剂又做还原剂', '既不做氧化剂也不做还原剂'
+                    ], ans: 2, tip: 'Cl₂歧化为-1和+1' },
+                { q: '下列反应中属于氧化还原反应的是（ ）', opts: ['NaOH+HCl=NaCl+H₂O',
+                        'CaCO₃+2HCl=CaCl₂+H₂O+CO₂↑', '2Mg+CO₂=2MgO+C', 'Na₂SO₄+BaCl₂=BaSO₄↓+2NaCl'
+                    ], ans: 2, tip: 'A、B、D无化合价变化' },
+                { q: '离子方程式书写正确的是（ ）', opts: ['Na+H₂O=Na⁺+OH⁻+H₂↑', 'Fe+Cu²⁺=Fe²⁺+Cu',
+                        'CO₃²⁻+2H⁺=CO₂↑+H₂O', 'Al+OH⁻=AlO₂⁻+H₂↑'
+                    ], ans: 1, tip: 'B正确；A未配平；C中CaCO₃不拆；D未配平' },
+                { q: '钠与水反应的化学方程式是（ ）', opts: ['2Na+2H₂O=2NaOH+H₂↑', 'Na+H₂O=NaOH+H₂↑',
+                        '2Na+H₂O=Na₂O+H₂↑', 'Na+H₂O=NaOH+H₂O'
+                    ], ans: 0, tip: '2Na+2H₂O=2NaOH+H₂↑' },
+                { q: '铝与NaOH溶液反应的化学方程式是（ ）', opts: ['2Al+2NaOH+6H₂O=2Na[Al(OH)₄]+3H₂↑',
+                        '2Al+2NaOH=2NaAlO₂+H₂↑', 'Al+NaOH+H₂O=NaAlO₂+H₂↑',
+                        '2Al+6NaOH=2Na₃AlO₃+3H₂↑'
+                    ], ans: 0, tip: '2Al+2NaOH+6H₂O=2Na[Al(OH)₄]+3H₂↑' },
+                { q: '铁与硫酸铜溶液反应的方程式是（ ）', opts: ['Fe+CuSO₄=FeSO₄+Cu', '2Fe+3CuSO₄=Fe₂(SO₄)₃+3Cu',
+                        'Fe+CuSO₄=Fe₂(SO₄)₃+Cu', 'Fe+CuSO₄=FeSO₄+CuO'
+                    ], ans: 0, tip: 'Fe+CuSO₄=FeSO₄+Cu' },
+                { q: '铜与浓硫酸加热反应的方程式是（ ）', opts: ['Cu+2H₂SO₄(浓)→CuSO₄+SO₂↑+2H₂O',
+                        'Cu+H₂SO₄(浓)→CuSO₄+H₂↑', 'Cu+2H₂SO₄(浓)→CuSO₄+2H₂O+SO₂↑',
+                        '2Cu+2H₂SO₄(浓)→2CuSO₄+2H₂O+SO₂↑'
+                    ], ans: 0, tip: 'Cu+2H₂SO₄(浓)→CuSO₄+SO₂↑+2H₂O' },
+                { q: '下列叙述正确的是（ ）', opts: ['金属单质只能做还原剂', '非金属单质只能做氧化剂', '所有金属都能与酸反应放出H₂',
+                        '同种元素在不同化合物中化合价一定不同'
+                    ], ans: 0, tip: 'A正确；B错（H₂、C可做还原剂）；C错；D错' },
+                { q: '属于两性氢氧化物的是（ ）', opts: ['NaOH', 'Mg(OH)₂', 'Al(OH)₃', 'Fe(OH)₃'], ans: 2,
+                    tip: 'Al(OH)₃是两性氢氧化物' },
+                { q: '下列离子中氧化性最强的是（ ）', opts: ['Na⁺', 'Mg²⁺', 'Al³⁺', 'Ag⁺'], ans: 3,
+                    tip: '金属越不活泼，对应阳离子氧化性越强' },
+                { q: '属于置换反应且是氧化还原反应的是（ ）', opts: ['2Mg+CO₂→2MgO+C', 'NaOH+HCl=NaCl+H₂O',
+                        '2H₂O₂=2H₂O+O₂↑', 'CaCO₃=CaO+CO₂↑'
+                    ], ans: 0, tip: 'A是置换反应（单质+化合物→新单质+新化合物）' }
+            ]
+        }];
 
-    <div id="result-area" class="card hidden result-card">
-        <div class="result-emoji" id="result-emoji">🎉</div>
-        <div id="result-name" style="font-size:1.2rem;font-weight:700;"></div>
-        <div class="result-score" id="result-score"></div>
-        <div class="accuracy-bar"><div class="accuracy-fill" id="accuracy-fill" style="width:0%;"></div></div>
-        <p id="result-detail"></p>
-        <div class="btn-group" style="margin-top:10px;">
-            <button class="btn btn-warning" id="btn-retry-wrong" onclick="retryWrong()" style="display:none;">📘 重练错题</button>
-            <button class="btn btn-primary" onclick="goToMenu()">🏠 返回</button>
-        </div>
-    </div>
+        // ============================================================
+        //  区块定义
+        // ============================================================
+        const BLOCKS = [
+            { id: 0, name: '常见非金属·上', emoji: '💨', desc: 'H · C · N · O' },
+            { id: 1, name: '常见非金属·下', emoji: '⚡', desc: 'F · Si · P · S · Cl' },
+            { id: 2, name: '碱金属·碱土金属', emoji: '🔥', desc: 'Na · K · Mg · Ca' },
+            { id: 3, name: '铝与两性', emoji: '🪞', desc: 'Al' },
+            { id: 4, name: '过渡金属·上', emoji: '⚙️', desc: 'Fe · Cu' },
+            { id: 5, name: '过渡金属·下', emoji: '🔩', desc: 'Zn · Ag · Hg' },
+            { id: 6, name: '原子团', emoji: '🧩', desc: 'OH⁻ NO₃⁻ SO₄²⁻ CO₃²⁻ NH₄⁺' },
+            { id: 7, name: '高中重点综合', emoji: '🎯', desc: '氧化还原 · 离子反应 · 方程式' }
+        ];
 
-    <div id="statistics-area" class="card hidden">
-        <h2>📈 学习报告</h2>
-        <div style="display:flex;justify-content:space-between;padding:4px 0;"><span>总练习次数</span><span id="stat-total">0</span></div>
-        <div style="display:flex;justify-content:space-between;padding:4px 0;"><span>正确总数</span><span id="stat-correct">0</span></div>
-        <div style="display:flex;justify-content:space-between;padding:4px 0;"><span>正确率</span><span id="stat-accuracy">0%</span></div>
-        <div style="display:flex;justify-content:space-between;padding:4px 0;"><span>错题数量</span><span id="stat-wrong">0</span></div>
-        <h3 style="margin:14px 0 8px;">📌 各模块掌握度</h3>
-        <div id="chapter-stats"></div>
-        <button class="btn btn-outline btn-sm btn-block" onclick="goToMenu()" style="margin-top:10px;">← 返回</button>
-    </div>
-
-    <div id="wrongbook-area" class="card hidden">
-        <h2>📕 错题本</h2>
-        <div id="wrong-list-container"></div>
-        <button class="btn btn-outline btn-sm btn-block" style="margin-top:10px;" onclick="goToMenu()">← 返回</button>
-    </div>
-</div>
-<div id="toast" class="toast hidden"></div>
-
-<script>
-// ======================= 11模块·110题·全选择题·已修正 =======================
-const modulesDB = {};
-
-// ==================== 模块1 空气 氧气 (10题) ====================
-modulesDB["空气 氧气"] = [
-    { q:"空气中体积分数约为21%的气体是？", ops:["氮气","氧气","二氧化碳","稀有气体"], ans:1, exp:"<span class='key-point'>氧气约占21%</span>，是支持燃烧和呼吸的关键气体。氮气占78%。" },
-    { q:"下列物质在氧气中燃烧，产生大量白烟的是？", ops:["硫","红磷","铁丝","木炭"], ans:1, exp:"红磷燃烧生成<span class='key-point'>五氧化二磷(P₂O₅)固体</span>，形成白烟。硫生成SO₂气体，铁丝生成Fe₃O₄固体（火星四射），木炭生成CO₂气体。" },
-    { q:"<span class='tag-gd'>广东真题</span> 下列关于氧气用途的说法错误的是？", ops:["医疗急救","炼钢","作燃料","潜水"], ans:2, exp:"<span class='key-point'>氧气具有助燃性，本身不可燃</span>，<span class='trap-point'>不能作燃料</span>。燃料必须是自身能燃烧的物质。", thinking:["氧气=助燃≠可燃","燃料必须自身能燃烧（如H₂、CO、CH₄）","氧气在炼钢中用于氧化杂质","突破口：区分'助燃'与'可燃'"] },
-    { q:"实验室用加热氯酸钾和二氧化锰混合物制氧气，二氧化锰的作用是？", ops:["反应物","催化剂","干燥剂","吸收杂质"], ans:1, exp:"MnO₂是<span class='key-point'>催化剂</span>，加快反应速率，本身<span class='trap-point'>质量和化学性质不变</span>。" },
-    { q:"用红磷测定空气中氧气含量，实验后发现进入集气瓶水体积大于1/5，可能的原因是？", ops:["红磷过量","止水夹未夹紧","未冷却读数","燃烧匙缓慢伸入"], ans:3, exp:"缓慢伸入导致<span class='trap-point'>瓶内气体受热膨胀逸出</span>，冷却后瓶内气压更小，进入的水更多→<span class='key-point'>结果偏大</span>。", thinking:["结果>1/5→瓶内气压偏小→气体逸出","缓慢伸入→红磷在瓶口就开始燃烧→气体受热膨胀逸出","止水夹未夹紧也会导致结果偏大（气体从导管逸出）","突破口：偏大=气体减少过多或逸出"] },
-    { q:"该实验能否用木炭代替红磷？", ops:["能","不能","可以但需加水","任意"], ans:1, exp:"木炭燃烧生成CO₂气体，<span class='key-point'>瓶内压强几乎不变</span>，水不会倒流。替代物必须生成固体，或生成的气体能被完全吸收。" },
-    { q:"<span class='tag-gd'>广东模拟</span> 下列属于空气污染物的是？", ops:["CO₂","N₂","SO₂","H₂O"], ans:2, exp:"<span class='key-point'>SO₂引起酸雨</span>，NOx、CO、O₃和PM2.5也是主要空气污染物。<span class='trap-point'>CO₂不是空气污染物</span>，是温室气体。" },
-    { q:"工业制氧气利用的原理是？", ops:["化学变化","沸点不同","密度不同","溶解度不同"], ans:1, exp:"分离液态空气，利用<span class='key-point'>氮气(-196℃)和氧气(-183℃)沸点差异</span>。整个过程没有新物质生成，属于<span class='trap-point'>物理变化</span>。" },
-    { q:"无色气体A能使带火星木条复燃，A与铁丝反应生成黑色固体B，则A是？", ops:["氧气","氮气","二氧化碳","氢气"], ans:0, exp:"O₂<span class='key-point'>助燃</span>，与Fe反应生成<span class='key-point'>Fe₃O₄</span>（黑色固体）。", thinking:["能使带火星木条复燃→O₂","O₂+Fe→点燃→Fe₃O₄（黑色）","突破口：助燃性+与铁生成黑色固体"] },
-    { q:"下列措施有利于减缓空气污染的是？", ops:["工厂废气直接排放","露天焚烧秸秆","使用清洁能源和燃煤脱硫","以上都不是"], ans:2, exp:"<span class='key-point'>清洁能源减少排放，脱硫减少SO₂</span>。直接排放和焚烧都会加重污染。" }
-];
-
-// ==================== 模块2 水和溶液 (10题) ====================
-modulesDB["水和溶液"] = [
-    { q:"电解水实验中，负极产生的气体是？", ops:["氧气","氢气","水蒸气","氯气"], ans:1, exp:"<span class='key-point'>负极产生氢气，正极产生氧气</span>，体积比H₂:O₂=2:1。口诀：负氢正氧。" },
-    { q:"下列物质溶于水，溶液温度明显升高的是？", ops:["硝酸铵","氯化钠","氢氧化钠","蔗糖"], ans:2, exp:"<span class='key-point'>NaOH、浓H₂SO₄溶解放热</span>（温度升高）；<span class='trap-point'>NH₄NO₃吸热降温</span>；NaCl和蔗糖温度变化不明显。" },
-    { q:"<span class='tag-gd'>广东中考</span> 将饱和石灰水变成不饱和溶液，可行的方法是？", ops:["加Ca(OH)₂","升温","降温","蒸发水"], ans:2, exp:"<span class='key-point'>Ca(OH)₂溶解度随温度升高而降低（反常）</span>，<span class='trap-point'>降温可使溶解度增大</span>，饱和溶液变为不饱和。这是广东中考高频易错点！", thinking:["大多数固体溶解度随温度升高而增大","Ca(OH)₂是特例：温度↑→溶解度↓","饱和→不饱和：需增大溶解度→降温","突破口：记住Ca(OH)₂的反常溶解度曲线"] },
-    { q:"t℃时KNO₃溶解度为30g，则100g水中最多溶解KNO₃的质量为？", ops:["30g","15g","60g","45g"], ans:0, exp:"<span class='key-point'>溶解度定义</span>：一定温度下，100g溶剂中达到饱和时溶解的溶质质量。直接=30g。" },
-    { q:"配制50g 10%的氯化钠溶液，下列操作导致浓度偏小的是？", ops:["量取水时仰视读数","称量时左码右物（未用游码）","氯化钠不纯","以上都是"], ans:3, exp:"<span class='trap-point'>仰视读数→量取的水偏多；左码右物→称取的NaCl偏少；不纯→有效NaCl偏少</span>，都导致浓度偏小。" },
-    { q:"有一种无色液体，加入少量二氧化锰后产生大量气泡，该液体是？", ops:["水","过氧化氢溶液","稀盐酸","酒精"], ans:1, exp:"<span class='key-point'>H₂O₂在MnO₂催化下分解产生O₂</span>：2H₂O₂=MnO₂=2H₂O+O₂↑。" },
-    { q:"<span class='tag-gd'>广东真题</span> 下列有关水的说法正确的是？", ops:["软水加入肥皂水产生浮渣","过滤能除去可溶性钙镁离子","活性炭吸附色素和异味","蒸馏是净水程度最低的方法"], ans:2, exp:"<span class='key-point'>活性炭具有吸附性</span>，可吸附色素和异味。<span class='trap-point'>硬水加肥皂水才产生浮渣；过滤只能除不溶物；蒸馏是净化程度最高的方法</span>。" },
-    { q:"t℃时，将20g某物质加入50g水中充分溶解，剩余5g固体，则该物质溶解度为？", ops:["30g","40g","25g","10g"], ans:0, exp:"溶解=20-5=<span class='key-point'>15g/50g水 → 30g/100g水</span>。溶解度单位：g/100g水。" },
-    { q:"粗盐提纯实验中，过滤时玻璃棒的作用是？", ops:["引流","搅拌","加速溶解","转移固体"], ans:0, exp:"<span class='key-point'>玻璃棒在过滤中引流液体</span>，防止液体溅出。溶解时搅拌加速溶解，蒸发时搅拌防止飞溅。" },
-    { q:"蒸发时，当蒸发皿中出现______时停止加热？", ops:["大量固体","较多固体","少量液体","水完全蒸干"], ans:1, exp:"出现<span class='key-point'>较多固体时停止加热</span>，<span class='trap-point'>利用余热蒸干</span>剩余水分，防止固体飞溅。" }
-];
-
-// ==================== 模块3 碳和碳的氧化物 (10题) ====================
-modulesDB["碳和碳的氧化物"] = [
-    { q:"金刚石和石墨物理性质差异大的原因是？", ops:["碳原子排列方式不同","元素种类不同","原子质量不同","杂质不同"], ans:0, exp:"<span class='key-point'>碳原子排列方式不同</span>（金刚石：正四面体网状；石墨：层状）。两者互为<span class='key-point'>同素异形体</span>，都由碳元素组成。" },
-    { q:"<span class='tag-gd'>广东中考</span> 下列气体中能引起温室效应的是？", ops:["CO₂","O₂","N₂","H₂"], ans:0, exp:"<span class='key-point'>CO₂、CH₄、O₃</span>等是主要温室气体。CO₂是最主要的温室气体。" },
-    { q:"检验CO₂气体的常用方法是？", ops:["燃着木条","带火星木条","澄清石灰水","紫色石蕊"], ans:2, exp:"CO₂使<span class='key-point'>澄清石灰水变浑浊</span>（生成CaCO₃沉淀）。燃着木条只能证明不可燃不助燃（N₂也有此性质）。" },
-    { q:"将CO₂通入紫色石蕊溶液，溶液变红，原因是？", ops:["CO₂与水反应生成碳酸","CO₂有颜色","石蕊被CO₂氧化","CO₂溶于水放热"], ans:0, exp:"<span class='key-point'>CO₂+H₂O=H₂CO₃</span>，碳酸使石蕊变红。<span class='trap-point'>是碳酸使石蕊变红，不是CO₂本身</span>。" },
-    { q:"加热变红溶液，颜色恢复紫色，说明？", ops:["碳酸不稳定，加热分解","CO₂逸出","石蕊挥发","水蒸发"], ans:0, exp:"<span class='key-point'>H₂CO₃加热分解为CO₂↑和H₂O</span>，酸性消失，紫色恢复。证明碳酸不稳定。" },
-    { q:"<span class='tag-gd'>广东真题</span> 除去CO中混有的少量CO₂，应通入？", ops:["灼热CuO","澄清石灰水","NaOH溶液","浓硫酸"], ans:2, exp:"<span class='key-point'>NaOH溶液吸收CO₂</span>（2NaOH+CO₂=Na₂CO₃+H₂O），CO不反应。<span class='trap-point'>石灰水吸收能力弱且会变浑浊，不适用于除杂</span>。" },
-    { q:"黑色固体A在氧气中燃烧生成无色气体B，B使澄清石灰水变浑浊，A是？", ops:["木炭","铁粉","铜粉","红磷"], ans:0, exp:"C+O₂→点燃→CO₂，<span class='key-point'>CO₂使石灰水变浑浊</span>。Fe在O₂中燃烧生成黑色固体Fe₃O₄，不是气体。", thinking:["黑色固体+O₂→无色气体","气体使石灰水浑浊→CO₂","反推：含碳元素的黑色固体→木炭","突破口：CO₂的特征检验反应"] },
-    { q:"CO和CO₂化学性质不同的根本原因是？", ops:["分子构成不同","原子排列不同","碳元素化合价不同","密度不同"], ans:0, exp:"<span class='key-point'>分子构成不同</span>（一个CO分子含1个C和1个O，一个CO₂分子含1个C和2个O）。<span class='trap-point'>分子是保持化学性质的最小粒子，分子不同则性质不同</span>。化合价不同是结果而非根本原因。" },
-    { q:"下列做法不符合低碳理念的是？", ops:["骑自行车","双面打印","焚烧落叶","随手关灯"], ans:2, exp:"焚烧产生CO₂和烟尘，<span class='key-point'>增加碳排放</span>。低碳=减少CO₂排放。" },
-    { q:"实验室制取CO₂，长颈漏斗末端必须伸入液面以下，目的是？", ops:["防止气体从漏斗逸出","便于加酸","形成压强差","冷凝气体"], ans:0, exp:"<span class='key-point'>液封防止CO₂从漏斗口逸出</span>，保证装置气密性。这是发生装置的基本要求。" }
-];
-
-// ==================== 模块4 金属 (10题) ====================
-modulesDB["金属"] = [
-    { q:"下列金属活动性最强的是？", ops:["Mg","Al","Fe","Cu"], ans:0, exp:"<span class='key-point'>K>Ca>Na>Mg>Al>Zn>Fe>Sn>Pb>(H)>Cu>Hg>Ag>Pt>Au</span>。Mg最活泼。" },
-    { q:"铁生锈的条件是？", ops:["只接触氧气","只接触水","同时接触氧气和水","接触二氧化碳"], ans:2, exp:"铁与<span class='key-point'>O₂和H₂O同时接触</span>发生缓慢氧化，生成Fe₂O₃·xH₂O（铁锈的主要成分）。" },
-    { q:"<span class='tag-gd'>广东中考</span> 将铁钉放入硫酸铜溶液中，现象正确的是？", ops:["铁钉表面出现红色固体，溶液由蓝色变为浅绿色","产生气泡","溶液变为黄色","铁钉溶解，无固体析出"], ans:0, exp:"Fe+CuSO₄=FeSO₄+Cu。<span class='key-point'>Cu是红色固体，Fe²⁺浅绿色</span>。CuSO₄溶液为蓝色。" },
-    { q:"探究Fe、Cu、Ag活动性：实验①Fe+CuSO₄，现象证明？", ops:["Fe比Cu活泼","Cu比Fe活泼","Fe比Ag活泼","Cu比Ag活泼"], ans:0, exp:"铁能置换出铜，证明<span class='key-point'>Fe的活动性>Cu</span>。能置换=更活泼。" },
-    { q:"实验②：Cu+AgNO₃，化学方程式正确的是？", ops:["Cu+2AgNO₃=Cu(NO₃)₂+2Ag","Cu+AgNO₃=CuNO₃+Ag","Cu+Ag=CuAg","不反应"], ans:0, exp:"铜置换银：<span class='key-point'>Cu+2AgNO₃=Cu(NO₃)₂+2Ag</span>。<span class='trap-point'>Cu在化合物中显+2价，不是+1价</span>。", thinking:["Cu+AgNO₃→能反应（Cu>Ag）","Cu显+2价→生成Cu(NO₃)₂","配平：左边2个NO₃⁻→右边Cu(NO₃)₂已有2个→需要2AgNO₃","突破口：记住Cu的化合价是+2"] },
-    { q:"<span class='tag-gd'>广东真题</span> 下列不能与稀盐酸反应生成氢气的是？", ops:["Mg","Zn","Fe","Cu"], ans:3, exp:"<span class='key-point'>Cu在金属活动性顺序中位于H之后</span>，不能置换酸中的氢。Mg、Zn、Fe都在H之前。" },
-    { q:"金属单质A与稀硫酸反应生成浅绿色溶液和氢气，则A是？", ops:["铁","铝","镁","锌"], ans:0, exp:"<span class='key-point'>Fe²⁺浅绿色</span>（FeSO₄）。Al³⁺无色，Mg²⁺无色，Zn²⁺无色。浅绿色=Fe²⁺的特征颜色。" },
-    { q:"工业炼铁中，焦炭的作用是？", ops:["提供热量和还原剂CO","催化剂","直接还原铁矿石","造渣"], ans:0, exp:"<span class='key-point'>C+O₂→CO₂放热；CO₂+C→2CO（还原剂）</span>。焦炭既提供热量又提供还原剂CO。" },
-    { q:"保护金属资源的做法错误的是？", ops:["防止金属锈蚀","回收利用废旧金属","合理开采矿物","大量使用一次性金属餐具"], ans:3, exp:"<span class='key-point'>应减少使用一次性金属餐具</span>，节约资源。其他三项都是正确的保护措施。" },
-    { q:"将锌片放入AgNO₃和Cu(NO₃)₂混合溶液中，充分反应后过滤，向滤渣加稀盐酸有气泡，则滤渣中一定含有？", ops:["Zn、Cu、Ag","Cu、Ag","Zn、Ag","Zn、Cu"], ans:0, exp:"有气泡→<span class='key-point'>滤渣含Zn（Zn过量）</span>→Cu和Ag都被完全置换→滤渣=<span class='key-point'>Zn+Cu+Ag</span>。", thinking:["加盐酸有气泡→滤渣含Zn","Zn过量→Ag和Cu全部被置换","滤渣=Zn+Cu+Ag","滤液=Zn(NO₃)₂","突破口：有气泡=Zn过量"] }
-];
-
-// ==================== 模块5 酸碱盐 (10题) ====================
-modulesDB["酸碱盐"] = [
-    { q:"下列物质属于碱的是？", ops:["HCl","NaOH","NaCl","CO₂"], ans:1, exp:"NaOH电离出<span class='key-point'>OH⁻</span>，属于碱。HCl是酸，NaCl是盐，CO₂是酸性氧化物。" },
-    { q:"能使无色酚酞试液变红的溶液pH范围是？", ops:["pH<7","pH=7","pH>7","任意pH"], ans:2, exp:"<span class='key-point'>碱性溶液pH>7</span>，酚酞变红。酸性pH<7（酚酞无色），中性pH=7（酚酞无色）。" },
-    { q:"<span class='tag-gd'>广东中考</span> 下列应用与中和反应无关的是？", ops:["熟石灰改良酸性土壤","氢氧化铝治胃酸过多","小苏打做发酵粉","蚊虫叮咬涂肥皂水"], ans:2, exp:"<span class='key-point'>中和反应=酸+碱→盐+水</span>。小苏打NaHCO₃是<span class='trap-point'>盐</span>，与酸反应不属于中和反应。熟石灰[Ca(OH)₂碱]+酸、Al(OH)₃碱+胃酸、肥皂水碱+蚁酸，都是中和反应。" },
-    { q:"某溶液能使紫色石蕊变蓝，加入稀盐酸产生气泡，该溶液可能是？", ops:["NaOH溶液","Na₂CO₃溶液","NaCl溶液","Ca(OH)₂溶液"], ans:1, exp:"碱性（石蕊变蓝）+<span class='key-point'>碳酸盐遇酸产生CO₂气泡</span>→Na₂CO₃。NaOH和Ca(OH)₂与盐酸反应无气泡。" },
-    { q:"下列物质敞口放置，质量增加且变质的是？", ops:["浓硫酸","氢氧化钠固体","氯化钠","石灰石"], ans:1, exp:"NaOH<span class='key-point'>吸收CO₂生成Na₂CO₃</span>而变质增重（2NaOH+CO₂=Na₂CO₃+H₂O）。浓硫酸吸水增重但不变质（物理变化）。" },
-    { q:"<span class='tag-gd'>广东真题</span> 在pH=2的溶液中，下列离子能大量共存的是？", ops:["K⁺ Na⁺ Cl⁻ CO₃²⁻","Ba²⁺ Na⁺ NO₃⁻ SO₄²⁻","Na⁺ K⁺ Cl⁻ NO₃⁻","Ca²⁺ Na⁺ Cl⁻ OH⁻"], ans:2, exp:"pH=2→<span class='key-point'>强酸性，含大量H⁺</span>。<span class='trap-point'>CO₃²⁻+H⁺→CO₂↑；OH⁻+H⁺→H₂O；Ba²⁺+SO₄²⁻→BaSO₄↓</span>。只有C组各离子互不反应。" },
-    { q:"有两瓶失去标签的溶液：稀盐酸和石灰水。能鉴别二者的试剂是？", ops:["石蕊试液","碳酸钠溶液","二氧化碳","以上都可以"], ans:3, exp:"<span class='key-point'>石蕊遇酸红遇碱蓝；Na₂CO₃遇酸产生气泡遇碱产生沉淀；CO₂遇石灰水变浑浊遇酸无现象</span>。三种方法都可以。" },
-    { q:"石灰水与CO₂反应的化学方程式是？", ops:["Ca(OH)₂+CO₂=CaCO₃↓+H₂O","CaO+CO₂=CaCO₃","CaCO₃+CO₂+H₂O=Ca(HCO₃)₂","Ca(OH)₂+CO₂=CaCO₃"], ans:0, exp:"澄清石灰水变浑浊：<span class='key-point'>Ca(OH)₂+CO₂=CaCO₃↓+H₂O</span>。注意CaCO₃是沉淀，需标↓。" },
-    { q:"下列属于复合肥料的是？", ops:["NH₄Cl","K₂SO₄","KNO₃","Ca₃(PO₄)₂"], ans:2, exp:"KNO₃含<span class='key-point'>K和N两种营养元素</span>，是复合肥。NH₄Cl只含N，K₂SO₄只含K，Ca₃(PO₄)₂只含P。" },
-    { q:"中和反应的实质是？", ops:["H⁺+OH⁻=H₂O","生成盐和水","反应放热","pH发生变化"], ans:0, exp:"<span class='key-point'>酸中的H⁺与碱中的OH⁻结合成H₂O</span>。生成盐和水是宏观表现，不是微观实质。" }
-];
-
-// ==================== 模块6 化学与生活 (10题) ====================
-modulesDB["化学与生活"] = [
-    { q:"缺乏哪种元素会导致甲状腺肿大？", ops:["铁","钙","碘","锌"], ans:2, exp:"<span class='key-point'>缺碘引起甲状腺肿大</span>（大脖子病）。缺铁→贫血，缺钙→佝偻病/骨质疏松，缺锌→发育迟缓。" },
-    { q:"下列属于有机合成材料的是？", ops:["羊毛","棉花","涤纶","天然橡胶"], ans:2, exp:"<span class='key-point'>涤纶是合成纤维</span>，属于三大合成材料（塑料、合成纤维、合成橡胶）。羊毛和棉花是天然纤维，天然橡胶是天然材料。" },
-    { q:"<span class='tag-gd'>广东中考</span> 下列做法不利于环境保护的是？", ops:["垃圾分类","使用布袋购物","大量使用农药","骑自行车出行"], ans:2, exp:"<span class='key-point'>过量农药污染土壤和水源</span>，破坏生态。其他三项都是环保行为。" },
-    { q:"人体中含量最多的金属元素是？", ops:["铁","钙","钠","钾"], ans:1, exp:"<span class='key-point'>钙是骨骼和牙齿的主要成分</span>，约占人体质量的1.5%-2%，是人体含量最多的金属元素。" },
-    { q:"常用于改良酸性土壤的物质是？其水溶液能使酚酞变红。", ops:["NaOH","Ca(OH)₂","NaCl","CaO"], ans:1, exp:"<span class='key-point'>熟石灰Ca(OH)₂</span>价格低廉，碱性适中，用于改良酸性土壤。NaOH碱性太强且价格高，不适用。" },
-    { q:"下列属于糖类的是？", ops:["葡萄糖","油脂","蛋白质","维生素"], ans:0, exp:"<span class='key-point'>葡萄糖是单糖</span>，属于糖类。糖类包括葡萄糖、淀粉、纤维素等，是六大营养素之一。" },
-    { q:"<span class='tag-gd'>广东真题</span> 鉴别羊毛和涤纶最简单的方法是？", ops:["闻气味","看颜色","灼烧闻气味","用水浸泡"], ans:2, exp:"灼烧：<span class='key-point'>羊毛有烧焦羽毛气味</span>（蛋白质），涤纶熔化有特殊气味。这是最简便的鉴别方法。" },
-    { q:"下列物质属于化石燃料的是？", ops:["氢气","乙醇","天然气","沼气"], ans:2, exp:"<span class='key-point'>煤、石油、天然气</span>是三大化石燃料。乙醇是生物燃料，氢气是新能源，沼气是可再生能源。" },
-    { q:"某饼干配料含碳酸氢铵，其作用是？", ops:["膨松剂","防腐剂","着色剂","甜味剂"], ans:0, exp:"<span class='key-point'>NH₄HCO₃受热分解产生气体</span>（NH₃↑+CO₂↑+H₂O↑），使饼干疏松多孔，是膨松剂。" },
-    { q:"鸡蛋富含的营养素主要是？", ops:["糖类","蛋白质","油脂","维生素"], ans:1, exp:"鸡蛋<span class='key-point'>蛋白质含量高</span>（约13%），是优质蛋白来源。蛋黄中也有较多脂肪。" }
-];
-
-// ==================== 模块7 化学用语与计算 (10题) ====================
-modulesDB["化学用语与计算"] = [
-    { q:"H₂O中氢元素的化合价是？", ops:["+1","-1","+2","0"], ans:0, exp:"<span class='key-point'>氢通常显+1价，氧通常显-2价</span>。（+1）×2+（-2）=0，化合价代数和为0。" },
-    { q:"下列化学式书写正确的是？", ops:["NaCl₂","CaOH","Al₂O₃","MgCl"], ans:2, exp:"<span class='key-point'>Al₂O₃</span>化合价代数和：Al(+3)×2+O(-2)×3=0。<span class='trap-point'>NaCl、Ca(OH)₂、MgCl₂</span>才是正确写法。" },
-    { q:"<span class='tag-gd'>广东中考</span> 尿素CO(NH₂)₂中氮元素质量分数约为？", ops:["46.7%","35%","28%","52%"], ans:0, exp:"N质量分数=<span class='key-point'>2×14÷(12+16+2×16)×100%=28÷60≈46.7%</span>。尿素含氮量高，是优质氮肥。" },
-    { q:"某物质化学式为R(OH)₃，R的相对原子质量为27，则R是？", ops:["Al","Fe","Cu","Mg"], ans:0, exp:"<span class='key-point'>Al的相对原子质量=27</span>，Al(OH)₃氢氧化铝。Fe=56，Cu=64，Mg=24。" },
-    { q:"下列化学方程式书写正确的是？", ops:["2H₂O₂=2H₂O+O₂↑","2KMnO₄≜K₂MnO₄+MnO₂+O₂↑","Fe+O₂=Fe₃O₄","2H₂O=2H₂↑+O₂↑"], ans:1, exp:"<span class='key-point'>高锰酸钾制O₂：2KMnO₄≜K₂MnO₄+MnO₂+O₂↑</span>。<span class='trap-point'>A缺少MnO₂催化条件；C缺少点燃条件和配平；D缺少通电条件</span>。" },
-    { q:"2H₂+O₂→2H₂O反应中，参加反应的H₂和O₂质量比为？", ops:["1:8","1:16","2:1","1:4"], ans:0, exp:"4g H₂ + 32g O₂ = 36g H₂O，<span class='key-point'>质量比H₂:O₂=4:32=1:8</span>。注意不是体积比2:1。" },
-    { q:"下列符号中表示两个氢原子的是？", ops:["H₂","2H","2H₂","H⁺"], ans:1, exp:"<span class='key-point'>2H表示两个氢原子</span>。H₂表示一个氢分子，2H₂表示两个氢分子，H⁺表示一个氢离子。" },
-    { q:"<span class='tag-gd'>广东真题</span> 下列物质中氮元素化合价最高的是？", ops:["NH₃","N₂","HNO₃","NO₂"], ans:2, exp:"<span class='key-point'>HNO₃中N为+5价</span>最高。NH₃中N为-3，N₂中为0，NO₂中为+4。" },
-    { q:"某纯净物燃烧只生成CO₂和H₂O，则该物质一定含有的元素是？", ops:["C和H","C和O","H和O","C、H、O"], ans:0, exp:"生成CO₂和H₂O说明一定含<span class='key-point'>C和H</span>。<span class='trap-point'>可能含O</span>（需通过质量计算判断）。", thinking:["CO₂→含C元素","H₂O→含H元素","O元素可能来自该物质，也可能来自空气中的O₂","需计算C和H的质量，若等于物质质量则不含O"] },
-    { q:"若该物质相对分子质量为46，完全燃烧只生成CO₂和H₂O，则化学式可能为？", ops:["C₂H₆O","CH₂O","C₂H₄","CH₄O"], ans:0, exp:"<span class='key-point'>C₂H₆O（乙醇）</span>，相对分子质量=24+6+16=46。CH₂O=30，C₂H₄=28，CH₄O=32。" }
-];
-
-// ==================== 模块8 微观粒子 (10题) ====================
-modulesDB["微观粒子"] = [
-    { q:"保持水化学性质的最小粒子是？", ops:["氢原子","氧原子","水分子","氢氧根"], ans:2, exp:"<span class='key-point'>分子是保持物质化学性质的最小粒子</span>。水由水分子构成，保持水化学性质的是水分子。" },
-    { q:"原子核中一定含有的粒子是？", ops:["质子","中子","电子","质子和中子"], ans:0, exp:"<span class='trap-point'>普通氢原子（¹H）无中子</span>，但一定有质子。电子在核外，不在核内。" },
-    { q:"<span class='tag-gd'>广东中考</span> 下列粒子中带正电荷的是？", ops:["电子","中子","质子","原子"], ans:2, exp:"<span class='key-point'>质子带正电</span>，电子带负电，中子不带电，原子整体不带电。" },
-    { q:"某粒子结构示意图为(+10)2,8，该粒子是？", ops:["氖原子","钠离子","镁离子","氧离子"], ans:0, exp:"核电荷数=核外电子数=10，为<span class='key-point'>Ne原子</span>。若电子数≠核电荷数则是离子。" },
-    { q:"下列物质由离子构成的是？", ops:["水","铁","氯化钠","二氧化碳"], ans:2, exp:"<span class='key-point'>NaCl由Na⁺和Cl⁻构成</span>。水由分子构成，铁由原子构成，CO₂由分子构成。" },
-    { q:"<span class='tag-gd'>广东真题</span> 用分子观点解释'酒香不怕巷子深'，是因为？", ops:["分子在不断运动","分子之间有间隔","分子体积很小","分子可以再分"], ans:0, exp:"<span class='key-point'>分子在不断运动</span>，酒精分子扩散到远处被人闻到。这是分子的基本性质之一。" },
-    { q:"下列符号中表示两个镁离子的是？", ops:["Mg₂⁺","2Mg⁺","2Mg²⁺","Mg²⁺₂"], ans:2, exp:"<span class='key-point'>2Mg²⁺</span>：前面的2表示个数，右上角的2+表示每个离子带2个正电荷。" },
-    { q:"某反应微观示意图中两种物质的分子生成一种物质的分子，该反应属于？", ops:["化合反应","分解反应","置换反应","复分解反应"], ans:0, exp:"<span class='key-point'>两种物质生成一种物质→化合反应</span>（多变一）。微观上原子重新组合。" },
-    { q:"从微观角度，化学反应的本质是？", ops:["分子分裂成原子，原子重新组合","原子破裂成更小的粒子","电子发生转移","离子相互结合"], ans:0, exp:"<span class='key-point'>分子分裂成原子，原子重新组合</span>成新的分子。原子是化学变化中的最小粒子。" },
-    { q:"化学反应前后，一定不变的是？", ops:["原子种类和数目","分子种类","分子数目","物质的状态"], ans:0, exp:"<span class='key-point'>原子种类、数目、质量不变</span>（质量守恒定律的微观解释）。分子种类一定改变，分子数目可能改变。" }
-];
-
-// ==================== 模块9 实验基本操作与鉴别除杂 (10题) ====================
-modulesDB["实验基本操作与鉴别除杂"] = [
-    { q:"粗盐提纯的正确操作顺序是？", ops:["溶解→过滤→蒸发","过滤→溶解→蒸发","蒸发→溶解→过滤","溶解→蒸发→过滤"], ans:0, exp:"<span class='key-point'>先溶解→过滤除不溶物→蒸发结晶</span>。这是粗盐提纯的标准步骤。" },
-    { q:"过滤操作中，玻璃棒的作用是？", ops:["引流","搅拌","加速溶解","转移固体"], ans:0, exp:"<span class='key-point'>过滤时玻璃棒用于引流</span>，将液体沿玻璃棒慢慢倒入漏斗，防止液体溅出。" },
-    { q:"蒸发过程中，当蒸发皿中出现较多固体时，应？", ops:["立即停止加热，用余热蒸干","继续加热至完全蒸干","加水继续溶解","倒掉上层液体"], ans:0, exp:"<span class='key-point'>利用余热蒸干</span>，防止固体飞溅伤人。不能完全蒸干再停火。" },
-    { q:"<span class='tag-gd'>广东真题</span> 下列实验操作正确的是？", ops:["胶头滴管垂直悬空滴加","用嘴吹灭酒精灯","剩余药品放回原试剂瓶","用手直接拿热的蒸发皿"], ans:0, exp:"<span class='key-point'>滴管垂直悬空</span>，防止污染试剂。<span class='trap-point'>酒精灯用灯帽盖灭；剩余药品不能放回原瓶；热蒸发皿用坩埚钳夹取</span>。" },
-    { q:"鉴别硬水和软水常用的试剂是？", ops:["肥皂水","食醋","酒精","酚酞溶液"], ans:0, exp:"<span class='key-point'>硬水加肥皂水泡沫少、浮渣多；软水泡沫丰富</span>。肥皂水是最简便的鉴别方法。" },
-    { q:"除去水中的色素和异味，常用？", ops:["活性炭吸附","过滤","蒸馏","静置沉淀"], ans:0, exp:"<span class='key-point'>活性炭具有疏松多孔结构，有吸附性</span>，可吸附色素和异味。这是物理吸附。" },
-    { q:"某气体能使燃着的木条熄灭，通入澄清石灰水变浑浊，该气体是？", ops:["氧气","氮气","二氧化碳","氢气"], ans:2, exp:"CO₂<span class='key-point'>不支持燃烧</span>（木条熄灭），使石灰水变浑浊。<span class='trap-point'>N₂也能使木条熄灭但不能使石灰水变浑浊</span>。" },
-    { q:"下列操作能鉴别氧气和二氧化碳的是？", ops:["带火星的木条","澄清石灰水","燃着的木条","以上都可以"], ans:3, exp:"<span class='key-point'>O₂使带火星木条复燃；CO₂使石灰水浑浊且燃着木条熄灭</span>。三种方法都可以鉴别。" },
-    { q:"有两瓶无色气体，分别是空气和氧气，鉴别方法是？", ops:["带火星的木条","燃着的木条","闻气味","观察颜色"], ans:0, exp:"<span class='key-point'>O₂使带火星木条复燃</span>，空气中带火星木条无明显变化。燃着木条在空气和O₂中都能燃烧，不易区分。" },
-    { q:"下列除杂方法正确的是？（括号内为杂质）", ops:["CO₂(CO)：点燃","FeSO₄(CuSO₄)：加过量铁粉，过滤","CaO(CaCO₃)：加水溶解，过滤","NaCl(KNO₃)：蒸发结晶"], ans:1, exp:"<span class='key-point'>Fe+CuSO₄=FeSO₄+Cu，过滤除去Cu和剩余Fe粉</span>。<span class='trap-point'>A：CO₂不支持燃烧无法点燃CO；C：CaO会与水反应；D：NaCl溶解度受温度影响小，应用蒸发结晶而非降温结晶</span>。" }
-];
-
-// ==================== 模块10 综合实验探究 (10题) ====================
-modulesDB["综合实验探究"] = [
-    { material:"<b>以石灰石为原料制备轻质碳酸钙的流程：</b><div class='flow'>石灰石 →<b>高温</b>→ 生石灰 →<b>加水</b>→ 石灰乳 →<b>通CO₂</b>→ 轻质CaCO₃</div>", q:"(1) 高温煅烧石灰石的化学方程式是？", ops:["CaCO₃≜CaO+CO₂↑","CaCO₃=CaO+CO₂","CaCO₃+CO₂=Ca(HCO₃)₂","CaCO₃+H₂O=Ca(OH)₂"], ans:0, exp:"<span class='key-point'>CaCO₃高温分解为CaO和CO₂↑</span>，属于分解反应。需标注高温条件和↑。" },
-    { material:"<b>接上题流程。</b>", q:"(2) 生石灰加水得到石灰乳，该反应属于？", ops:["化合反应","分解反应","置换反应","复分解反应"], ans:0, exp:"CaO+H₂O=Ca(OH)₂，<span class='key-point'>多变一→化合反应</span>，且放出大量热。" },
-    { material:"<b>接上题流程。</b>", q:"(3) 石灰乳通入CO₂生成CaCO₃沉淀，该现象常用于？", ops:["检验CO₂","制备CO₂","吸收CO₂","干燥CO₂"], ans:0, exp:"<span class='key-point'>CO₂使澄清石灰水变浑浊</span>，这是检验CO₂的特征反应。" },
-    { material:"<b>接上题流程。</b>", q:"(4) 整个流程中属于分解反应的是？", ops:["煅烧石灰石","生石灰加水","石灰乳与CO₂反应","以上都是"], ans:0, exp:"<span class='key-point'>CaCO₃→CaO+CO₂↑</span>，一变多→分解反应。其他步骤不是分解反应。" },
-    { material:"<b>接上题流程。</b>", q:"(5) 生石灰（CaO）属于哪类物质？", ops:["氧化物","酸","碱","盐"], ans:0, exp:"<span class='key-point'>CaO由Ca和O两种元素组成→金属氧化物</span>。酸含H⁺，碱含OH⁻，盐含金属离子+酸根离子。" },
-    { q:"实验室制取CO₂的发生装置应选用？", ops:["固液常温型","固体加热型","万能瓶","排水法"], ans:0, exp:"大理石（固体）+稀盐酸（液体）→<span class='key-point'>不需加热→固液常温型</span>。这是选择发生装置的依据。" },
-    { q:"将CO₂通入紫色石蕊溶液变红，加热后恢复紫色，说明？", ops:["CO₂与H₂O反应生成碳酸","CO₂有酸性","碳酸不稳定，受热分解","以上都对"], ans:3, exp:"CO₂+H₂O=H₂CO₃（碳酸使石蕊变红），<span class='key-point'>H₂CO₃加热分解→CO₂↑+H₂O</span>，酸性消失。三个选项都正确。" },
-    { q:"无色溶液A加入稀盐酸产生气泡，气体使澄清石灰水变浑浊，则A可能是？", ops:["Na₂CO₃溶液","NaCl溶液","NaOH溶液","Ca(OH)₂溶液"], ans:0, exp:"<span class='key-point'>碳酸盐遇酸产生CO₂</span>（Na₂CO₃+2HCl=2NaCl+H₂O+CO₂↑）。", thinking:["加盐酸有气泡→含CO₃²⁻或HCO₃⁻","气体使石灰水浑浊→CO₂","反推：A是可溶性碳酸盐→Na₂CO₃","突破口：CO₂的特征检验"] },
-    { q:"海水提镁流程中，生成Mg(OH)₂的化学方程式是？", ops:["MgCl₂+Ca(OH)₂=Mg(OH)₂↓+CaCl₂","MgSO₄+Ca(OH)₂=Mg(OH)₂↓+CaSO₄","Mg+2H₂O=Mg(OH)₂↓+H₂↑","MgO+H₂O=Mg(OH)₂"], ans:0, exp:"<span class='key-point'>MgCl₂+Ca(OH)₂=Mg(OH)₂↓+CaCl₂</span>，复分解反应，生成白色沉淀Mg(OH)₂。" },
-    { q:"电解熔融MgCl₂制取Mg，属于什么反应类型？", ops:["分解反应","化合反应","置换反应","复分解反应"], ans:0, exp:"MgCl₂→通电→Mg+Cl₂↑，<span class='key-point'>一种物质生成两种物质→分解反应</span>。" }
-];
-
-// ==================== 模块11 推断与综合题组 (10题) ====================
-modulesDB["推断与综合题组"] = (function() {
-    var group = [];
-
-    var matCa = "<div class='flow'>A(白色固体) ──<b>高温</b>──→ B(气体) + C(白色固体)</div>" +
-        "<ul><li>B通入紫色石蕊溶液，溶液<b>变红</b></li>" +
-        "<li>C + H₂O → D（放出<b>大量热</b>）</li></ul>";
-
-    group.push({ material:matCa, q:"(1) A的化学式是？", ops:["CaCO₃","CaO","Ca(OH)₂","CaCl₂"], ans:0, exp:"A高温分解生成CO₂和CaO，反推A为<span class='key-point'>碳酸钙CaCO₃</span>。俗称石灰石、大理石。", thinking:["白色固体+高温分解→CO₂+白色固体","CO₂使石蕊变红→B是CO₂","C+H₂O放大量热→C是CaO（生石灰）","反推：A=CaCO₃"], breakthrough:"从特征现象→物质类别→具体物质逆向推导" });
-    group.push({ material:matCa, q:"(2) C→D的反应类型是？", ops:["化合反应","分解反应","置换反应","复分解反应"], ans:0, exp:"CaO+H₂O=Ca(OH)₂，<span class='key-point'>多变一→化合反应</span>。该反应<span class='trap-point'>放出大量热</span>（易忽略）。" });
-    group.push({ material:matCa, q:"(3) D的俗称是？", ops:["石灰石","熟石灰/消石灰","生石灰","大理石"], ans:1, exp:"D为Ca(OH)₂，<span class='key-point'>俗称熟石灰、消石灰</span>。<span class='trap-point'>CaO=生石灰，CaCO₃=石灰石/大理石</span>。俗称辨析是广东中考高频考点。" });
-    group.push({ material:matCa, q:"(4) B使石蕊变红的化学方程式是？", ops:["CO₂+H₂O=H₂CO₃","CO₂+H₂O=H₂CO₄","CO₂+H₂O=H₂SO₃","CO+H₂O=H₂CO₃"], ans:0, exp:"<span class='key-point'>CO₂+H₂O=H₂CO₃</span>，碳酸使石蕊变红。注意碳酸的化学式是H₂CO₃。" });
-
-    var matMetal = "<b>某工厂废液</b>中含有AgNO₃和Cu(NO₃)₂，向其中加入<b>一定量铁粉</b>，充分反应后过滤，得到滤渣和滤液。";
-
-    group.push({ material:matMetal, q:"(5) 铁粉优先与哪种溶质反应？", ops:["AgNO₃","Cu(NO₃)₂","同时反应","无法判断"], ans:0, exp:"<span class='key-point'>优先置换原则：活动性差距大的先置换</span>。Fe与Ag⁺的差距>Fe与Cu²⁺的差距→先置换Ag⁺。" });
-    group.push({ material:matMetal, q:"(6) 向滤渣中加稀盐酸有气泡，则滤渣中一定含有？", ops:["Ag","Ag和Cu","Ag、Cu和Fe","Fe"], ans:2, exp:"有气泡(H₂)→<span class='key-point'>滤渣含Fe（Fe过量）</span>→Ag和Cu都被完全置换→滤渣=<span class='key-point'>Ag+Cu+Fe</span>。" });
-    group.push({ material:matMetal, q:"(7) 承接(6)，此时滤液中的溶质是？", ops:["Fe(NO₃)₂","AgNO₃","Cu(NO₃)₂","Fe(NO₃)₃"], ans:0, exp:"Fe过量→Ag⁺和Cu²⁺全部被置换→<span class='key-point'>滤液中只剩Fe(NO₃)₂</span>（浅绿色）。" });
-    group.push({ material:matMetal, q:"(8) 若滤渣中无Fe，则滤液中一定含有的溶质是？", ops:["AgNO₃","Cu(NO₃)₂","Fe(NO₃)₂","无法确定"], ans:2, exp:"<span class='key-point'>只要反应发生，Fe一定变为Fe²⁺进入溶液</span>。无论Fe是否足量，滤液中一定有Fe(NO₃)₂。" });
-    group.push({ material:matMetal, q:"(9) Fe与AgNO₃反应的化学方程式是？", ops:["Fe+2AgNO₃=Fe(NO₃)₂+2Ag","Fe+AgNO₃=FeNO₃+Ag","2Fe+2AgNO₃=2FeNO₃+2Ag","Fe+3AgNO₃=Fe(NO₃)₃+3Ag"], ans:0, exp:"<span class='key-point'>Fe+2AgNO₃=Fe(NO₃)₂+2Ag</span>。<span class='trap-point'>Fe在置换反应中显+2价</span>，不是+3价。这是易错点！", thinking:["先远后近：Fe先置换Ag⁺","判断过量：加酸有气泡→Fe过量","分析成分：Fe过量→滤渣含Fe、Cu、Ag","滤液分析：Fe过量→只剩Fe²⁺"], breakthrough:"先远后近→判断过量→分析滤渣滤液成分" });
-
-    group.push({
-        q:"(10) <span class='tag-gd'>广东真题</span> 实验室制取CO₂时，下列操作正确的是？",
-        ops:["将燃着的木条伸入集气瓶中验满","长颈漏斗末端伸入液面以下","用排水法收集CO₂","实验后先熄灭酒精灯再撤导管"],
-        ans:1,
-        exp:"<span class='key-point'>长颈漏斗末端必须液封</span>，防止气体逸出。<span class='trap-point'>验满应放在瓶口；CO₂能溶于水不能用排水法；应先撤导管后熄灯（防倒吸）</span>。",
-        thinking:["验满CO₂：燃着木条放瓶口（不是伸入）","液封目的：防止气体从漏斗逸出","CO₂能溶于水→不用排水法","操作顺序：先撤导管后熄灯（防倒吸）"],
-        breakthrough:"装置选择看药品状态和条件，收集方法看气体密度和溶解性"
-    });
-
-    return group;
-})();
-
-// ======================= 全局状态 =======================
-var appState = {
-    currentModule: null,
-    questions: [],
-    idx: 0,
-    score: 0,
-    totalScore: 0,
-    wrongList: [],
-    answered: false,
-    stats: { total:0, correct:0, wrongBook:[], chapterStats:{} }
-};
-
-var STORAGE = 'chem_final_v3';
-
-function saveStats() {
-    try { localStorage.setItem(STORAGE, JSON.stringify(appState.stats)); } catch(e) {}
-}
-
-function loadStats() {
-    var s = localStorage.getItem(STORAGE);
-    if(s) {
-        try {
-            var d = JSON.parse(s);
-            appState.stats = d;
-            if(!appState.stats.wrongBook) appState.stats.wrongBook = [];
-            if(!appState.stats.chapterStats) appState.stats.chapterStats = {};
-        } catch(e) {}
-    }
-}
-
-function resetAllData() {
-    if(confirm('确定要重置所有学习记录和错题本吗？此操作不可恢复。')) {
-        appState.stats = { total:0, correct:0, wrongBook:[], chapterStats:{} };
-        saveStats();
-        goToMenu();
-        showToast('数据已重置');
-    }
-}
-
-function addToWrongBook(q, moduleName) {
-    var item = {
-        text: (q.q || q.question).replace(/<[^>]*>/g,''),
-        correctAns: q.ans,
-        options: q.ops,
-        explanation: q.exp,
-        material: q.material,
-        module: moduleName
-    };
-    if(!appState.stats.wrongBook.some(function(w) { return w.text === item.text && w.module === item.module; })) {
-        appState.stats.wrongBook.push(item);
-        saveStats();
-    }
-}
-
-function removeFromWrongBook(qText, moduleName) {
-    appState.stats.wrongBook = appState.stats.wrongBook.filter(
-        function(w) { return !(w.text === qText && w.module === moduleName); }
-    );
-    saveStats();
-}
-
-function showToast(msg) {
-    var t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.remove('hidden');
-    clearTimeout(t._timeout);
-    t._timeout = setTimeout(function() { t.classList.add('hidden'); }, 1800);
-}
-
-function hideAll() {
-    ['main-menu','quiz-area','result-area','statistics-area','wrongbook-area'].forEach(function(id) {
-        var e = document.getElementById(id);
-        if(e) e.classList.add('hidden');
-    });
-}
-
-function showEl(id) {
-    var e = document.getElementById(id);
-    if(e) e.classList.remove('hidden');
-}
-
-function goToMenu() {
-    hideAll();
-    showEl('main-menu');
-    renderModuleGrid();
-}
-
-function renderModuleGrid() {
-    var grid = document.getElementById('module-grid-container');
-    if(!grid) return;
-    grid.innerHTML = '';
-    var names = Object.keys(modulesDB);
-    var emojis = ['🌬️','💧','🔥','⚙️','⚗️','🍎','📝','🔬','🥼','🧪','🔍'];
-    for(var i = 0; i < names.length; i++) {
-        var name = names[i];
-        var count = modulesDB[name].length;
-        var div = document.createElement('div');
-        div.className = 'module-card';
-        div.innerHTML = '<span class="emoji">' + emojis[i] + '</span><div class="name">' + name + '</div><div>' + count + '题</div>';
-        if(i === 10) div.innerHTML += '<span class="badge">综合</span>';
-        div.onclick = (function(n) { return function() { startModule(n); }; })(name);
-        grid.appendChild(div);
-    }
-}
-
-function startModule(name) {
-    appState.currentModule = name;
-    appState.questions = modulesDB[name].slice();
-    appState.idx = 0;
-    appState.score = 0;
-    appState.totalScore = appState.questions.length;
-    appState.wrongList = [];
-    appState.answered = false;
-    startQuiz();
-}
-
-function startQuiz() {
-    hideAll();
-    showEl('quiz-area');
-    document.getElementById('btn-next').classList.add('hidden');
-    document.getElementById('btn-finish').classList.add('hidden');
-    renderQ();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function renderQ() {
-    if(appState.idx >= appState.questions.length) {
-        finishQuiz();
-        return;
-    }
-    var q = appState.questions[appState.idx];
-    document.getElementById('quiz-chapter').textContent = appState.currentModule;
-    document.getElementById('quiz-progress').textContent = (appState.idx + 1) + '/' + appState.totalScore + '题';
-
-    var mbDiv = document.getElementById('material-box');
-    if(q.material) {
-        mbDiv.classList.remove('hidden');
-        document.getElementById('material-text').innerHTML = q.material;
-    } else {
-        mbDiv.classList.add('hidden');
-    }
-
-    document.getElementById('quiz-question').innerHTML = q.q || q.question;
-
-    var optsDiv = document.getElementById('quiz-options');
-    optsDiv.innerHTML = '';
-    var letters = ['A','B','C','D'];
-    for(var i = 0; i < q.ops.length; i++) {
-        var li = document.createElement('li');
-        li.className = 'option-item';
-        li.innerHTML = '<span class="option-letter">' + letters[i] + '</span><span>' + q.ops[i] + '</span>';
-        li.onclick = (function(idx) { return function() { selectChoice(idx); }; })(i);
-        optsDiv.appendChild(li);
-    }
-
-    appState.answered = false;
-    var fb = document.getElementById('quiz-feedback');
-    fb.classList.remove('show','correct-fb','wrong-fb');
-    document.getElementById('feedback-text').innerHTML = '';
-    document.getElementById('feedback-exp').innerHTML = '';
-    document.getElementById('thinking-area').innerHTML = '';
-    document.getElementById('btn-next').classList.add('hidden');
-    document.getElementById('btn-finish').classList.add('hidden');
-}
-
-function selectChoice(idx) {
-    if(appState.answered) return;
-    var q = appState.questions[appState.idx];
-    var correct = (idx === q.ans);
-    appState.answered = true;
-
-    var items = document.querySelectorAll('.option-item');
-    for(var i = 0; i < items.length; i++) {
-        items[i].style.pointerEvents = 'none';
-        if(i === q.ans) items[i].classList.add('correct');
-        if(i === idx && !correct) items[i].classList.add('wrong');
-        if(i === idx) items[i].classList.add('selected');
-    }
-
-    var fb = document.getElementById('quiz-feedback');
-    fb.classList.add('show');
-    var fbText = document.getElementById('feedback-text');
-    var expDiv = document.getElementById('feedback-exp');
-
-    if(correct) {
-        fb.classList.add('correct-fb');
-        var encourages = ['🎉 太棒了！','🌟 完全正确！','💪 功底扎实！','✨ 优秀！','👏 就是这个！'];
-        fbText.innerHTML = encourages[Math.floor(Math.random()*encourages.length)] + ' 回答正确！';
-        appState.score++;
-    } else {
-        fb.classList.add('wrong-fb');
-        fbText.innerHTML = '❌ 答错了。正确答案是 <b>' + String.fromCharCode(65+q.ans) + '</b>。已加入错题本。';
-        appState.wrongList.push(q);
-        addToWrongBook(q, appState.currentModule);
-    }
-    expDiv.innerHTML = '<strong>📖 解析：</strong>' + q.exp;
-
-    if(q.thinking && q.thinking.length > 0) {
-        var area = document.getElementById('thinking-area');
-        var panel = document.createElement('div');
-        panel.className = 'thinking-panel';
-        var header = document.createElement('div');
-        header.className = 'thinking-header';
-        header.innerHTML = '🧠 解题思维路径 <span style="font-size:0.7rem;">点击展开▼</span>';
-        header.onclick = function() {
-            var body = panel.querySelector('.thinking-body');
-            var isOpen = body.classList.contains('open');
-            if(isOpen) {
-                body.classList.remove('open');
-                header.querySelector('span').textContent = '点击展开▼';
-            } else {
-                body.classList.add('open');
-                header.querySelector('span').textContent = '点击收起▲';
-            }
+        // ============================================================
+        //  应用状态
+        // ============================================================
+        const state = {
+            currentBlock: -1,
+            currentElementIdx: 0,
+            // 答案存储：一维数组，索引对应所有题目的全局序号
+            answers: [],
+            wrongSet: new Set(),
+            correctCount: 0,
+            wrongCount: 0,
+            blockDone: new Array(BLOCKS.length).fill(false),
         };
-        var body = document.createElement('div');
-        body.className = 'thinking-body';
-        for(var i = 0; i < q.thinking.length; i++) {
-            var step = document.createElement('div');
-            step.className = 'step';
-            step.setAttribute('data-num', i+1);
-            step.textContent = q.thinking[i];
-            body.appendChild(step);
+
+        // ============================================================
+        //  构建全局题目列表（平铺所有元素的所有题目）
+        // ============================================================
+        let flatQuestions = [];
+
+        function buildFlatQuestions() {
+            flatQuestions = [];
+            ELEMENTS.forEach(el => {
+                el.qs.forEach(q => {
+                    flatQuestions.push({
+                        elementId: el.id,
+                        element: el.element,
+                        symbol: el.symbol,
+                        block: el.block,
+                        q: q.q,
+                        opts: q.opts,
+                        ans: q.ans,
+                        tip: q.tip,
+                        // 保存引用，方便获取知识卡片
+                        _elRef: el,
+                        _qRef: q
+                    });
+                });
+            });
+            // 初始化答案数组
+            state.answers = new Array(flatQuestions.length).fill(-1);
         }
-        if(q.breakthrough) {
-            var bt = document.createElement('div');
-            bt.className = 'breakthrough';
-            bt.innerHTML = '🎯 <b>突破口：</b>' + q.breakthrough;
-            body.appendChild(bt);
+
+        // ============================================================
+        //  工具函数：获取元素的所有题目在 flatQuestions 中的索引范围
+        // ============================================================
+        function getElementIndices(elId) {
+            const indices = [];
+            flatQuestions.forEach((fq, idx) => {
+                if (fq.elementId === elId) indices.push(idx);
+            });
+            return indices;
         }
-        panel.appendChild(header);
-        panel.appendChild(body);
-        area.appendChild(panel);
-    }
 
-    appState.stats.total++;
-    if(correct) appState.stats.correct++;
-    var chap = appState.currentModule;
-    if(!appState.stats.chapterStats[chap]) appState.stats.chapterStats[chap] = { total:0, correct:0 };
-    appState.stats.chapterStats[chap].total++;
-    if(correct) appState.stats.chapterStats[chap].correct++;
-    if(correct) removeFromWrongBook((q.q || q.question).replace(/<[^>]*>/g,''), appState.currentModule);
-    saveStats();
-
-    if(appState.idx < appState.totalScore - 1) {
-        document.getElementById('btn-next').classList.remove('hidden');
-    } else {
-        document.getElementById('btn-finish').classList.remove('hidden');
-    }
-}
-
-function nextQuestion() {
-    appState.idx++;
-    appState.answered = false;
-    renderQ();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function finishQuiz() {
-    hideAll();
-    showEl('result-area');
-    var total = appState.totalScore;
-    var correct = appState.score;
-    var acc = Math.round(correct/total*100);
-    document.getElementById('result-score').textContent = correct + ' / ' + total;
-    document.getElementById('accuracy-fill').style.width = acc + '%';
-    document.getElementById('result-detail').textContent = '正确率 ' + acc + '%';
-
-    if(acc >= 85) {
-        document.getElementById('result-emoji').textContent = '🏆';
-        document.getElementById('result-name').textContent = '冲刺满分！实力强劲！';
-    } else if(acc >= 60) {
-        document.getElementById('result-emoji').textContent = '📘';
-        document.getElementById('result-name').textContent = '稳步前进，继续加油！';
-    } else {
-        document.getElementById('result-emoji').textContent = '📚';
-        document.getElementById('result-name').textContent = '夯实基础，查漏补缺！';
-    }
-
-    var retry = document.getElementById('btn-retry-wrong');
-    if(appState.wrongList.length > 0) {
-        retry.style.display = 'flex';
-        retry.textContent = '📘 重练错题（' + appState.wrongList.length + '题）';
-    } else {
-        retry.style.display = 'none';
-    }
-}
-
-function retryWrong() {
-    if(appState.wrongList.length > 0) {
-        appState.questions = appState.wrongList.slice();
-        appState.idx = 0;
-        appState.score = 0;
-        appState.totalScore = appState.questions.length;
-        appState.wrongList = [];
-        appState.answered = false;
-        startQuiz();
-    }
-}
-
-function showStatistics() {
-    hideAll();
-    showEl('statistics-area');
-    document.getElementById('stat-total').textContent = appState.stats.total;
-    document.getElementById('stat-correct').textContent = appState.stats.correct;
-    var acc = appState.stats.total ? Math.round(appState.stats.correct/appState.stats.total*100) : 0;
-    document.getElementById('stat-accuracy').textContent = acc + '%';
-    document.getElementById('stat-wrong').textContent = appState.stats.wrongBook.length;
-    var div = document.getElementById('chapter-stats');
-    div.innerHTML = '';
-    for(var mod in appState.stats.chapterStats) {
-        var data = appState.stats.chapterStats[mod];
-        var rate = data.total ? Math.round(data.correct/data.total*100) : 0;
-        div.innerHTML += '<div style="margin-top:8px;display:flex;justify-content:space-between;"><span>' + mod + '</span><span>' + rate + '% (' + data.correct + '/' + data.total + ')</span></div><div class="accuracy-bar"><div class="accuracy-fill" style="width:' + rate + '%;height:6px;"></div></div>';
-    }
-}
-
-function showWrongBook() {
-    hideAll();
-    showEl('wrongbook-area');
-    var container = document.getElementById('wrong-list-container');
-    container.innerHTML = '';
-    if(appState.stats.wrongBook.length === 0) {
-        container.innerHTML = '<div style="text-align:center;padding:30px;color:#64748B;">🎉 错题本为空！继续保持！</div>';
-    } else {
-        for(var i = 0; i < appState.stats.wrongBook.length; i++) {
-            var item = appState.stats.wrongBook[i];
-            var div = document.createElement('div');
-            div.className = 'wrong-item';
-            div.innerHTML = '<strong>' + (i+1) + '. ' + item.text + '</strong><br>' +
-                '<span style="font-size:0.7rem;color:#64748B;">模块：' + item.module + '</span><br>' +
-                '<span style="font-size:0.75rem;">✅ 正确答案：' + String.fromCharCode(65+item.correctAns) + '</span><br>' +
-                '<span style="font-size:0.72rem;">' + (item.explanation || '').replace(/<[^>]*>/g,'') + '</span>';
-            var btn = document.createElement('button');
-            btn.className = 'btn btn-success btn-xs';
-            btn.style.marginTop = '6px';
-            btn.textContent = '✅ 已掌握，删除';
-            btn.onclick = (function(text, mod) {
-                return function() {
-                    removeFromWrongBook(text, mod);
-                    showWrongBook();
-                    showToast('已从错题本删除');
-                };
-            })(item.text, item.module);
-            div.appendChild(btn);
-            container.appendChild(div);
+        // ============================================================
+        //  获取某区块的元素列表（去重）
+        // ============================================================
+        function getElementsByBlock(blockId) {
+            return ELEMENTS.filter(el => el.block === blockId);
         }
-    }
-}
 
-function confirmQuit() {
-    if(confirm('确定要退出当前练习吗？进度将丢失。')) {
-        goToMenu();
-    }
-}
+        // ============================================================
+        //  检查元素是否全部答完
+        // ============================================================
+        function checkElementDone(elId) {
+            const indices = getElementIndices(elId);
+            let allDone = true;
+            indices.forEach(idx => {
+                if (state.answers[idx] === -1) allDone = false;
+            });
+            return allDone;
+        }
 
-// ======================= 初始化 =======================
-loadStats();
-renderModuleGrid();
-goToMenu();
-console.log('🧪 广东中考化学·修正版已就绪');
-console.log('📋 已加载 ' + Object.keys(modulesDB).length + ' 个模块');
-console.log('✅ 已修正：Ca(OH)₂溶解度反常题答案');
-</script>
+        // ============================================================
+        //  检查区块是否全部完成
+        // ============================================================
+        function checkBlockDone(blockId) {
+            const els = getElementsByBlock(blockId);
+            let allDone = true;
+            els.forEach(el => {
+                if (!checkElementDone(el.id)) allDone = false;
+            });
+            return allDone;
+        }
+
+        // ============================================================
+        //  DOM 引用
+        // ============================================================
+        const $ = id => document.getElementById(id);
+        const homePage = $('homePage');
+        const quizPage = $('quizPage');
+        const blockGrid = $('blockGrid');
+        const elName = $('elName');
+        const elDone = $('elDone');
+        const elTotal = $('elTotal');
+        const kcTitle = $('kcTitle');
+        const kcBody = $('kcBody');
+        const kcToggle = $('kcToggle');
+        const questionsContainer = $('questionsContainer');
+        const elementDoneBanner = $('elementDoneBanner');
+        const elementDoneDesc = $('elementDoneDesc');
+        const prevElBtn = $('prevElBtn');
+        const nextElBtn = $('nextElBtn');
+        const correctCount = $('correctCount');
+        const wrongCount = $('wrongCount');
+        const accuracyDisplay = $('accuracyDisplay');
+        const progressFill = $('progressFill');
+        const wrongBadge = $('wrongBadge');
+        const totalBadge = $('totalBadge');
+        const wrongModal = $('wrongModal');
+        const wrongList = $('wrongList');
+        const wrongModalBadge = $('wrongModalBadge');
+
+        let knowledgeOpen = false;
+
+        // ============================================================
+        //  首页渲染
+        // ============================================================
+        function renderHome() {
+            homePage.classList.remove('hidden');
+            quizPage.classList.remove('active');
+            document.getElementById('headerStats').style.display = 'none';
+            progressFill.style.width = '0%';
+            totalBadge.textContent = flatQuestions.length + '题';
+
+            let html = '';
+            BLOCKS.forEach((b, i) => {
+                const els = getElementsByBlock(i);
+                let totalQ = 0,
+                    doneQ = 0;
+                els.forEach(el => {
+                    const indices = getElementIndices(el.id);
+                    totalQ += indices.length;
+                    indices.forEach(idx => {
+                        if (state.answers[idx] !== -1) doneQ++;
+                    });
+                });
+                const progress = totalQ > 0 ? Math.round((doneQ / totalQ) * 100) : 0;
+                const isDone = state.blockDone[i];
+
+                html += `
+                    <button class="block-btn ${isDone ? 'block-done' : ''}" onclick="enterBlock(${i})">
+                        <span class="emoji">${b.emoji}</span>
+                        <span class="name">${b.name}</span>
+                        <span class="badge-done">${isDone ? '✅' : ''}</span>
+                        <div class="desc">${b.desc}</div>
+                        <span class="count">${doneQ}/${totalQ} · ${progress}%</span>
+                    </button>
+                `;
+            });
+            blockGrid.innerHTML = html;
+            updateWrongBadge();
+        }
+
+        // ============================================================
+        //  进入区块
+        // ============================================================
+        function enterBlock(blockId) {
+            state.currentBlock = blockId;
+            state.currentElementIdx = 0;
+
+            const els = getElementsByBlock(blockId);
+            if (els.length === 0) return;
+
+            // 找第一个未完成的元素
+            let firstUndone = 0;
+            for (let i = 0; i < els.length; i++) {
+                if (!checkElementDone(els[i].id)) { firstUndone = i; break; }
+            }
+            state.currentElementIdx = firstUndone;
+
+            homePage.classList.add('hidden');
+            quizPage.classList.add('active');
+            document.getElementById('headerStats').style.display = 'flex';
+
+            renderElement();
+        }
+
+        // ============================================================
+        //  渲染当前元素
+        // ============================================================
+        function renderElement() {
+            const els = getElementsByBlock(state.currentBlock);
+            if (state.currentElementIdx >= els.length) {
+                showBlockComplete();
+                return;
+            }
+
+            const el = els[state.currentElementIdx];
+            const indices = getElementIndices(el.id);
+
+            // 更新导航
+            elName.textContent = `${el.symbol} · ${el.element}`;
+            let doneQ = 0;
+            indices.forEach(idx => {
+                if (state.answers[idx] !== -1) doneQ++;
+            });
+            elDone.textContent = doneQ;
+            elTotal.textContent = indices.length;
+
+            // 知识卡片
+            kcTitle.textContent = el.knowledge.title;
+            kcBody.innerHTML = el.knowledge.body;
+            kcBody.classList.remove('open');
+            knowledgeOpen = false;
+            kcToggle.classList.remove('open');
+            kcToggle.textContent = '▼';
+
+            // 渲染题目
+            let html = '';
+            indices.forEach((gIdx, localIdx) => {
+                const fq = flatQuestions[gIdx];
+                const selected = state.answers[gIdx] !== -1 ? state.answers[gIdx] : -1;
+                const isAnswered = selected !== -1;
+                const isCorrect = isAnswered && selected === fq.ans;
+                const labels = ['A', 'B', 'C', 'D'];
+
+                let optsHtml = '';
+                fq.opts.forEach((opt, oi) => {
+                    let cls = 'option';
+                    if (isAnswered) {
+                        if (oi === fq.ans) cls += ' show-correct';
+                        if (oi === selected && oi === fq.ans) cls += ' selected-correct';
+                        if (oi === selected && oi !== fq.ans) cls += ' selected-wrong';
+                        cls += ' disabled';
+                    }
+                    optsHtml += `
+                        <div class="${cls}" data-gidx="${gIdx}" data-oi="${oi}" onclick="selectOption(${gIdx}, ${oi})">
+                            <span class="label">${labels[oi]}</span>
+                            <span class="text">${opt}</span>
+                        </div>
+                    `;
+                });
+
+                const fbClass = isAnswered ? (isCorrect ? 'correct' : 'wrong') : '';
+                const fbDisplay = isAnswered ? 'block' : 'none';
+                const fbTitle = isAnswered ? (isCorrect ? '✅ 正确！' : '❌ 错误') : '';
+                const fbTip = isAnswered ? '💡 ' + fq.tip : '';
+
+                html += `
+                    <div class="question-item" data-qidx="${localIdx}">
+                        <div class="q-head">
+                            <span class="q-idx">第 ${localIdx+1} 题</span>
+                            <span>${isAnswered ? (isCorrect ? '✅' : '❌') : '⏳'}</span>
+                        </div>
+                        <div class="q-text">${fq.q}</div>
+                        <div class="options">${optsHtml}</div>
+                        <div class="feedback ${fbClass}" style="display:${fbDisplay};">
+                            <div class="fb-title">${fbTitle}</div>
+                            <div class="fb-tip">${fbTip}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            questionsContainer.innerHTML = html;
+
+            // 隐藏完成横幅
+            elementDoneBanner.classList.add('hidden');
+
+            // 检查是否全部完成
+            const allDone = checkElementDone(el.id);
+            if (allDone) {
+                elementDoneBanner.classList.remove('hidden');
+                elementDoneDesc.textContent = `✅ ${el.element} 的所有题目已完成！继续下一元素吧`;
+                // 自动滚动到完成横幅
+                setTimeout(() => {
+                    document.querySelector('.element-done-banner')?.scrollIntoView({ behavior: 'smooth',
+                        block: 'center' });
+                }, 200);
+            }
+
+            updateNavButtons();
+            updateStats();
+            updateWrongBadge();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============================================================
+        //  选择选项
+        // ============================================================
+        function selectOption(gIdx, oi) {
+            if (state.answers[gIdx] !== -1) return;
+
+            const fq = flatQuestions[gIdx];
+            const isCorrect = oi === fq.ans;
+
+            state.answers[gIdx] = oi;
+            if (isCorrect) {
+                state.correctCount++;
+            } else {
+                state.wrongCount++;
+                // 用 elementId + 题目文本 作为唯一标识
+                const key = fq.elementId + '_' + fq.q;
+                state.wrongSet.add(key);
+            }
+
+            renderElement();
+            updateStats();
+            updateWrongBadge();
+        }
+
+        // ============================================================
+        //  导航按钮
+        // ============================================================
+        function updateNavButtons() {
+            const els = getElementsByBlock(state.currentBlock);
+            prevElBtn.disabled = state.currentElementIdx === 0;
+            prevElBtn.style.opacity = state.currentElementIdx === 0 ? '0.3' : '1';
+
+            const isLast = state.currentElementIdx >= els.length - 1;
+            const el = els[state.currentElementIdx];
+            const allDone = el ? checkElementDone(el.id) : false;
+
+            if (isLast && allDone) {
+                nextElBtn.textContent = '🏁 完成区块';
+            } else {
+                nextElBtn.textContent = '下一元素 ▶';
+            }
+        }
+
+        // ============================================================
+        //  上一元素 / 下一元素
+        // ============================================================
+        function prevElement() {
+            if (state.currentElementIdx > 0) {
+                state.currentElementIdx--;
+                renderElement();
+            }
+        }
+
+        function nextElement() {
+            const els = getElementsByBlock(state.currentBlock);
+            const el = els[state.currentElementIdx];
+            if (!el) return;
+
+            const allDone = checkElementDone(el.id);
+            if (!allDone) {
+                const indices = getElementIndices(el.id);
+                const notDone = indices.filter(idx => state.answers[idx] === -1);
+                if (notDone.length > 0) {
+                    alert(`还有 ${notDone.length} 道题未完成，请先完成再进入下一元素`);
+                    return;
+                }
+            }
+
+            if (state.currentElementIdx >= els.length - 1) {
+                // 最后一个元素已完成，显示区块完成
+                showBlockComplete();
+                return;
+            }
+
+            state.currentElementIdx++;
+            renderElement();
+        }
+
+        // ============================================================
+        //  区块完成
+        // ============================================================
+        function showBlockComplete() {
+            const b = BLOCKS[state.currentBlock];
+            state.blockDone[state.currentBlock] = true;
+
+            const els = getElementsByBlock(state.currentBlock);
+            let correct = 0,
+                wrong = 0;
+            els.forEach(el => {
+                const indices = getElementIndices(el.id);
+                indices.forEach(idx => {
+                    if (state.answers[idx] !== -1) {
+                        if (state.answers[idx] === flatQuestions[idx].ans) correct++;
+                        else wrong++;
+                    }
+                });
+            });
+            const total = correct + wrong;
+            const acc = total === 0 ? 0 : Math.round((correct / total) * 100);
+
+            questionsContainer.innerHTML = `
+                <div style="background:var(--card-bg);border-radius:var(--radius);padding:30px 20px;text-align:center;box-shadow:var(--shadow);">
+                    <div style="font-size:48px;margin-bottom:10px;">🎉</div>
+                    <h2 style="font-size:22px;margin-bottom:6px;">区块完成！</h2>
+                    <p style="color:var(--text-secondary);font-size:15px;">你完成了「${b.name}」的所有题目</p>
+                    <div style="display:flex;justify-content:center;gap:24px;margin:16px 0 20px;">
+                        <div><div style="font-size:28px;font-weight:800;color:var(--success);">${correct}</div><div style="font-size:12px;color:var(--text-light);">✅ 正确</div></div>
+                        <div><div style="font-size:28px;font-weight:800;color:var(--danger);">${wrong}</div><div style="font-size:12px;color:var(--text-light);">❌ 错误</div></div>
+                        <div><div style="font-size:28px;font-weight:800;color:var(--primary);">${acc}%</div><div style="font-size:12px;color:var(--text-light);">📊 正确率</div></div>
+                    </div>
+                    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+                        <button class="btn btn-primary" onclick="goHome()">🏠 返回首页</button>
+                        <button class="btn btn-outline" onclick="openWrongModal()">📕 错题本</button>
+                    </div>
+                </div>
+            `;
+            elementDoneBanner.classList.add('hidden');
+            elName.textContent = '🎊 完成！';
+            elDone.textContent = '✅';
+            elTotal.textContent = '✅';
+            nextElBtn.disabled = true;
+            nextElBtn.style.opacity = '0.3';
+            // 更新错题本
+            updateWrongBadge();
+            updateStats();
+        }
+
+        // ============================================================
+        //  知识卡片折叠
+        // ============================================================
+        function toggleKnowledge() {
+            knowledgeOpen = !knowledgeOpen;
+            kcBody.classList.toggle('open', knowledgeOpen);
+            kcToggle.classList.toggle('open', knowledgeOpen);
+            kcToggle.textContent = knowledgeOpen ? '▲' : '▼';
+        }
+
+        // ============================================================
+        //  更新统计
+        // ============================================================
+        function updateStats() {
+            let correct = 0,
+                wrong = 0,
+                answered = 0;
+            for (let i = 0; i < flatQuestions.length; i++) {
+                if (state.answers[i] !== -1) {
+                    answered++;
+                    if (state.answers[i] === flatQuestions[i].ans) correct++;
+                    else wrong++;
+                }
+            }
+            state.correctCount = correct;
+            state.wrongCount = wrong;
+            const acc = answered === 0 ? 0 : Math.round((correct / answered) * 100);
+
+            correctCount.textContent = correct;
+            wrongCount.textContent = wrong;
+            accuracyDisplay.textContent = answered === 0 ? '0%' : acc + '%';
+            progressFill.style.width = `${(answered / flatQuestions.length) * 100}%`;
+        }
+
+        // ============================================================
+        //  错题本
+        // ============================================================
+        function updateWrongBadge() {
+            const count = state.wrongSet.size;
+            wrongBadge.textContent = count;
+            wrongBadge.classList.toggle('hidden', count === 0);
+        }
+
+        function openWrongModal() {
+            if (state.wrongSet.size === 0) {
+                wrongList.innerHTML = '<li class="modal-empty">🎉 暂无错题</li>';
+            } else {
+                let html = '';
+                state.wrongSet.forEach(key => {
+                    // 从 flatQuestions 中找
+                    const parts = key.split('_');
+                    const elId = parseInt(parts[0]);
+                    const qText = parts.slice(1).join('_');
+                    const fq = flatQuestions.find(f => f.elementId === elId && f.q === qText);
+                    if (fq) {
+                        const idx = flatQuestions.indexOf(fq);
+                        const userAns = state.answers[idx];
+                        const correctLabel = ['A', 'B', 'C', 'D'][fq.ans];
+                        html += `
+                            <li>
+                                <span>${fq.element} · ${fq.q.slice(0, 20)}${fq.q.length > 20 ? '...' : ''}</span>
+                                <span class="qid">正确: ${correctLabel}</span>
+                            </li>
+                        `;
+                    }
+                });
+                wrongList.innerHTML = html;
+            }
+            wrongModalBadge.textContent = state.wrongSet.size;
+            wrongModal.classList.add('open');
+        }
+
+        function closeWrongModal() {
+            wrongModal.classList.remove('open');
+        }
+
+        function retryWrong() {
+            if (state.wrongSet.size === 0) return;
+            const wrongKeys = Array.from(state.wrongSet);
+            // 重置这些错题的答案
+            wrongKeys.forEach(key => {
+                const parts = key.split('_');
+                const elId = parseInt(parts[0]);
+                const qText = parts.slice(1).join('_');
+                const fq = flatQuestions.find(f => f.elementId === elId && f.q === qText);
+                if (fq) {
+                    const idx = flatQuestions.indexOf(fq);
+                    state.answers[idx] = -1;
+                }
+            });
+            state.wrongSet.clear();
+
+            // 找到第一个错题所在的区块
+            const firstKey = wrongKeys[0];
+            const parts = firstKey.split('_');
+            const firstElId = parseInt(parts[0]);
+            const firstEl = ELEMENTS.find(e => e.id === firstElId);
+            if (firstEl) {
+                state.currentBlock = firstEl.block;
+                const els = getElementsByBlock(firstEl.block);
+                state.currentElementIdx = 0;
+                for (let i = 0; i < els.length; i++) {
+                    if (els[i].id === firstElId) { state.currentElementIdx = i; break; }
+                }
+                homePage.classList.add('hidden');
+                quizPage.classList.add('active');
+                document.getElementById('headerStats').style.display = 'flex';
+                renderElement();
+            }
+            closeWrongModal();
+            updateWrongBadge();
+            updateStats();
+        }
+
+        function clearWrong() {
+            state.wrongSet.clear();
+            updateWrongBadge();
+            closeWrongModal();
+            updateStats();
+        }
+
+        // ============================================================
+        //  返回首页
+        // ============================================================
+        function goHome() {
+            state.currentBlock = -1;
+            quizPage.classList.remove('active');
+            homePage.classList.remove('hidden');
+            document.getElementById('headerStats').style.display = 'none';
+            // 重新计算区块完成状态
+            BLOCKS.forEach((b, i) => {
+                state.blockDone[i] = checkBlockDone(i);
+            });
+            renderHome();
+        }
+
+        // ============================================================
+        //  键盘快捷键
+        // ============================================================
+        document.addEventListener('keydown', (e) => {
+            if (homePage.classList.contains('hidden')) {
+                if (e.key === 'ArrowRight') { e.preventDefault();
+                    nextElement(); }
+                if (e.key === 'ArrowLeft') { e.preventDefault();
+                    prevElement(); }
+                if (e.key === 'Escape') closeWrongModal();
+            }
+        });
+
+        wrongModal.addEventListener('click', (e) => {
+            if (e.target === wrongModal) closeWrongModal();
+        });
+
+        // ============================================================
+        //  初始化
+        // ============================================================
+        function init() {
+            buildFlatQuestions();
+            renderHome();
+            updateWrongBadge();
+            console.log('🧪 化学肌肉记忆训练 v2 已启动！');
+            console.log(`📚 共 ${flatQuestions.length} 道题，${BLOCKS.length} 个区块`);
+            console.log('⌨️ 键盘: ← → 切换元素，ESC 关闭弹窗');
+        }
+
+        init();
+    </script>
+
 </body>
 </html>
