@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>🧪 化学肌肉记忆训练</title>
     <style>
+        /* ===== 全部样式保持不变 ===== */
         * {
             margin: 0;
             padding: 0;
@@ -39,7 +40,6 @@
             align-items: center;
             user-select: none;
         }
-
         .app-header {
             width: 100%;
             max-width: 480px;
@@ -85,15 +85,9 @@
             font-weight: 700;
             font-size: 14px;
         }
-        .stat-value.green {
-            color: var(--success);
-        }
-        .stat-value.red {
-            color: var(--danger);
-        }
-        .stat-value.orange {
-            color: var(--warning);
-        }
+        .stat-value.green { color: var(--success); }
+        .stat-value.red { color: var(--danger); }
+        .stat-value.orange { color: var(--warning); }
         .progress-bar-wrap {
             width: 100%;
             height: 4px;
@@ -108,7 +102,6 @@
             border-radius: 10px;
             transition: width 0.4s ease;
         }
-
         .main-card {
             width: 100%;
             max-width: 480px;
@@ -116,13 +109,8 @@
             margin-top: 12px;
             flex: 1;
         }
-
-        #homePage {
-            display: block;
-        }
-        #homePage.hidden {
-            display: none;
-        }
+        #homePage { display: block; }
+        #homePage.hidden { display: none; }
         .home-title {
             font-size: 20px;
             font-weight: 700;
@@ -152,24 +140,10 @@
             text-align: left;
             touch-action: manipulation;
         }
-        .block-btn:active {
-            transform: scale(0.96);
-        }
-        .block-btn .emoji {
-            font-size: 24px;
-            display: block;
-            margin-bottom: 2px;
-        }
-        .block-btn .name {
-            font-weight: 700;
-            font-size: 14px;
-            color: var(--text-primary);
-        }
-        .block-btn .desc {
-            font-size: 11px;
-            color: var(--text-light);
-            margin-top: 1px;
-        }
+        .block-btn:active { transform: scale(0.96); }
+        .block-btn .emoji { font-size: 24px; display: block; margin-bottom: 2px; }
+        .block-btn .name { font-weight: 700; font-size: 14px; color: var(--text-primary); }
+        .block-btn .desc { font-size: 11px; color: var(--text-light); margin-top: 1px; }
         .block-btn .count {
             font-size: 11px;
             color: var(--text-light);
@@ -179,25 +153,12 @@
             padding: 0 10px;
             border-radius: 12px;
         }
-        .block-btn .badge-done {
-            float: right;
-            font-size: 12px;
-            color: var(--success);
-        }
-        .block-btn.block-done {
-            opacity: 0.7;
-        }
-        .block-btn.block-done .name::after {
-            content: " ✅";
-            font-size: 13px;
-        }
+        .block-btn .badge-done { float: right; font-size: 12px; color: var(--success); }
+        .block-btn.block-done { opacity: 0.7; }
+        .block-btn.block-done .name::after { content: " ✅"; font-size: 13px; }
 
-        #quizPage {
-            display: none;
-        }
-        #quizPage.active {
-            display: block;
-        }
+        #quizPage { display: none; }
+        #quizPage.active { display: block; }
 
         .element-nav {
             display: flex;
@@ -209,21 +170,10 @@
             box-shadow: var(--shadow);
             margin-bottom: 12px;
         }
-        .element-nav .el-name {
-            font-weight: 700;
-            font-size: 18px;
-        }
-        .element-nav .el-progress {
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-        .element-nav .el-progress .done {
-            color: var(--success);
-            font-weight: 700;
-        }
-        .element-nav .el-progress .total {
-            color: var(--text-light);
-        }
+        .element-nav .el-name { font-weight: 700; font-size: 18px; }
+        .element-nav .el-progress { font-size: 13px; color: var(--text-secondary); }
+        .element-nav .el-progress .done { color: var(--success); font-weight: 700; }
+        .element-nav .el-progress .total { color: var(--text-light); }
 
         .knowledge-card {
             background: #eef2ff;
@@ -242,14 +192,8 @@
             touch-action: manipulation;
             user-select: none;
         }
-        .knowledge-card .kc-header:active {
-            background: rgba(79, 70, 229, 0.06);
-        }
-        .knowledge-card .kc-title {
-            font-weight: 700;
-            color: var(--primary-dark);
-            font-size: 15px;
-        }
+        .knowledge-card .kc-header:active { background: rgba(79, 70, 229, 0.06); }
+        .knowledge-card .kc-title { font-weight: 700; color: var(--primary-dark); font-size: 15px; }
         .knowledge-card .kc-toggle {
             background: none;
             border: none;
@@ -259,9 +203,7 @@
             padding: 0 4px;
             transition: transform 0.3s;
         }
-        .knowledge-card .kc-toggle.open {
-            transform: rotate(180deg);
-        }
+        .knowledge-card .kc-toggle.open { transform: rotate(180deg); }
         .knowledge-card .kc-body {
             padding: 0 14px 14px 14px;
             font-size: 13.5px;
@@ -269,9 +211,7 @@
             color: var(--text-secondary);
             display: none;
         }
-        .knowledge-card .kc-body.open {
-            display: block;
-        }
+        .knowledge-card .kc-body.open { display: block; }
         .knowledge-card .kc-body table {
             width: 100%;
             font-size: 13px;
@@ -284,10 +224,7 @@
             border-bottom: 1px solid rgba(79, 70, 229, 0.15);
             text-align: left;
         }
-        .knowledge-card .kc-body table th {
-            font-weight: 600;
-            color: var(--text-primary);
-        }
+        .knowledge-card .kc-body table th { font-weight: 600; color: var(--text-primary); }
         .knowledge-card .kc-body .memo-box {
             background: rgba(79, 70, 229, 0.08);
             padding: 8px 12px;
@@ -312,21 +249,14 @@
             color: var(--text-light);
             margin-bottom: 6px;
         }
-        .question-item .q-head .q-idx {
-            font-weight: 600;
-            color: var(--text-secondary);
-        }
+        .question-item .q-head .q-idx { font-weight: 600; color: var(--text-secondary); }
         .question-item .q-text {
             font-size: 15px;
             font-weight: 600;
             line-height: 1.6;
             margin-bottom: 10px;
         }
-        .question-item .options {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+        .question-item .options { display: flex; flex-direction: column; gap: 8px; }
         .question-item .option {
             display: flex;
             align-items: center;
@@ -341,9 +271,7 @@
             font-weight: 500;
             touch-action: manipulation;
         }
-        .question-item .option:active {
-            transform: scale(0.98);
-        }
+        .question-item .option:active { transform: scale(0.98); }
         .question-item .option .label {
             display: inline-flex;
             align-items: center;
@@ -357,9 +285,7 @@
             color: var(--text-secondary);
             flex-shrink: 0;
         }
-        .question-item .option .text {
-            flex: 1;
-        }
+        .question-item .option .text { flex: 1; }
         .question-item .option.selected-correct {
             border-color: var(--success);
             background: #f0fdf4;
@@ -415,24 +341,12 @@
             border: 1px solid #fecaca;
             color: #991b1b;
         }
-        .question-item .feedback .fb-title {
-            font-weight: 700;
-        }
-        .question-item .feedback .fb-tip {
-            margin-top: 2px;
-            font-size: 12px;
-            opacity: 0.85;
-        }
+        .question-item .feedback .fb-title { font-weight: 700; }
+        .question-item .feedback .fb-tip { margin-top: 2px; font-size: 12px; opacity: 0.85; }
 
         @keyframes fadeSlide {
-            0% {
-                opacity: 0;
-                transform: translateY(4px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(4px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         .element-done-banner {
@@ -443,16 +357,8 @@
             text-align: center;
             margin-bottom: 12px;
         }
-        .element-done-banner .big {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--success);
-        }
-        .element-done-banner .sub {
-            font-size: 14px;
-            color: var(--text-secondary);
-            margin-top: 4px;
-        }
+        .element-done-banner .big { font-size: 28px; font-weight: 700; color: var(--success); }
+        .element-done-banner .sub { font-size: 14px; color: var(--text-secondary); margin-top: 4px; }
 
         .bottom-nav {
             position: fixed;
@@ -479,9 +385,7 @@
             gap: 8px;
             flex: 1;
         }
-        .bottom-nav .nav-right {
-            justify-content: flex-end;
-        }
+        .bottom-nav .nav-right { justify-content: flex-end; }
         .btn {
             display: inline-flex;
             align-items: center;
@@ -498,9 +402,7 @@
             min-height: 42px;
             white-space: nowrap;
         }
-        .btn:active {
-            transform: scale(0.95);
-        }
+        .btn:active { transform: scale(0.95); }
         .btn-primary {
             background: var(--primary);
             color: white;
@@ -516,26 +418,20 @@
             color: var(--text-secondary);
             border: 1.5px solid #e2e8f0;
         }
-        .btn-outline:active {
-            background: var(--bg);
-        }
+        .btn-outline:active { background: var(--bg); }
         .btn-danger-outline {
             background: transparent;
             color: var(--danger);
             border: 1.5px solid #fecaca;
         }
-        .btn-danger-outline:active {
-            background: #fef2f2;
-        }
+        .btn-danger-outline:active { background: #fef2f2; }
         .btn-home {
             background: transparent;
             color: var(--text-secondary);
             border: 1.5px solid #e2e8f0;
             padding: 10px 12px;
         }
-        .btn-home:active {
-            background: var(--bg);
-        }
+        .btn-home:active { background: var(--bg); }
         .btn .badge {
             background: var(--danger);
             color: white;
@@ -546,9 +442,7 @@
             text-align: center;
             line-height: 18px;
         }
-        .btn .badge.hidden {
-            display: none;
-        }
+        .btn .badge.hidden { display: none; }
 
         .modal-overlay {
             position: fixed;
@@ -563,16 +457,10 @@
             padding: 20px;
             animation: fadeIn 0.25s ease;
         }
-        .modal-overlay.open {
-            display: flex;
-        }
+        .modal-overlay.open { display: flex; }
         @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
         .modal {
             background: var(--card-bg);
@@ -586,14 +474,8 @@
             animation: slideUp 0.3s ease;
         }
         @keyframes slideUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
         .modal-header {
             display: flex;
@@ -601,10 +483,7 @@
             align-items: center;
             margin-bottom: 12px;
         }
-        .modal-header h3 {
-            font-size: 18px;
-            font-weight: 700;
-        }
+        .modal-header h3 { font-size: 18px; font-weight: 700; }
         .modal-header .badge {
             background: var(--danger);
             color: white;
@@ -622,9 +501,7 @@
             cursor: pointer;
             padding: 0 4px;
         }
-        .modal-close:active {
-            transform: scale(0.9);
-        }
+        .modal-close:active { transform: scale(0.9); }
         .modal-list {
             list-style: none;
             padding: 0;
@@ -642,11 +519,7 @@
             justify-content: space-between;
             align-items: center;
         }
-        .modal-list li .qid {
-            color: var(--text-light);
-            font-weight: 400;
-            font-size: 12px;
-        }
+        .modal-list li .qid { color: var(--text-light); font-weight: 400; font-size: 12px; }
         .modal-empty {
             text-align: center;
             padding: 28px 0;
@@ -659,41 +532,21 @@
             margin-top: 14px;
             flex-wrap: wrap;
         }
-        .modal-actions .btn {
-            flex: 1;
-            min-width: 60px;
-        }
+        .modal-actions .btn { flex: 1; min-width: 60px; }
 
-        .hidden {
-            display: none !important;
-        }
-        .text-center {
-            text-align: center;
-        }
-        .flex {
-            display: flex;
-        }
-        .gap-8 {
-            gap: 8px;
-        }
-        .w-full {
-            width: 100%;
-        }
-
-        ::-webkit-scrollbar {
-            width: 4px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-light);
-            border-radius: 10px;
-        }
+        .hidden { display: none !important; }
+        .text-center { text-align: center; }
+        .flex { display: flex; }
+        .gap-8 { gap: 8px; }
+        .w-full { width: 100%; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--primary-light); border-radius: 10px; }
     </style>
 </head>
 <body>
 
+    <!-- ===== 顶部栏 ===== -->
     <header class="app-header" id="appHeader">
         <div class="header-top">
             <div class="header-title">
@@ -711,8 +564,10 @@
         </div>
     </header>
 
+    <!-- ===== 主容器 ===== -->
     <main class="main-card" id="mainCard">
 
+        <!-- 首页 -->
         <div id="homePage">
             <div class="home-title">
                 📚 选择练习区块
@@ -721,6 +576,7 @@
             <div class="block-grid" id="blockGrid"></div>
         </div>
 
+        <!-- 答题页 -->
         <div id="quizPage">
             <div class="element-nav" id="elementNav">
                 <span class="el-name" id="elName">氢</span>
@@ -744,6 +600,7 @@
         </div>
     </main>
 
+    <!-- ===== 底部导航 ===== -->
     <nav class="bottom-nav" id="bottomNav">
         <div class="nav-left">
             <button class="btn btn-home" onclick="goHome()">🏠</button>
@@ -757,6 +614,7 @@
         </div>
     </nav>
 
+    <!-- ===== 错题本弹窗 ===== -->
     <div class="modal-overlay" id="wrongModal">
         <div class="modal">
             <div class="modal-header">
@@ -777,7 +635,7 @@
 
     <script>
         // ============================================================
-        //  题库数据 — 每个元素一个对象，含 qs 数组
+        //  题库数据 — 每个元素一个对象
         // ============================================================
         const ELEMENTS = [{
             id: 1,
@@ -1444,7 +1302,6 @@
         const state = {
             currentBlock: -1,
             currentElementIdx: 0,
-            // 答案存储：一维数组，索引对应所有题目的全局序号
             answers: [],
             wrongSet: new Set(),
             correctCount: 0,
@@ -1452,11 +1309,11 @@
             blockDone: new Array(BLOCKS.length).fill(false),
         };
 
-        // ============================================================
-        //  构建全局题目列表（平铺所有元素的所有题目）
-        // ============================================================
         let flatQuestions = [];
 
+        // ============================================================
+        //  构建全局题目列表
+        // ============================================================
         function buildFlatQuestions() {
             flatQuestions = [];
             ELEMENTS.forEach(el => {
@@ -1470,18 +1327,16 @@
                         opts: q.opts,
                         ans: q.ans,
                         tip: q.tip,
-                        // 保存引用，方便获取知识卡片
                         _elRef: el,
                         _qRef: q
                     });
                 });
             });
-            // 初始化答案数组
             state.answers = new Array(flatQuestions.length).fill(-1);
         }
 
         // ============================================================
-        //  工具函数：获取元素的所有题目在 flatQuestions 中的索引范围
+        //  工具函数
         // ============================================================
         function getElementIndices(elId) {
             const indices = [];
@@ -1491,16 +1346,10 @@
             return indices;
         }
 
-        // ============================================================
-        //  获取某区块的元素列表（去重）
-        // ============================================================
         function getElementsByBlock(blockId) {
             return ELEMENTS.filter(el => el.block === blockId);
         }
 
-        // ============================================================
-        //  检查元素是否全部答完
-        // ============================================================
         function checkElementDone(elId) {
             const indices = getElementIndices(elId);
             let allDone = true;
@@ -1510,9 +1359,6 @@
             return allDone;
         }
 
-        // ============================================================
-        //  检查区块是否全部完成
-        // ============================================================
         function checkBlockDone(blockId) {
             const els = getElementsByBlock(blockId);
             let allDone = true;
@@ -1616,7 +1462,7 @@
         }
 
         // ============================================================
-        //  渲染当前元素
+        //  渲染当前元素（核心渲染函数）
         // ============================================================
         function renderElement() {
             const els = getElementsByBlock(state.currentBlock);
@@ -1640,6 +1486,7 @@
             // 知识卡片
             kcTitle.textContent = el.knowledge.title;
             kcBody.innerHTML = el.knowledge.body;
+            // 保持折叠状态
             kcBody.classList.remove('open');
             knowledgeOpen = false;
             kcToggle.classList.remove('open');
@@ -1673,8 +1520,8 @@
 
                 const fbClass = isAnswered ? (isCorrect ? 'correct' : 'wrong') : '';
                 const fbDisplay = isAnswered ? 'block' : 'none';
-                const fbTitle = isAnswered ? (isCorrect ? '✅ 正确！' : '❌ 错误') : '';
-                const fbTip = isAnswered ? '💡 ' + fq.tip : '';
+                const fbTitleText = isAnswered ? (isCorrect ? '✅ 正确！' : '❌ 错误') : '';
+                const fbTipText = isAnswered ? '💡 ' + fq.tip : '';
 
                 html += `
                     <div class="question-item" data-qidx="${localIdx}">
@@ -1685,8 +1532,8 @@
                         <div class="q-text">${fq.q}</div>
                         <div class="options">${optsHtml}</div>
                         <div class="feedback ${fbClass}" style="display:${fbDisplay};">
-                            <div class="fb-title">${fbTitle}</div>
-                            <div class="fb-tip">${fbTip}</div>
+                            <div class="fb-title">${fbTitleText}</div>
+                            <div class="fb-tip">${fbTipText}</div>
                         </div>
                     </div>
                 `;
@@ -1701,17 +1548,24 @@
             if (allDone) {
                 elementDoneBanner.classList.remove('hidden');
                 elementDoneDesc.textContent = `✅ ${el.element} 的所有题目已完成！继续下一元素吧`;
-                // 自动滚动到完成横幅
+                // 轻微滚动到横幅位置（只滚动到横幅，不跳到顶部）
                 setTimeout(() => {
-                    document.querySelector('.element-done-banner')?.scrollIntoView({ behavior: 'smooth',
-                        block: 'center' });
-                }, 200);
+                    const banner = document.querySelector('.element-done-banner');
+                    if (banner) {
+                        const rect = banner.getBoundingClientRect();
+                        const top = rect.top + window.pageYOffset - 80;
+                        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+                    }
+                }, 100);
             }
 
             updateNavButtons();
             updateStats();
             updateWrongBadge();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // ★★★ 关键修改：移除自动滚动到顶部的代码 ★★★
+            // 不再调用 window.scrollTo({ top: 0, behavior: 'smooth' })
+            // 保持用户当前的滚动位置
         }
 
         // ============================================================
@@ -1728,11 +1582,11 @@
                 state.correctCount++;
             } else {
                 state.wrongCount++;
-                // 用 elementId + 题目文本 作为唯一标识
                 const key = fq.elementId + '_' + fq.q;
                 state.wrongSet.add(key);
             }
 
+            // 重新渲染当前元素（保持滚动位置）
             renderElement();
             updateStats();
             updateWrongBadge();
@@ -1783,7 +1637,6 @@
             }
 
             if (state.currentElementIdx >= els.length - 1) {
-                // 最后一个元素已完成，显示区块完成
                 showBlockComplete();
                 return;
             }
@@ -1836,7 +1689,6 @@
             elTotal.textContent = '✅';
             nextElBtn.disabled = true;
             nextElBtn.style.opacity = '0.3';
-            // 更新错题本
             updateWrongBadge();
             updateStats();
         }
@@ -1890,7 +1742,6 @@
             } else {
                 let html = '';
                 state.wrongSet.forEach(key => {
-                    // 从 flatQuestions 中找
                     const parts = key.split('_');
                     const elId = parseInt(parts[0]);
                     const qText = parts.slice(1).join('_');
@@ -1920,7 +1771,6 @@
         function retryWrong() {
             if (state.wrongSet.size === 0) return;
             const wrongKeys = Array.from(state.wrongSet);
-            // 重置这些错题的答案
             wrongKeys.forEach(key => {
                 const parts = key.split('_');
                 const elId = parseInt(parts[0]);
@@ -1933,7 +1783,6 @@
             });
             state.wrongSet.clear();
 
-            // 找到第一个错题所在的区块
             const firstKey = wrongKeys[0];
             const parts = firstKey.split('_');
             const firstElId = parseInt(parts[0]);
@@ -1970,7 +1819,6 @@
             quizPage.classList.remove('active');
             homePage.classList.remove('hidden');
             document.getElementById('headerStats').style.display = 'none';
-            // 重新计算区块完成状态
             BLOCKS.forEach((b, i) => {
                 state.blockDone[i] = checkBlockDone(i);
             });
@@ -2004,6 +1852,7 @@
             console.log('🧪 化学肌肉记忆训练 v2 已启动！');
             console.log(`📚 共 ${flatQuestions.length} 道题，${BLOCKS.length} 个区块`);
             console.log('⌨️ 键盘: ← → 切换元素，ESC 关闭弹窗');
+            console.log('📌 选完题目后页面不会跳动，停留在当前位置');
         }
 
         init();
