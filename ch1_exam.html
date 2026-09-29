@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>第一章 · 真题演练（四步法）</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f7fb; color: #1a2332; padding: 12px 12px 100px 12px; max-width: 480px; margin: 0 auto; }
+        .header { background: #fff; border-radius: 16px; padding: 14px 16px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); position: sticky; top: 0; z-index: 10; }
+        .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .header-title { font-size: 17px; font-weight: 700; }
+        .header-title span { color: #1a5276; }
+        .header-right { display: flex; align-items: center; gap: 10px; }
+        .header-home { font-size: 13px; color: #1a5276; background: #e3eef7; padding: 5px 12px; border-radius: 20px; border: none; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
+        .header-stats { font-size: 13px; color: #6b7a8f; background: #f0f2f5; padding: 4px 12px; border-radius: 20px; }
+        .progress-bar-bg { width: 100%; height: 6px; background: #e8ecf1; border-radius: 4px; overflow: hidden; margin-top: 6px; }
+        .progress-bar-fill { height: 100%; background: #1a5276; border-radius: 4px; transition: width 0.4s ease; width: 0%; }
+        .progress-label { display: flex; justify-content: space-between; font-size: 12px; color: #6b7a8f; margin-top: 4px; }
+        .filter-bar { display: flex; gap: 6px; margin-bottom: 14px; overflow-x: auto; padding-bottom: 4px; }
+        .filter-btn { flex-shrink: 0; padding: 6px 14px; border-radius: 20px; border: 1.5px solid #d0d7e2; background: #fff; font-size: 12px; color: #3d4e62; cursor: pointer; font-weight: 500; transition: all 0.2s; font-family: inherit; }
+        .filter-btn.active { background: #1a5276; border-color: #1a5276; color: #fff; }
+        .filter-btn.wrong-filter { border-color: #c0392b; color: #c0392b; }
+        .filter-btn.wrong-filter.active { background: #c0392b; border-color: #c0392b; color: #fff; }
+        .question-card { background: #fff; border-radius: 16px; padding: 20px 16px 16px; margin-bottom: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); animation: fadeUp 0.35s ease; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        .question-type { display: inline-block; font-size: 11px; font-weight: 600; color: #1a5276; background: #e3eef7; padding: 2px 12px; border-radius: 12px; margin-bottom: 10px; }
+        .question-source { display: inline-block; font-size: 10px; font-weight: 400; color: #6b7a8f; background: #f5f5f5; padding: 2px 10px; border-radius: 12px; margin-left: 8px; }
+        .question-text { font-size: 16px; font-weight: 500; line-height: 1.7; margin-bottom: 12px; }
+        .question-text .blank { display: inline-block; min-width: 70px; border-bottom: 2px dashed #1a5276; margin: 0 4px; color: #1a5276; font-weight: 600; }
+        .options { display: flex; flex-direction: column; gap: 10px; margin: 12px 0 10px; }
+        .option-btn { display: block; width: 100%; text-align: left; padding: 14px 16px; border-radius: 12px; border: 2px solid #e2e7ef; background: #fff; font-size: 15px; line-height: 1.5; cursor: pointer; font-family: inherit; min-height: 48px; transition: all 0.2s; }
+        .option-btn.selected-correct { border-color: #2d7d46; background: #e8f5ee; }
+        .option-btn.selected-wrong { border-color: #c0392b; background: #fde8e6; }
+        .option-btn.show-correct { border-color: #2d7d46; background: #e8f5ee; }
+        .option-btn.disabled { pointer-events: none; opacity: 0.8; }
+        .option-label { font-weight: 700; color: #6b7a8f; margin-right: 8px; }
+        .fill-input-area { margin: 12px 0 10px; }
+        .fill-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+        .fill-row label { font-weight: 500; color: #3d4e62; min-width: 30px; font-size: 15px; }
+        .fill-row input { flex: 1; min-width: 100px; padding: 12px 14px; border-radius: 10px; border: 2px solid #e2e7ef; font-size: 15px; font-family: inherit; background: #fff; color: #1a2332; min-height: 44px; }
+        .fill-row input:focus { outline: none; border-color: #1a5276; }
+        .fill-row input.correct { border-color: #2d7d46; background: #e8f5ee; }
+        .fill-row input.wrong { border-color: #c0392b; background: #fde8e6; }
+        .fill-row input:disabled { opacity: 0.7; }
+        .fill-row .correct-answer-hint { font-size: 14px; color: #2d7d46; font-weight: 600; }
+        .explanation { background: #f8faff; border-radius: 12px; padding: 14px 16px; margin: 12px 0 6px; border-left: 4px solid #1a5276; display: none; font-size: 14px; line-height: 1.7; color: #2c3e50; }
+        .explanation.show { display: block; }
+        .step-block { margin-bottom: 12px; padding: 10px 12px; border-radius: 10px; background: #fff; border-left: 3px solid #1a5276; }
+        .step-block:last-child { margin-bottom: 0; }
+        .step-label { display: inline-block; font-size: 12px; font-weight: 700; color: #fff; background: #1a5276; padding: 2px 10px; border-radius: 10px; margin-bottom: 6px; }
+        .step-content { font-size: 14px; line-height: 1.7; color: #2c3e50; }
+        .tip-yellow { background: #fcf8e3; padding: 8px 12px; border-radius: 8px; border-left: 3px solid #f0ad4e; margin-top: 8px; font-size: 13px; }
+        .tip-yellow strong { color: #8a6d3b; }
+        .source-link { font-size: 12px; color: #1a5276; margin-top: 8px; padding: 6px 10px; background: #f0f5fa; border-radius: 6px; }
+        .action-row { display: flex; gap: 10px; margin-top: 14px; }
+        .btn-primary { flex: 1; padding: 14px; border: none; border-radius: 14px; background: #1a5276; color: #fff; font-size: 16px; font-weight: 600; cursor: pointer; font-family: inherit; min-height: 48px; transition: all 0.2s; }
+        .btn-primary:disabled { opacity: 0.4; }
+        .wrong-tag { display: inline-block; background: #c0392b; color: #fff; font-size: 11px; padding: 1px 10px; border-radius: 12px; margin-left: 8px; }
+        .status-badge { display: inline-block; font-size: 12px; padding: 2px 12px; border-radius: 12px; margin-left: 8px; }
+        .status-badge.done { background: #e8f5ee; color: #2d7d46; }
+        .status-badge.wrong { background: #fde8e6; color: #c0392b; }
+        .complete-screen { text-align: center; padding: 40px 20px; }
+        .complete-screen .big-icon { font-size: 56px; margin-bottom: 16px; }
+        .complete-screen h2 { font-size: 22px; margin-bottom: 8px; }
+        .complete-screen .score-big { font-size: 48px; font-weight: 700; color: #1a5276; margin: 16px 0; }
+        .empty-state { text-align: center; padding: 40px 20px; color: #6b7a8f; }
+        .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
+        .wrong-list-view { background: #fff; border-radius: 16px; padding: 18px 16px; margin-bottom: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+        .wrong-list-view .title { font-size: 17px; font-weight: 700; margin-bottom: 12px; }
+        .wrong-list-view .item { padding: 12px 0; border-bottom: 1px solid #f0f2f5; }
+        .wrong-list-view .item:last-child { border-bottom: none; }
+        .wrong-list-view .item .q { font-size: 15px; font-weight: 500; }
+        .wrong-list-view .item .your { font-size: 14px; color: #c0392b; }
+        .wrong-list-view .item .correct { font-size: 14px; color: #2d7d46; font-weight: 600; }
+        .home-footer { text-align: center; margin-top: 16px; padding: 10px 0; }
+        .home-footer .btn-home { background: none; border: 1.5px solid #d0d7e2; border-radius: 30px; padding: 10px 30px; font-size: 15px; font-weight: 500; color: #3d4e62; cursor: pointer; font-family: inherit; min-height: 44px; text-decoration: none; display: inline-block; }
+        .wrong-book-btn { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1a2332; color: #fff; border: none; border-radius: 40px; padding: 12px 24px; font-size: 15px; font-weight: 600; box-shadow: 0 4px 16px rgba(0,0,0,0.2); cursor: pointer; z-index: 100; font-family: inherit; display: none; align-items: center; gap: 8px; min-height: 48px; }
+        .wrong-book-btn .badge { background: #c0392b; color: #fff; border-radius: 20px; padding: 0 10px; font-size: 13px; line-height: 22px; }
+        .back-to-practice { margin-top: 14px; text-align: center; }
+        .back-to-practice .btn { background: #1a5276; color: #fff; border: none; border-radius: 30px; padding: 10px 28px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; min-height: 44px; }
+        @media (max-width: 380px) {
+            .question-text { font-size: 15px; }
+            .option-btn { font-size: 14px; padding: 12px 14px; min-height: 44px; }
+            .btn-primary { font-size: 15px; min-height: 44px; padding: 12px; }
+            .fill-row input { font-size: 14px; padding: 10px 12px; min-height: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-top">
+            <div class="header-title">📝 真题演练 · <span>第一章</span></div>
+            <div class="header-right">
+                <a class="header-home" href="index.html">🏠 首页</a>
+                <div class="header-stats" id="statsLabel">0 / 0</div>
+            </div>
+        </div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <div class="progress-label">
+            <span id="correctRate">✅ 正确率：--%</span>
+            <span id="wrongCount">❌ 错题：0</span>
+        </div>
+    </div>
+    <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">📚 全部</button>
+        <button class="filter-btn" data-filter="choice" onclick="setFilter('choice')">🎯 选择题</button>
+        <button class="filter-btn" data-filter="fill" onclick="setFilter('fill')">✍️ 非选择</button>
+        <button class="filter-btn wrong-filter" data-filter="wrong" onclick="setFilter('wrong')">📕 错题本</button>
+    </div>
+    <div id="questionContainer"></div>
+    <div class="home-footer"><a class="btn-home" href="index.html">🏠 返回首页</a></div>
+    <button class="wrong-book-btn" id="wrongBookBtn" onclick="setFilter('wrong')">📕 错题本 <span class="badge" id="wrongBadge">0</span></button>
+
+    <script>
+        var questionBank = [{
+            id: 1, type: 'choice', section: 'choice',
+            question: '下列离子方程式书写正确的是（　）',
+            options: ['用CuSO₄溶液除去H₂S气体：Cu²⁺ + S²⁻ = CuS↓', '用氢氟酸刻蚀玻璃：SiO₂ + 4HF = SiF₄↑ + 2H₂O', '用FeCl₃溶液刻蚀覆铜板：2Fe³⁺ + 3Cu = 3Cu²⁺ + 2Fe', '向Ba(NO₃)₂溶液中通入SO₂：Ba²⁺ + SO₂ + H₂O = BaSO₃↓ + 2H⁺'],
+            correct: 1,
+            explanation: { step1: '题目给出四个离子方程式，问哪个书写正确。', step2: '离子方程式书写规则：强酸、强碱、可溶性盐拆成离子；弱酸、弱碱、难溶盐、氧化物、单质写化学式。', step3: '逐个判断：A中H₂S是弱酸，不能拆成S²⁻；B中HF是弱酸，不能拆，且SiO₂是氧化物写化学式，正确；C中Fe³⁺氧化Cu生成Fe²⁺而非Fe；D中SO₂通入Ba(NO₃)₂溶液，NO₃⁻在酸性条件下氧化SO₂生成SO₄²⁻，生成BaSO₄沉淀。', step4: 'A：H₂S不能拆，错误 ❌；B：正确 ✅；C：生成Fe²⁺，错误 ❌；D：生成BaSO₄而非BaSO₃，错误 ❌。答案：B。' },
+            tip: 'H₂S、HF、HClO都是弱酸，离子方程式中不能拆。',
+            source: '2024年浙江6月高考卷·改编'
+        }, {
+            id: 2, type: 'choice', section: 'choice',
+            question: '下列过程对应的离子方程式正确的是（　）',
+            options: ['用氢氟酸刻蚀玻璃：SiO₃²⁻ + 4F⁻ + 6H⁺ = SiF₄↑ + 3H₂O', '用三氯化铁溶液刻制覆铜电路板：2Fe³⁺ + 3Cu = 3Cu²⁺ + 2Fe', '用碳酸钠溶液浸泡锅炉水垢中的硫酸钙：CaSO₄ + CO₃²⁻ = CaCO₃ + SO₄²⁻', '用硫代硫酸钠溶液脱氯：S₂O₃²⁻ + 2Cl₂ + 3H₂O = 2SO₃²⁻ + 4Cl⁻ + 6H⁺'],
+            correct: 2,
+            explanation: { step1: '题目给出四个工业应用过程，问对应的离子方程式哪个正确。', step2: '离子方程式正误判断要点：拆写是否正确、电荷是否守恒、产物是否合理。', step3: 'A中HF是弱酸不能拆，且玻璃主要成分是SiO₂不是SiO₃²⁻；B中Fe³⁺氧化Cu生成Fe²⁺；C中CaSO₄微溶写化学式，CaCO₃难溶写化学式，方程式正确；D中硫代硫酸钠脱氯的产物应为SO₄²⁻而非SO₃²⁻。', step4: 'A：HF不拆，错误 ❌；B：生成Fe²⁺，错误 ❌；C：正确 ✅；D：产物应为SO₄²⁻，错误 ❌。答案：C。' },
+            tip: 'Fe³⁺与Cu反应生成Fe²⁺，不是Fe；硫代硫酸钠脱氯生成SO₄²⁻。',
+            source: '2024年全国甲卷·第8题·改编'
+        }, {
+            id: 3, type: 'choice', section: 'choice',
+            question: '下列离子在指定溶液中能大量共存的是（　）',
+            options: ['无色溶液中：K⁺、Cu²⁺、SO₄²⁻、Cl⁻', '酸性溶液中：K⁺、SO₄²⁻、Na⁺、HCO₃⁻', '碱性溶液中：SO₄²⁻、Cl⁻、K⁺、Na⁺', '使紫色石蕊变红的溶液中：Fe²⁺、SO₄²⁻、K⁺、NO₃⁻'],
+            correct: 2,
+            explanation: { step1: '题目问指定溶液中能大量共存的离子组。', step2: '离子共存判断：生成沉淀、气体、水、氧化还原、络合物均不能共存。附加条件：无色排除有色离子，酸性排除与H⁺反应的离子，碱性排除与OH⁻反应的离子。', step3: 'A中Cu²⁺是蓝色，不符合"无色"；B中HCO₃⁻与H⁺反应生成CO₂；C中四种离子互不反应，且与OH⁻也不反应；D中Fe²⁺与NO₃⁻在酸性条件下发生氧化还原反应。', step4: 'A：Cu²⁺有色，错误 ❌；B：HCO₃⁻与H⁺反应，错误 ❌；C：能共存 ✅；D：Fe²⁺与NO₃⁻（酸性）氧化还原，错误 ❌。答案：C。' },
+            tip: '"无色"排除Cu²⁺（蓝）、Fe³⁺（黄）、Fe²⁺（浅绿）、MnO₄⁻（紫）。',
+            source: '2025-2026学年高一期末真题·改编'
+        }, {
+            id: 4, type: 'choice', section: 'choice',
+            question: '下列应用中涉及到氧化还原反应的是（　）',
+            options: ['使用明矾对水进行净化', '雪天道路上撒盐融雪', '暖贴中的铁粉遇空气放热', '荧光指示牌被照发光'],
+            correct: 2,
+            explanation: { step1: '题目问四个实际应用中哪个涉及氧化还原反应。', step2: '氧化还原反应的判断标准：有无化合价变化。', step3: 'A中明矾净水是Al³⁺水解生成Al(OH)₃胶体吸附杂质，无化合价变化；B中撒盐融雪是物理变化，降低凝固点；C中铁粉遇空气生锈，Fe 0→+3，有化合价变化，是氧化还原；D中荧光发光是物理变化。', step4: 'A：水解非氧化还原 ❌；B：物理变化 ❌；C：铁氧化，是氧化还原 ✅；D：物理变化 ❌。答案：C。' },
+            tip: '明矾净水是水解（非氧化还原），暖贴放热是铁氧化（氧化还原）。',
+            source: '2023年全国乙卷·第1题'
+        }, {
+            id: 5, type: 'choice', section: 'choice',
+            question: 'Fe(OH)₃胶体和MgCl₂溶液的本质区别是（　）',
+            options: ['Fe(OH)₃胶体有颜色，MgCl₂溶液无色', 'MgCl₂溶液均一、稳定，Fe(OH)₃胶体不稳定', 'MgCl₂溶液中分散质粒子的直径小于1 nm，Fe(OH)₃胶体中分散质粒子的直径为1~100 nm', 'Fe(OH)₃胶体有丁达尔效应，MgCl₂溶液没有丁达尔效应'],
+            correct: 2,
+            explanation: { step1: '题目问Fe(OH)₃胶体和MgCl₂溶液的本质区别。', step2: '分散系的本质分类依据是分散质粒子直径：溶液<1 nm，胶体1~100 nm，浊液>100 nm。', step3: 'A中颜色是表面现象，不是本质；B中稳定性是性质差异，不是本质；C中粒子直径是本质区别；D中丁达尔效应是区分方法，不是本质区别。', step4: 'A：颜色非本质 ❌；B：稳定性非本质 ❌；C：粒子直径是本质 ✅；D：丁达尔效应是方法非本质 ❌。答案：C。' },
+            tip: '胶体和溶液的本质区别是粒子直径，丁达尔效应是区分方法但不是本质。',
+            source: '2025-2026学年人教版必修一单元检测·第1章'
+        }, {
+            id: 6, type: 'choice', section: 'choice',
+            question: '下列有关物质分类的说法错误的是（　）',
+            options: ['Mn₂O₇是金属氧化物，也是酸性氧化物', 'Al₂O₃是两性氧化物', 'CO₂是非金属氧化物，也是酸性氧化物', 'Na₂O是碱性氧化物，也是酸性氧化物'],
+            correct: 3,
+            explanation: { step1: '题目问物质分类的错误说法。', step2: '氧化物分类：酸性氧化物（与碱反应生成盐和水）、碱性氧化物（与酸反应生成盐和水）、两性氧化物（既能与酸又能与碱反应）。', step3: 'A中Mn₂O₇是金属氧化物，也是酸性氧化物，正确；B中Al₂O₃是两性氧化物，正确；C中CO₂是非金属氧化物，也是酸性氧化物，正确；D中Na₂O是碱性氧化物，不是酸性氧化物，错误。', step4: 'A：正确 ✅；B：正确 ✅；C：正确 ✅；D：Na₂O是碱性不是酸性，错误 ❌。答案：D。' },
+            tip: '酸性氧化物不都是非金属氧化物（Mn₂O₇是金属氧化物但酸性）；碱性氧化物都是金属氧化物。',
+            source: '2024-2025学年高一期末真题·改编'
+        }, {
+            id: 7, type: 'choice', section: 'choice',
+            question: '下列关于氧化还原反应的说法正确的是（　）',
+            options: ['有氧元素参加的反应一定是氧化还原反应', '没有氧元素参加的反应一定不是氧化还原反应', '置换反应一定是氧化还原反应', '复分解反应可能是氧化还原反应'],
+            correct: 2,
+            explanation: { step1: '题目问氧化还原反应的说法哪个正确。', step2: '氧化还原反应的判断标准：有无化合价变化。四种基本反应类型与氧化还原的关系：置换一定，复分解一定不是，化合和分解可能。', step3: 'A中有氧元素参加不一定有化合价变化，如CaO+H₂O=Ca(OH)₂；B中没有氧元素参加也可能有化合价变化，如Fe+CuSO₄=FeSO₄+Cu；C中置换反应一定有单质参加和生成，一定有化合价变化；D中复分解反应一定不是氧化还原。', step4: 'A：不一定，错误 ❌；B：不一定，错误 ❌；C：置换一定氧化还原 ✅；D：复分解一定不是，错误 ❌。答案：C。' },
+            tip: '置换反应一定氧化还原，复分解反应一定不是氧化还原。',
+            source: '2024-2025学年高一期末真题·改编'
+        }, {
+            id: 8, type: 'fill', section: 'fill',
+            question: '用双线桥表示反应 Fe₂O₃ + 3CO = 2Fe + 3CO₂ 的电子转移，并指出氧化剂是【1】，还原剂是【2】。',
+            blanks: ['Fe₂O₃', 'CO'],
+            explanation: { step1: '题目要求用双线桥表示电子转移，并指出氧化剂和还原剂。', step2: '双线桥规则：从反应物指向生成物，不跨等号，标"失/得 x e⁻"。氧化剂得电子、化合价降低；还原剂失电子、化合价升高。', step3: '标变价：Fe₂O₃中Fe +3→0，得3×2=6e⁻；CO中C +2→+4，失2×3=6e⁻。双线桥：一条从Fe₂O₃指向Fe，标"得6e⁻"；一条从CO指向CO₂，标"失6e⁻"。', step4: 'Fe₂O₃得电子，是氧化剂；CO失电子，是还原剂。答案：空1 = Fe₂O₃；空2 = CO。' },
+            tip: '双线桥不跨等号，从反应物指向生成物；氧化剂得电子，还原剂失电子。',
+            source: '高一期末真题·教材改编'
+        }, {
+            id: 9, type: 'fill', section: 'fill',
+            question: '写出稀硝酸与铜反应的离子方程式：【1】。',
+            blanks: ['3Cu + 8H⁺ + 2NO₃⁻ = 3Cu²⁺ + 2NO↑ + 4H₂O'],
+            explanation: { step1: '题目要求写出稀硝酸与铜反应的离子方程式。', step2: '稀硝酸具有强氧化性，与铜反应生成NO；浓硝酸与铜反应生成NO₂。离子方程式书写：强酸拆成离子，难溶物、气体、氧化物写化学式。', step3: '化学方程式：3Cu + 8HNO₃(稀) = 3Cu(NO₃)₂ + 2NO↑ + 4H₂O。拆写：HNO₃拆成H⁺和NO₃⁻，Cu(NO₃)₂拆成Cu²⁺和NO₃⁻。', step4: '离子方程式：3Cu + 8H⁺ + 2NO₃⁻ = 3Cu²⁺ + 2NO↑ + 4H₂O。' },
+            tip: '稀硝酸与铜生成NO，浓硝酸与铜生成NO₂；硝酸根在离子方程式中不能拆。',
+            source: '2026年贵州/湖南高考真题·改编'
+        }, {
+            id: 10, type: 'fill', section: 'fill',
+            question: '在反应 3Cl₂ + 8NH₃ = 6NH₄Cl + N₂ 中，氧化剂是【1】，还原剂是【2】，生成1 mol N₂转移【3】mol电子。',
+            blanks: ['Cl₂', 'NH₃', '6'],
+            explanation: { step1: '题目问反应3Cl₂+8NH₃=6NH₄Cl+N₂中的氧化剂、还原剂，以及生成1 mol N₂转移的电子数。', step2: '氧化剂得电子、化合价降低；还原剂失电子、化合价升高。电子守恒：氧化剂得电子总数=还原剂失电子总数。', step3: 'Cl₂中Cl 0→-1，得电子，是氧化剂；NH₃中N -3→0，失电子，是还原剂。生成1 mol N₂，N元素从-3升到0，每个N失3e⁻，1 mol N₂含2 mol N，共失6 mol e⁻。', step4: '氧化剂是Cl₂，还原剂是NH₃，生成1 mol N₂转移6 mol电子。答案：空1=Cl₂；空2=NH₃；空3=6。' },
+            tip: '电子转移数=变价原子个数×每个原子化合价变化值。',
+            source: '期末真题汇编·改编'
+        }];
+
+        // ===== 统一错题本键 =====
+        var STORAGE_KEY = 'ch1_exam_data';
+        var WRONG_KEY = 'chem_wrong_list';
+
+        function loadData() { try { var raw = localStorage.getItem(STORAGE_KEY); if (raw) return JSON.parse(raw); } catch (e) {} return { answered: {}, results: {} }; }
+        function saveData(d) { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }
+        function loadWrong() { try { var raw = localStorage.getItem(WRONG_KEY); if (raw) return JSON.parse(raw); } catch (e) {} return []; }
+        function saveWrong(list) { localStorage.setItem(WRONG_KEY, JSON.stringify(list)); }
+        var data = loadData();
+        var wrongList = loadWrong();
+        var currentFilter = 'all', filteredIds = [], currentQ = null, isAnswered = false, isPracticeMode = false;
+
+        function getFilteredIds(filter) {
+            if (filter === 'all') return questionBank.map(function(q) { return q.id; });
+            if (filter === 'wrong') return wrongList.filter(function(item) { return item.chapter === 1 && item.type === 'exam'; }).map(function(item) { return item.qId; });
+            return questionBank.filter(function(q) { return q.section === filter; }).map(function(q) { return q.id; });
+        }
+        function getQ(id) { for (var i = 0; i < questionBank.length; i++) { if (questionBank[i].id === id) return questionBank[i]; } return null; }
+        function shuffle(arr) { for (var i = arr.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = arr[i]; arr[i] = arr[j]; arr[j] = t; } return arr; }
+        function getUnanswered(ids) { var r = []; for (var i = 0; i < ids.length; i++) { if (!data.answered[ids[i]]) r.push(ids[i]); } return r; }
+        function getProgress() { var total = filteredIds.length, done = 0, correct = 0; for (var i = 0; i < filteredIds.length; i++) { var id = filteredIds[i]; if (data.answered[id]) { done++; if (data.results[id] === true) correct++; } } var rate = done === 0 ? 0 : Math.round((correct / done) * 100); return { total: total, done: done, correct: correct, rate: rate }; }
+        function updateUI() {
+            var p = getProgress();
+            var wc = wrongList.filter(function(item) { return item.chapter === 1 && item.type === 'exam'; }).length;
+            document.getElementById('statsLabel').textContent = p.done + ' / ' + p.total;
+            document.getElementById('progressFill').style.width = (p.total === 0 ? 0 : (p.done / p.total) * 100) + '%';
+            document.getElementById('correctRate').textContent = '✅ 正确率：' + (p.done === 0 ? '--%' : p.rate + '%');
+            document.getElementById('wrongCount').textContent = '❌ 错题：' + wc;
+            document.getElementById('wrongBadge').textContent = wc;
+            document.getElementById('wrongBookBtn').style.display = (wc > 0 && currentFilter !== 'wrong') ? 'flex' : 'none';
+            // ===== 联动 index.html =====
+            var idxData = JSON.parse(localStorage.getItem('chem_index_data') || '{"doneMap":{}}');
+            idxData.doneMap['ch1_exam'] = p.done;
+            localStorage.setItem('chem_index_data', JSON.stringify(idxData));
+        }
+        function addWrong(q, userAns) {
+            if (wrongList.some(function(item) { return item.chapter === 1 && item.type === 'exam' && item.qId === q.id; })) return;
+            var correctAns = q.type === 'choice' ? q.options[q.correct] : q.blanks.join('、');
+            wrongList.push({ chapter: 1, type: 'exam', qId: q.id, question: q.question, userAnswer: userAns || '', correctAnswer: correctAns });
+            saveWrong(wrongList);
+        }
+        function removeWrong(qId) { wrongList = wrongList.filter(function(item) { return !(item.chapter === 1 && item.type === 'exam' && item.qId === qId); }); saveWrong(wrongList); }
+
+        function renderExplanation(q) {
+            var e = q.explanation;
+            var html = '';
+            html += '<div class="step-block"><span class="step-label">第1步 · 识别情境</span><div class="step-content">' + e.step1 + '</div></div>';
+            html += '<div class="step-block"><span class="step-label">第2步 · 定位知识</span><div class="step-content">' + e.step2 + '</div></div>';
+            html += '<div class="step-block"><span class="step-label">第3步 · 调用模型</span><div class="step-content">' + e.step3 + '</div></div>';
+            html += '<div class="step-block"><span class="step-label">第4步 · 比对输出</span><div class="step-content">' + e.step4 + '</div></div>';
+            if (q.tip) html += '<div class="tip-yellow"><strong>🟡 易错点：' + q.tip + '</strong></div>';
+            if (q.source) html += '<div class="source-link">📎 来源：' + q.source + '</div>';
+            return html;
+        }
+
+        function render() {
+            var container = document.getElementById('questionContainer');
+            if (currentFilter === 'wrong' && !isPracticeMode) {
+                var list = wrongList.filter(function(item) { return item.chapter === 1 && item.type === 'exam'; });
+                if (list.length === 0) { container.innerHTML = '<div class="empty-state"><div class="icon">🎉</div><p>错题本已清空！</p></div>'; updateUI(); return; }
+                var html = '<div class="wrong-list-view"><div class="title">📕 错题本（' + list.length + '题）</div>';
+                list.forEach(function(item) { html += '<div class="item"><div class="q">' + item.question + '</div><div class="your">❌ 你的答案：' + (item.userAnswer || '未填写') + '</div><div class="correct">✅ 正确答案：' + item.correctAnswer + '</div></div>'; });
+                html += '<div class="back-to-practice"><button class="btn" onclick="startPractice()">🔄 重练错题</button></div></div>';
+                container.innerHTML = html; updateUI(); return;
+            }
+            if (filteredIds.length === 0) { container.innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>当前暂无题目</p></div>'; updateUI(); return; }
+            var unanswered = getUnanswered(filteredIds);
+            if (unanswered.length === 0) {
+                var p = getProgress();
+                var msg = isPracticeMode ? '🎉 错题已全部消灭！' : '🎉 全部通关！';
+                container.innerHTML = '<div class="complete-screen"><div class="big-icon">🎉</div><h2>' + msg + '</h2><div class="score-big">' + p.rate + '%</div><p style="color:#6b7a8f;font-size:14px;">正确率 ' + p.rate + '% · 共 ' + filteredIds.length + ' 题</p>';
+                container.innerHTML += isPracticeMode ? '<button class="btn-primary" style="margin-top:20px;max-width:200px;display:inline-block;" onclick="exitPractice()">🔙 退出练习</button>' : '<button class="btn-primary" style="margin-top:20px;max-width:200px;display:inline-block;" onclick="resetAll()">🔄 重新开始</button>';
+                container.innerHTML += '</div>'; updateUI(); return;
+            }
+            var targetId = unanswered[0]; var q = getQ(targetId);
+            if (!q) { container.innerHTML = '<div class="empty-state"><p>加载失败</p></div>'; return; }
+            currentQ = q; isAnswered = false;
+            var html = '<div class="question-card">';
+            var typeLabel = q.type === 'choice' ? '🎯 选择题' : '✍️ 非选择题';
+            html += '<span class="question-type">' + typeLabel + '</span>';
+            if (q.source) html += '<span class="question-source">📖 ' + q.source + '</span>';
+            if (isPracticeMode) html += '<span class="wrong-tag">📕 错题练习</span>';
+            var isW = wrongList.some(function(item) { return item.chapter === 1 && item.type === 'exam' && item.qId === q.id; });
+            if (isW && currentFilter !== 'wrong') html += '<span class="wrong-tag">📕 错题</span>';
+            if (data.answered[q.id]) { html += data.results[q.id] === true ? '<span class="status-badge done">✅ 已掌握</span>' : '<span class="status-badge wrong">❌ 需重练</span>'; }
+            var displayText = q.question;
+            if (q.type === 'fill' && q.blanks) { for (var b = 0; b < q.blanks.length; b++) { displayText = displayText.replace('【' + (b + 1) + '】', '<span class="blank">____</span>'); } }
+            html += '<div class="question-text">' + displayText + '</div>';
+            if (q.type === 'choice') {
+                var labels = ['A', 'B', 'C', 'D'];
+                html += '<div class="options">';
+                for (var i = 0; i < q.options.length; i++) { html += '<button class="option-btn" onclick="handleChoice(' + i + ',' + q.id + ')" id="opt_' + i + '"><span class="option-label">' + labels[i] + '.</span> ' + q.options[i] + '</button>'; }
+                html += '</div>';
+                html += '<div class="explanation" id="exp_' + q.id + '">' + renderExplanation(q) + '</div>';
+                html += '<div class="action-row"><button class="btn-primary" id="nextBtn" onclick="goNext()" disabled>下一题 →</button></div>';
+            } else {
+                html += '<div class="fill-input-area">';
+                for (var f = 0; f < q.blanks.length; f++) { html += '<div class="fill-row"><label>空' + (f + 1) + '：</label><input type="text" id="fill_' + q.id + '_' + f + '" placeholder="输入答案" autocomplete="off"><span class="correct-answer-hint" id="fillHint_' + q.id + '_' + f + '" style="display:none;"></span></div>'; }
+                html += '</div>';
+                html += '<div class="action-row"><button class="btn-primary" id="fillSubmitBtn" onclick="handleFill(' + q.id + ')">✅ 提交答案</button></div>';
+                html += '<div class="explanation" id="exp_' + q.id + '">' + renderExplanation(q) + '</div>';
+                html += '<div class="action-row"><button class="btn-primary" id="nextBtnFill" onclick="goNext()" disabled>下一题 →</button></div>';
+            }
+            html += '</div>';
+            container.innerHTML = html; updateUI();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (q.type === 'fill') {
+                setTimeout(function() {
+                    var inputs = document.querySelectorAll('.fill-row input');
+                    inputs.forEach(function(inp, idx) { inp.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); if (idx === inputs.length - 1) handleFill(q.id); else inputs[idx + 1].focus(); } }); });
+                    if (inputs.length > 0 && !isAnswered) inputs[0].focus();
+                }, 100);
+            }
+        }
+
+        function handleChoice(selected, qId) {
+            if (isAnswered) return; var q = getQ(qId); if (!q) return; isAnswered = true;
+            var isCorrect = (selected === q.correct);
+            var btns = document.querySelectorAll('.option-btn'); btns.forEach(function(b) { b.classList.add('disabled'); });
+            if (isCorrect) { btns[selected].classList.add('selected-correct'); data.results[qId] = true; removeWrong(qId); }
+            else { btns[selected].classList.add('selected-wrong'); btns[q.correct].classList.add('show-correct'); data.results[qId] = false; addWrong(q, q.options[selected]); }
+            data.answered[qId] = true; saveData(data);
+            var exp = document.getElementById('exp_' + qId); if (exp) exp.classList.add('show');
+            var nextBtn = document.getElementById('nextBtn'); if (nextBtn) nextBtn.disabled = false;
+            if (isPracticeMode) { var remaining = wrongList.filter(function(item) { return item.chapter === 1 && item.type === 'exam' && !data.answered[item.qId]; }); if (remaining.length === 0) { render(); return; } var ids = wrongList.filter(function(item) { return item.chapter === 1 && item.type === 'exam'; }).map(function(item) { return item.qId; }); var un = []; for (var i = 0; i < ids.length; i++) { if (!data.answered[ids[i]]) un.push(ids[i]); } filteredIds = shuffle(un); }
+            updateUI();
+        }
+        function handleFill(qId) {
+            if (isAnswered) return; var q = getQ(qId); if (!q || q.type !== 'fill') return;
+            var allCorrect = true, allFilled = true, userAnswers = [];
+            for (var i = 0; i < q.blanks.length; i++) {
+                var input = document.getElementById('fill_' + q.id + '_' + i); if (!input) { allFilled = false; continue; }
+                var userVal = input.value.trim(); userAnswers.push(userVal);
+                if (userVal === '') { allFilled = false; continue; }
+                if (userVal.replace(/\s/g, '') === q.blanks[i].replace(/\s/g, '')) { input.classList.add('correct'); }
+                else { input.classList.add('wrong'); allCorrect = false; var hint = document.getElementById('fillHint_' + q.id + '_' + i); if (hint) { hint.style.display = 'inline'; hint.textContent = '→ 正确答案：' + q.blanks[i]; } }
+                input.disabled = true;
+            }
+            if (!allFilled) { alert('请填写所有空再提交'); return; }
+            isAnswered = true;
+            if (allCorrect) { data.results[qId] = true; removeWrong(qId); }
+            else { data.results[qId] = false; addWrong(q, userAnswers.join('、')); }
+            data.answered[qId] = true; saveData(data);
+            var exp = document.getElementById('exp_' + qId); if (exp) exp.classList.add('show');
+            var submitBtn = document.getElementById('fillSubmitBtn'); if (submitBtn) submitBtn.disabled = true;
+            var nextBtn = document.getElementById('nextBtnFill'); if (nextBtn) nextBtn.disabled = false;
+            if (isPracticeMode) { var remaining = wrongList.filter(function(item) { return item.chapter === 1 && item.type === 'exam' && !data.answered[item.qId]; }); if (remaining.length === 0) { render(); return; } var ids = wrongList.filter(function(item) { return item.chapter === 1 && item.type === 'exam'; }).map(function(item) { return item.qId; }); var un = []; for (var i = 0; i < ids.length; i++) { if (!data.answered[ids[i]]) un.push(ids[i]); } filteredIds = shuffle(un); }
+            updateUI();
+        }
+        function goNext() { if (isPracticeMode) { var ids = wrongList.filter(function(item) { return item.chapter === 1 && item.type === 'exam'; }).map(function(item) { return item.qId; }); var un = []; for (var i = 0; i < ids.length; i++) { if (!data.answered[ids[i]]) un.push(ids[i]); } if (un.length === 0) { render(); return; } filteredIds = shuffle(un); render(); return; } render(); }
+        function setFilter(filter) {
+            if (filter === 'wrong') { var wc = wrongList.filter(function(item) { return item.chapter === 1 && item.type === 'exam'; }).length; if (wc === 0) { alert('🎉 错题本为空！'); return; } isPracticeMode = false; currentFilter = 'wrong'; var btns = document.querySelectorAll('.filter-btn'); btns.forEach(function(b) { b.classList.toggle('active', b.dataset.filter === filter); }); render(); return; }
+            isPracticeMode = false; currentFilter = filter; var btns = document.querySelectorAll('.filter-btn'); btns.forEach(function(b) { b.classList.toggle('active', b.dataset.filter === filter); }); filteredIds = shuffle(getFilteredIds(filter)); render();
+        }
+        function startPractice() { var ids = wrongList.filter(function(item) { return item.chapter === 1 && item.type === 'exam'; }).map(function(item) { return item.qId; }); if (ids.length === 0) { alert('错题本为空'); return; } isPracticeMode = true; currentFilter = 'practice'; filteredIds = shuffle(ids.slice()); var btns = document.querySelectorAll('.filter-btn'); btns.forEach(function(b) { b.classList.remove('active'); }); render(); }
+        function exitPractice() { isPracticeMode = false; currentFilter = 'all'; filteredIds = shuffle(getFilteredIds('all')); var btns = document.querySelectorAll('.filter-btn'); btns.forEach(function(b) { b.classList.remove('active'); }); document.querySelector('.filter-btn[data-filter="all"]').classList.add('active'); render(); }
+        function resetAll() { if (!confirm('重置所有进度？')) return; data = { answered: {}, results: {} }; saveData(data); wrongList = wrongList.filter(function(item) { return !(item.chapter === 1 && item.type === 'exam'); }); saveWrong(wrongList); if (isPracticeMode) { isPracticeMode = false; } currentFilter = 'all'; filteredIds = shuffle(getFilteredIds('all')); var btns = document.querySelectorAll('.filter-btn'); btns.forEach(function(b) { b.classList.remove('active'); }); document.querySelector('.filter-btn[data-filter="all"]').classList.add('active'); render(); }
+        filteredIds = shuffle(getFilteredIds('all')); render();
+        console.log('📝 第一章真题演练（四步法）已加载，共 ' + questionBank.length + ' 题');
+    </script>
+</body>
+</html>
