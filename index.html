@@ -283,9 +283,7 @@
 
     <script>
         // ============================================================
-        // 配置：必修一 4 章
-        // 第一章已开放（语言记忆 24 题 + 真题 10 题）
-        // 其余章节待填充
+        // 配置：必修一 4 章，全部开放
         // ============================================================
         var CHAPTERS = [{
             id: 1,
@@ -300,8 +298,8 @@
             id: 2,
             title: '第2章 海水中的重要元素',
             sub: '钠及其化合物 · 氯及其化合物 · 物质的量',
-            vocabTotal: 0,
-            examTotal: 0,
+            vocabTotal: 30,
+            examTotal: 10,
             vocabFile: 'ch2_vocab.html',
             examFile: 'ch2_exam.html',
             locked: false
@@ -309,8 +307,8 @@
             id: 3,
             title: '第3章 铁 金属材料',
             sub: '铁及其化合物 · 金属材料',
-            vocabTotal: 0,
-            examTotal: 0,
+            vocabTotal: 24,
+            examTotal: 10,
             vocabFile: 'ch3_vocab.html',
             examFile: 'ch3_exam.html',
             locked: false
@@ -318,8 +316,8 @@
             id: 4,
             title: '第4章 物质结构 元素周期律',
             sub: '原子结构 · 元素周期表 · 元素周期律 · 化学键',
-            vocabTotal: 0,
-            examTotal: 0,
+            vocabTotal: 24,
+            examTotal: 10,
             vocabFile: 'ch4_vocab.html',
             examFile: 'ch4_exam.html',
             locked: false
@@ -436,7 +434,7 @@
 
         render();
         console.log('🏠 化学首页已加载');
-        console.log('📚 共 ' + CHAPTERS.length + ' 章，第一章已开放');
+        console.log('📚 共 ' + CHAPTERS.length + ' 章，全部开放');
     </script>
 </body>
 </html>
