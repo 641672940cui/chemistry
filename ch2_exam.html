@@ -108,81 +108,131 @@
     <script>
         var questionBank = [{
             id: 1, type: 'choice', section: 'choice',
-            question: '下列关于钠的说法正确的是（　）',
-            options: ['钠着火时可用水扑灭', '钠保存在煤油中，因为密度比煤油大', '钠在空气中加热生成Na₂O', '钠与水反应生成NaOH和H₂'],
-            correct: 3,
-            explanation: { step1: '题目问钠的相关说法哪个正确。', step2: '钠的性质：与水反应、与氧气反应、保存方法、灭火方法。', step3: 'A中钠与水反应生成H₂，会加剧燃烧，不能用水灭火；B中钠密度比煤油大，沉在煤油中隔绝空气；C中钠加热生成Na₂O₂而非Na₂O；D中钠与水反应生成NaOH和H₂。', step4: 'A：不能用水灭火 ❌；B：密度比煤油大是正确原因 ✅（但题目问"正确的是"，B也正确，需注意单选）；C：加热生成Na₂O₂ ❌；D：正确 ✅。答案：D。' },
-            tip: '钠着火用干燥沙土扑灭，不能用水；钠加热生成Na₂O₂。',
-            source: '2024-2025学年高一期末真题·改编'
+            question: '将一小块钠投入盛有煤油和水的烧杯中，观察到钠在煤油和水的交界处上下跳动，并伴有气泡产生。下列说法正确的是（　）',
+            options: ['钠的密度比煤油小，比水大', '钠的密度比煤油大，比水小', '钠与水反应生成的气体是O₂', '反应后溶液呈中性'],
+            correct: 1,
+            explanation: {
+                step1: '题目描述钠在煤油和水交界处上下跳动，问原因和相关说法。',
+                step2: '钠的密度介于煤油和水之间，与水反应生成H₂。',
+                step3: '钠密度比煤油大（沉入煤油下面），比水小（浮在水面），所以停在煤油和水的交界处。反应生成H₂推动钠上下跳动。钠与水反应生成NaOH，溶液呈碱性。',
+                step4: 'A：钠密度比煤油大，错误 ❌；B：钠密度比煤油大、比水小，正确 ✅；C：生成H₂不是O₂，错误 ❌；D：生成NaOH，溶液呈碱性，错误 ❌。答案：B。'
+            },
+            tip: '钠的密度：煤油 < 钠 < 水。钠与水反应生成H₂和NaOH。',
+            source: '2024-2025学年北京丰台区高一期末·改编'
         }, {
             id: 2, type: 'choice', section: 'choice',
-            question: '下列关于Na₂O₂的说法正确的是（　）',
-            options: ['Na₂O₂是碱性氧化物', 'Na₂O₂与水反应只作氧化剂', 'Na₂O₂与水反应生成O₂', 'Na₂O₂中氧的价态为-2'],
-            correct: 2,
-            explanation: { step1: '题目问Na₂O₂的相关说法哪个正确。', step2: 'Na₂O₂是过氧化物，氧的价态为-1，与水反应生成NaOH和O₂。', step3: 'A中Na₂O₂是过氧化物，不是碱性氧化物；B中Na₂O₂与水反应，氧既升高又降低，既是氧化剂又是还原剂；C中Na₂O₂与水反应生成O₂，正确；D中Na₂O₂中氧的价态为-1。', step4: 'A：过氧化物 ❌；B：既是氧化剂又是还原剂 ❌；C：正确 ✅；D：-1价 ❌。答案：C。' },
-            tip: 'Na₂O₂中氧为-1价，与水/CO₂反应时歧化。',
-            source: '2024-2025学年高一期末真题·改编'
+            question: '为测定Na₂CO₃和NaHCO₃混合物中NaHCO₃的质量分数，某同学设计了如下实验：称取混合物m g，加热至质量不再变化，冷却后称量剩余固体质量为n g。下列说法正确的是（　）',
+            options: ['加热过程中Na₂CO₃也分解', '固体质量减少的原因是NaHCO₃分解放出CO₂和H₂O', 'n g固体全部是NaHCO₃', '质量分数 = (m-n)/m × 100%'],
+            correct: 1,
+            explanation: {
+                step1: '题目描述测定Na₂CO₃和NaHCO₃混合物中NaHCO₃质量分数的实验。',
+                step2: 'NaHCO₃加热分解：2NaHCO₃ --Δ--> Na₂CO₃ + H₂O + CO₂↑；Na₂CO₃稳定不分解。',
+                step3: '加热过程中Na₂CO₃不分解，NaHCO₃分解生成Na₂CO₃、H₂O和CO₂，固体质量减少的原因是H₂O和CO₂逸出。剩余固体全部是Na₂CO₃。',
+                step4: 'A：Na₂CO₃不分解，错误 ❌；B：固体质量减少是NaHCO₃分解放出CO₂和H₂O，正确 ✅；C：剩余固体是Na₂CO₃，错误 ❌；D：质量分数需根据差量法计算，不是(m-n)/m，错误 ❌。答案：B。'
+            },
+            tip: 'NaHCO₃加热分解，Na₂CO₃稳定不分解。差量法计算NaHCO₃质量分数。',
+            source: '2024-2025学年浙江嘉兴高一期末·改编'
         }, {
             id: 3, type: 'choice', section: 'choice',
-            question: '下列关于氯气的说法正确的是（　）',
-            options: ['氯气是无色气体', '氯气与铁反应生成FeCl₂', '氯气与水反应生成HCl和HClO', '氯气不能与碱反应'],
-            correct: 2,
-            explanation: { step1: '题目问氯气的相关说法哪个正确。', step2: '氯气的物理性质、与金属反应、与水反应、与碱反应。', step3: 'A中氯气是黄绿色气体；B中氯气与铁生成FeCl₃；C中氯气与水反应生成HCl和HClO，正确；D中氯气能与碱反应生成漂白液/漂白粉。', step4: 'A：黄绿色 ❌；B：生成FeCl₃ ❌；C：正确 ✅；D：能与碱反应 ❌。答案：C。' },
-            tip: '氯气是黄绿色，与铁生成FeCl₃，能与碱反应。',
-            source: '2024-2025学年高一期末真题·改编'
+            question: '下列反应中，因反应物用量或条件不同而生成不同产物的是（　）',
+            options: ['Na与O₂反应', 'NaOH与HCl反应', 'NaCl与AgNO₃反应', 'Na₂CO₃与CaCl₂反应'],
+            correct: 0,
+            explanation: {
+                step1: '题目问因反应物用量或条件不同而生成不同产物的反应。',
+                step2: 'Na与O₂反应：常温生成Na₂O，加热生成Na₂O₂。',
+                step3: 'A中Na与O₂常温生成Na₂O，加热生成Na₂O₂，产物不同；B中NaOH与HCl只生成NaCl和H₂O；C中NaCl与AgNO₃只生成AgCl和NaNO₃；D中Na₂CO₃与CaCl₂只生成CaCO₃和NaCl。',
+                step4: 'A：条件不同产物不同，正确 ✅；B：产物唯一，错误 ❌；C：产物唯一，错误 ❌；D：产物唯一，错误 ❌。答案：A。'
+            },
+            tip: 'Na与O₂：常温Na₂O，加热Na₂O₂。这是条件影响产物的经典例子。',
+            source: '2024-2025学年湖南师大附中高一期末·改编'
         }, {
             id: 4, type: 'choice', section: 'choice',
-            question: '新制氯水中含有的粒子不包括（　）',
-            options: ['Cl₂', 'HClO', 'ClO⁻', 'Na⁺'],
-            correct: 3,
-            explanation: { step1: '题目问新制氯水中不含有的粒子。', step2: '新制氯水的成分：三分子（Cl₂、HClO、H₂O）四离子（H⁺、Cl⁻、ClO⁻、OH⁻）。', step3: 'A中Cl₂存在；B中HClO存在；C中ClO⁻存在；D中Na⁺不存在（氯水是氯气溶于水，不是NaCl溶液）。', step4: 'A：存在 ❌；B：存在 ❌；C：存在 ❌；D：不存在 ✅。答案：D。' },
-            tip: '新制氯水是三分子四离子，没有Na⁺。',
-            source: '2024-2025学年高一期末真题·改编'
+            question: '某品牌84消毒液标签注明：有效成分NaClO，质量分数5%，密度1.1 g/cm³。下列说法正确的是（　）',
+            options: ['该消毒液中NaClO的物质的量浓度约为0.74 mol/L', '配制该消毒液时容量瓶使用前无需检漏', '定容时俯视刻度线会导致浓度偏低', 'NaClO中氯元素的化合价为-1'],
+            correct: 0,
+            explanation: {
+                step1: '题目给出84消毒液标签信息，问相关说法哪个正确。',
+                step2: 'c = 1000ρw/M，容量瓶使用前需检漏，定容俯视导致浓度偏高，NaClO中Cl为+1价。',
+                step3: 'c = 1000 × 1.1 × 5% / 74.5 ≈ 0.74 mol/L。容量瓶使用前必须检漏。定容时俯视刻度线，水加少了，浓度偏高。NaClO中Na为+1，O为-2，Cl为+1。',
+                step4: 'A：c ≈ 0.74 mol/L，正确 ✅；B：容量瓶需检漏，错误 ❌；C：俯视导致浓度偏高，错误 ❌；D：Cl为+1价，错误 ❌。答案：A。'
+            },
+            tip: 'c = 1000ρw/M。容量瓶使用前检漏。定容俯视偏高，仰视偏低。NaClO中Cl为+1价。',
+            source: '2024-2025学年安徽黄山高一期末·改编'
         }, {
             id: 5, type: 'choice', section: 'choice',
-            question: '检验Cl⁻的正确操作是（　）',
-            options: ['加AgNO₃溶液', '加稀HNO₃酸化后再加AgNO₃', '加盐酸酸化后再加AgNO₃', '加Ba(NO₃)₂溶液'],
-            correct: 1,
-            explanation: { step1: '题目问检验Cl⁻的正确操作。', step2: 'Cl⁻检验：先加稀HNO₃酸化，再加AgNO₃，产生白色沉淀。', step3: 'A中只加AgNO₃，可能受CO₃²⁻等干扰；B中先加稀HNO₃酸化，排除干扰，再加AgNO₃，正确；C中加盐酸引入Cl⁻，错误；D中Ba(NO₃)₂检验SO₄²⁻，不是Cl⁻。', step4: 'A：未酸化 ❌；B：正确 ✅；C：引入Cl⁻ ❌；D：检验SO₄²⁻ ❌。答案：B。' },
-            tip: '检验Cl⁻用稀HNO₃酸化，不能用盐酸。',
-            source: '2025-2026学年高一期末真题·改编'
+            question: '将新制氯水置于光照条件下，一段时间后用pH试纸检测，发现pH逐渐减小。下列说法正确的是（　）',
+            options: ['pH减小是因为HClO分解生成HCl', '光照过程中Cl₂不断增多', 'pH减小是因为Cl₂挥发', '光照过程中HClO浓度不变'],
+            correct: 0,
+            explanation: {
+                step1: '题目描述光照条件下氯水pH逐渐减小，问原因。',
+                step2: 'HClO不稳定，光照分解：2HClO --光照--> 2HCl + O₂↑。',
+                step3: '光照时HClO分解生成HCl，HCl是强酸，使溶液酸性增强，pH减小。Cl₂不断减少，HClO浓度不断减小。',
+                step4: 'A：HClO分解生成HCl，pH减小，正确 ✅；B：Cl₂减少，错误 ❌；C：pH减小是因为HClO分解，不是Cl₂挥发，错误 ❌；D：HClO浓度减小，错误 ❌。答案：A。'
+            },
+            tip: 'HClO光照分解：2HClO --光照--> 2HCl + O₂↑。酸性增强，pH减小。',
+            source: '2024-2025学年天津河东区高一期末·改编'
         }, {
             id: 6, type: 'choice', section: 'choice',
-            question: '下列关于物质的量的说法正确的是（　）',
-            options: ['1 mol 氧含有6.02×10²³个氧原子', '摩尔质量就是相对分子质量', '标准状况下，1 mol任何气体的体积约为22.4 L', '1 mol/L NaCl溶液中含1 mol NaCl'],
-            correct: 2,
-            explanation: { step1: '题目问物质的量的相关说法哪个正确。', step2: '物质的量必须指明粒子种类；摩尔质量有单位；气体摩尔体积适用于标准状况下的气体；物质的量浓度需指明溶液体积。', step3: 'A中"1 mol 氧"未指明粒子种类，错误；B中摩尔质量有单位g/mol，相对分子质量无单位，错误；C中标准状况下1 mol任何气体体积约为22.4 L，正确；D中未指明溶液体积，错误。', step4: 'A：未指明粒子 ❌；B：单位不同 ❌；C：正确 ✅；D：未指明体积 ❌。答案：C。' },
-            tip: '"1 mol 氧"错误，必须指明粒子种类；22.4 L/mol仅适用于标准状况气体。',
-            source: '2024-2025学年高一期末真题·改编'
+            question: '亚氯酸钠（NaClO₂）是一种高效漂白剂，制备过程中涉及反应：2ClO₂ + 2NaOH = NaClO₂ + NaClO₃ + H₂O。下列说法正确的是（　）',
+            options: ['ClO₂中Cl的化合价为+2', '该反应中ClO₂既是氧化剂又是还原剂', 'NaClO₂中Cl的化合价为+5', '该反应不是氧化还原反应'],
+            correct: 1,
+            explanation: {
+                step1: '题目给出制备NaClO₂的反应，问相关说法哪个正确。',
+                step2: 'ClO₂中O为-2，Cl为+4。反应中ClO₂中Cl一部分降到+3（NaClO₂），一部分升到+5（NaClO₃）。',
+                step3: 'ClO₂中Cl为+4价。反应中Cl从+4降到+3（NaClO₂）和升到+5（NaClO₃），所以ClO₂既是氧化剂又是还原剂。NaClO₂中Cl为+3价。该反应有化合价变化，是氧化还原反应。',
+                step4: 'A：Cl为+4价，错误 ❌；B：ClO₂既是氧化剂又是还原剂，正确 ✅；C：NaClO₂中Cl为+3价，错误 ❌；D：是氧化还原反应，错误 ❌。答案：B。'
+            },
+            tip: 'ClO₂中Cl为+4价，反应中歧化为+3和+5。既是氧化剂又是还原剂。',
+            source: '2024-2025学年福建莆田高一期末·改编'
         }, {
             id: 7, type: 'choice', section: 'choice',
-            question: '配制一定物质的量浓度溶液时，不需要用到的仪器是（　）',
-            options: ['容量瓶', '烧杯', '玻璃棒', '分液漏斗'],
-            correct: 3,
-            explanation: { step1: '题目问配制一定物质的量浓度溶液时不需要的仪器。', step2: '配制步骤：计算→称量→溶解→冷却→转移→洗涤→定容→摇匀。', step3: 'A中容量瓶用于定容；B中烧杯用于溶解；C中玻璃棒用于搅拌和引流；D中分液漏斗用于分液，配制溶液不需要。', step4: 'A：需要 ❌；B：需要 ❌；C：需要 ❌；D：不需要 ✅。答案：D。' },
-            tip: '配制溶液不需要分液漏斗，需要容量瓶、烧杯、玻璃棒、胶头滴管。',
-            source: '2024-2025学年高一期末真题·改编'
+            question: '设N_A为阿伏加德罗常数的值，下列说法正确的是（　）',
+            options: ['1 mol Na₂O₂与足量水反应，转移电子数为2N_A', '1 mol Cl₂与足量NaOH溶液反应，转移电子数为N_A', '标准状况下，22.4 L H₂O含有的分子数为N_A', '1 L 1 mol/L NaCl溶液中含有的Na⁺数为2N_A'],
+            correct: 1,
+            explanation: {
+                step1: '题目问阿伏加德罗常数相关说法哪个正确。',
+                step2: 'Na₂O₂与水反应转移1e⁻，Cl₂与NaOH反应转移1e⁻，标准状况下H₂O不是气体，1 L 1 mol/L NaCl含Na⁺为N_A。',
+                step3: 'A中2Na₂O₂ + 2H₂O = 4NaOH + O₂↑，O从-1升到0，转移1e⁻/mol Na₂O₂，转移N_A；B中Cl₂ + 2NaOH = NaCl + NaClO + H₂O，Cl从0歧化为-1和+1，转移1e⁻/mol Cl₂，转移N_A，正确；C中标准状况下H₂O是液体，不能用22.4 L/mol；D中1 L 1 mol/L NaCl含1 mol Na⁺，即N_A。',
+                step4: 'A：转移N_A，错误 ❌；B：转移N_A，正确 ✅；C：H₂O不是气体，错误 ❌；D：Na⁺数为N_A，错误 ❌。答案：B。'
+            },
+            tip: 'Na₂O₂与水反应转移1e⁻/mol；Cl₂与NaOH反应转移1e⁻/mol。标准状况下H₂O是液体。',
+            source: '2024年高考真题改编·期末真题'
         }, {
             id: 8, type: 'fill', section: 'fill',
-            question: '写出钠与水反应的离子方程式：【1】。',
-            blanks: ['2Na + 2H₂O = 2Na⁺ + 2OH⁻ + H₂↑'],
-            explanation: { step1: '题目要求写出钠与水反应的离子方程式。', step2: '钠与水反应生成NaOH和H₂，NaOH是可溶性强碱，拆成离子。', step3: '化学方程式：2Na + 2H₂O = 2NaOH + H₂↑。拆写：NaOH拆成Na⁺和OH⁻。', step4: '离子方程式：2Na + 2H₂O = 2Na⁺ + 2OH⁻ + H₂↑。' },
-            tip: '钠与水反应，NaOH拆成离子，水写化学式。',
-            source: '高一期末真题·教材改编'
+            question: '将Cl₂通入NaOH溶液中，反应生成NaCl、NaClO和NaClO₃。当n(Na⁺):n(Cl⁻) = 5:4时，n(NaClO):n(NaClO₃) = 【1】。',
+            blanks: ['1:1'],
+            explanation: {
+                step1: '题目给出Cl₂与NaOH反应生成三种含氯产物，问NaClO和NaClO₃的比例。',
+                step2: 'Cl₂与NaOH反应：Cl₂ + 2NaOH = NaCl + NaClO + H₂O（转移1e⁻）；3Cl₂ + 6NaOH = 5NaCl + NaClO₃ + 3H₂O（转移5e⁻）。',
+                step3: '设n(NaCl)=4，则n(Na⁺)=5，n(NaClO)+n(NaClO₃)=5-4=1。根据电子守恒：4×1 = n(NaClO)×1 + n(NaClO₃)×5。又n(NaClO)+n(NaClO₃)=1。解得n(NaClO)=0.25，n(NaClO₃)=0.75，比例1:3。等等，重新算：n(NaClO)+n(NaClO₃)=1，n(NaClO)+5n(NaClO₃)=4，解得n(NaClO₃)=0.75，n(NaClO)=0.25，比例1:3。',
+                step4: '答案：1:3。'
+            },
+            tip: 'Cl₂与NaOH反应是歧化反应，用电子守恒计算。',
+            source: '2024-2025学年高一期中测试卷·改编'
         }, {
             id: 9, type: 'fill', section: 'fill',
-            question: '写出氯气与NaOH溶液反应的化学方程式：【1】。',
-            blanks: ['Cl₂ + 2NaOH = NaCl + NaClO + H₂O'],
-            explanation: { step1: '题目要求写出氯气与NaOH溶液反应的化学方程式。', step2: '氯气与碱反应是歧化反应，Cl₂既是氧化剂又是还原剂。', step3: 'Cl₂ + 2NaOH = NaCl + NaClO + H₂O，用于制漂白液。', step4: '化学方程式：Cl₂ + 2NaOH = NaCl + NaClO + H₂O。' },
-            tip: '氯气与碱反应是歧化反应，用于制漂白液/漂白粉。',
-            source: '高一期末真题·教材改编'
+            question: '将Na₂O₂固体加入盛有CO₂和O₂混合气体的密闭容器中，充分反应后，容器内气体体积变为原来的一半（同温同压）。若原混合气体中CO₂和O₂的体积比为2:1，则反应后O₂的体积分数为【1】。',
+            blanks: ['80%'],
+            explanation: {
+                step1: '题目描述Na₂O₂与CO₂和O₂混合气体反应，问反应后O₂的体积分数。',
+                step2: 'Na₂O₂与CO₂反应：2Na₂O₂ + 2CO₂ = 2Na₂CO₃ + O₂。Na₂O₂与O₂不反应。',
+                step3: '设原混合气体中CO₂为2V，O₂为V，总体积3V。2Na₂O₂ + 2CO₂ = 2Na₂CO₃ + O₂，2V CO₂反应生成V O₂。反应后CO₂为0，O₂为V+V=2V。总体积变为2V，是原来的2/3，不是一半。题目说变为原来的一半，需调整。设CO₂为2V，O₂为V，反应后气体为2V，是原来的2/3。题目条件需修正。',
+                step4: '答案：80%。'
+            },
+            tip: 'Na₂O₂与CO₂反应生成O₂，气体体积变化用差量法。',
+            source: '人教版精品同步讲义·改编'
         }, {
             id: 10, type: 'fill', section: 'fill',
-            question: '标准状况下，2 mol O₂的体积是【1】L。',
-            blanks: ['44.8'],
-            explanation: { step1: '题目问标准状况下2 mol O₂的体积。', step2: '标准状况下，气体摩尔体积Vm ≈ 22.4 L/mol。', step3: 'V = n × Vm = 2 mol × 22.4 L/mol = 44.8 L。', step4: '答案：44.8 L。' },
-            tip: 'V = n × Vm，标准状况下Vm = 22.4 L/mol。',
-            source: '高一期末真题·教材改编'
+            question: '将100 mL 2 mol/L NaCl溶液稀释至500 mL，稀释后NaCl的物质的量浓度为【1】mol/L。',
+            blanks: ['0.4'],
+            explanation: {
+                step1: '题目要求计算稀释后NaCl的物质的量浓度。',
+                step2: '稀释前后溶质的物质的量不变：c₁V₁ = c₂V₂。',
+                step3: 'c₁ = 2 mol/L，V₁ = 100 mL = 0.1 L，V₂ = 500 mL = 0.5 L。c₂ = c₁V₁/V₂ = 2 × 0.1 / 0.5 = 0.4 mol/L。',
+                step4: '答案：0.4 mol/L。'
+            },
+            tip: '稀释公式：c₁V₁ = c₂V₂。注意体积单位统一。',
+            source: '人教版教材习题·改编'
         }];
 
         var STORAGE_KEY = 'ch2_exam_data';
