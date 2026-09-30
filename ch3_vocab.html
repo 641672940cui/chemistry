@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>第三章 语言记忆 · 铁 金属材料</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f7fb; color: #1a2332; padding: 16px 14px 100px 14px; min-height: 100vh; }
+        .header { background: white; border-radius: 16px; padding: 16px 18px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); position: sticky; top: 0; z-index: 10; }
+        .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .header-title { font-size: 18px; font-weight: 700; color: #1a2332; }
+        .header-title span { color: #2563eb; }
+        .header-right { display: flex; align-items: center; gap: 10px; }
+        .header-home { font-size: 13px; color: #2563eb; background: #e6efff; padding: 5px 12px; border-radius: 20px; text-decoration: none; font-weight: 600; }
+        .header-stats { font-size: 13px; color: #6b7a8f; background: #f0f2f5; padding: 4px 12px; border-radius: 20px; }
+        .progress-bar-bg { width: 100%; height: 6px; background: #e8ecf1; border-radius: 4px; overflow: hidden; }
+        .progress-bar-fill { height: 100%; background: #2563eb; border-radius: 4px; transition: width 0.4s ease; width: 0%; }
+        .progress-label { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #6b7a8f; margin-top: 4px; }
+        .btn-reset-small { background: none; border: none; color: #6b7a8f; font-size: 12px; text-decoration: underline; cursor: pointer; padding: 4px 8px; }
+        .filter-bar { display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; }
+        .filter-btn { flex-shrink: 0; padding: 6px 16px; border-radius: 20px; border: 1.5px solid #d0d7e2; background: white; font-size: 13px; color: #3d4e62; cursor: pointer; transition: all 0.2s; font-weight: 500; font-family: inherit; }
+        .filter-btn.active { background: #2563eb; border-color: #2563eb; color: white; }
+        .filter-btn.wrong-filter { border-color: #c0392b; color: #c0392b; }
+        .filter-btn.wrong-filter.active { background: #c0392b; border-color: #c0392b; color: white; }
+        .question-card { background: white; border-radius: 18px; padding: 24px 20px 20px 20px; margin-bottom: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); animation: fadeUp 0.35s ease; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        .question-type { display: inline-block; font-size: 11px; font-weight: 600; color: #2563eb; background: #e6efff; padding: 2px 12px; border-radius: 12px; margin-bottom: 12px; }
+        .question-section { display: inline-block; font-size: 11px; font-weight: 500; color: #6b7a8f; background: #f0f2f5; padding: 2px 10px; border-radius: 12px; margin-left: 8px; }
+        .question-text { font-size: 17px; font-weight: 500; line-height: 1.8; margin: 10px 0 4px 0; color: #1a2332; }
+        .question-text .blank { display: inline-block; min-width: 80px; border-bottom: 2px dashed #2563eb; margin: 0 4px; color: #2563eb; font-weight: 600; }
+        .options { display: flex; flex-direction: column; gap: 10px; margin: 14px 0 12px 0; }
+        .option-btn { display: block; width: 100%; text-align: left; padding: 14px 16px; border-radius: 12px; border: 2px solid #e2e7ef; background: white; font-size: 15px; line-height: 1.6; color: #1a2332; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+        .option-btn.selected-correct { border-color: #2563eb; background: #e6efff; }
+        .option-btn.selected-wrong { border-color: #c0392b; background: #fde8e6; }
+        .option-btn.show-correct { border-color: #2563eb; background: #e6efff; }
+        .option-btn.disabled { pointer-events: none; opacity: 0.8; }
+        .option-label { display: inline-block; font-weight: 700; color: #6b7a8f; margin-right: 8px; }
+        .explanation { background: #f8faff; border-radius: 12px; padding: 14px 16px; margin: 12px 0 6px 0; border-left: 4px solid #2563eb; display: none; font-size: 14px; line-height: 1.8; color: #2c3e50; }
+        .explanation.show { display: block; }
+        .tip-yellow { background: #fcf8e3; padding: 8px 12px; border-radius: 8px; border-left: 3px solid #f0ad4e; margin-top: 6px; }
+        .tip-yellow strong { color: #8a6d3b; }
+        .mnemonic { background: #eef3ff; padding: 8px 12px; border-radius: 8px; font-size: 13px; color: #1e40af; margin-top: 6px; border-left: 3px solid #2563eb; }
+        .source-link { font-size: 12px; color: #2563eb; margin-top: 8px; padding: 6px 10px; background: #f0f5fa; border-radius: 6px; }
+        .action-row { display: flex; gap: 10px; margin-top: 16px; }
+        .btn-primary { flex: 1; padding: 14px; border: none; border-radius: 14px; background: #2563eb; color: white; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; min-height: 48px; }
+        .btn-primary:active { transform: scale(0.97); background: #1d4ed8; }
+        .btn-primary:disabled { opacity: 0.4; }
+        .complete-screen { text-align: center; padding: 40px 20px; }
+        .complete-screen .big-icon { font-size: 56px; margin-bottom: 16px; }
+        .complete-screen h2 { font-size: 22px; margin-bottom: 8px; }
+        .complete-screen p { color: #6b7a8f; font-size: 15px; margin-bottom: 6px; }
+        .complete-screen .score-big { font-size: 48px; font-weight: 700; color: #2563eb; margin: 16px 0; }
+        .wrong-book-btn { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1a2332; color: white; border: none; border-radius: 40px; padding: 12px 28px; font-size: 15px; font-weight: 600; box-shadow: 0 4px 16px rgba(0,0,0,0.2); cursor: pointer; transition: all 0.2s; z-index: 100; font-family: inherit; display: none; align-items: center; gap: 8px; min-height: 48px; }
+        .wrong-book-btn .badge { background: #c0392b; color: white; border-radius: 20px; padding: 0 10px; font-size: 13px; line-height: 22px; }
+        .empty-state { text-align: center; padding: 40px 20px; color: #6b7a8f; }
+        .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
+        .status-badge { display: inline-block; font-size: 11px; padding: 2px 10px; border-radius: 12px; margin-left: 8px; }
+        .status-badge.done { background: #e6efff; color: #2563eb; }
+        .status-badge.wrong { background: #fde8e6; color: #c0392b; }
+        .wrong-tag { display: inline-block; background: #c0392b; color: white; font-size: 11px; padding: 1px 10px; border-radius: 12px; margin-left: 8px; }
+        .fill-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+        .fill-row label { font-weight: 500; color: #3d4e62; min-width: 30px; }
+        .fill-row input { flex: 1; min-width: 120px; padding: 12px 14px; border-radius: 10px; border: 2px solid #e2e7ef; font-size: 15px; font-family: inherit; background: white; color: #1a2332; min-height: 44px; }
+        .fill-row input:focus { outline: none; border-color: #2563eb; }
+        .fill-row input.correct { border-color: #2563eb; background: #e6efff; }
+        .fill-row input.wrong { border-color: #c0392b; background: #fde8e6; }
+        .fill-row input:disabled { opacity: 0.7; }
+        .fill-row .correct-answer-hint { font-size: 14px; color: #2563eb; font-weight: 600; }
+        .fill-input-area { margin: 14px 0 12px 0; }
+        @media (max-width: 380px) { .question-text { font-size: 15px; } .option-btn { font-size: 14px; padding: 12px 14px; min-height: 44px; } .fill-row input { font-size: 14px; padding: 10px 12px; min-height: 40px; } }
+        @media (min-width: 768px) { body { max-width: 480px; margin: 0 auto; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-top">
+            <div class="header-title">🧪 语言记忆 · <span>第三章</span></div>
+            <div class="header-right">
+                <a class="header-home" href="index.html">🏠 首页</a>
+                <div class="header-stats" id="statsLabel">0 / 0</div>
+            </div>
+        </div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <div class="progress-label">
+            <span id="correctRate">✅ 正确率：--%</span>
+            <span id="wrongCount">❌ 错题：0</span>
+            <button class="btn-reset-small" onclick="resetProgress()">重置</button>
+        </div>
+    </div>
+
+    <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-filter="all">📚 全部</button>
+        <button class="filter-btn" data-filter="3.1">§3.1 铁及其化合物</button>
+        <button class="filter-btn" data-filter="3.2">§3.2 金属材料</button>
+        <button class="filter-btn wrong-filter" data-filter="wrong">📕 错题本</button>
+    </div>
+
+    <div id="questionContainer"></div>
+
+    <button class="wrong-book-btn" id="wrongBookBtn">
+        📕 错题本 <span class="badge" id="wrongBadge">0</span>
+    </button>
+
+    <script>
+        var questionBank = [
+            // ========== §3.1 铁及其化合物 ==========
+            { id: 1, type: 'choice', section: '3.1', question: '铁与氯气反应生成的产物是（　）', options: ['FeCl₂', 'FeCl₃', 'Fe₂O₃', 'Fe₃O₄'], correct: 1, explanation: '氯气是强氧化剂，将铁氧化为+3价：2Fe + 3Cl₂ --点燃--> 2FeCl₃。', tip: '铁与氯气生成FeCl₃，铁与盐酸生成FeCl₂。', source: '§3.1 铁与非金属' },
+            { id: 2, type: 'choice', section: '3.1', question: '铁与稀盐酸反应生成的产物是（　）', options: ['FeCl₃', 'FeCl₂', 'Fe₂O₃', 'Fe(OH)₃'], correct: 1, explanation: '盐酸是非氧化性酸，铁与盐酸反应生成FeCl₂：Fe + 2HCl = FeCl₂ + H₂↑。', tip: '铁与弱氧化剂（盐酸、硫）生成Fe²⁺，与强氧化剂（氯气）生成Fe³⁺。', source: '§3.1 铁与酸' },
+            { id: 3, type: 'choice', section: '3.1', question: '常温下铁遇浓硫酸会（　）', options: ['剧烈反应', '钝化', '溶解', '燃烧'], correct: 1, explanation: '常温下铁遇浓硫酸、浓硝酸会钝化，表面生成致密氧化膜，可以用铁制容器盛装浓硫酸、浓硝酸。', tip: '钝化不是不反应，而是表面生成致密氧化膜阻止进一步反应。', source: '§3.1 铁与酸' },
+            { id: 4, type: 'choice', section: '3.1', question: 'Fe₃O₄中铁的价态是（　）', options: ['只有+2', '只有+3', '+2和+3', '只有0'], correct: 2, explanation: 'Fe₃O₄中铁有+2和+3两种价态，可看作FeO·Fe₂O₃。', tip: 'Fe₃O₄是黑色磁性氧化铁，铁有+2和+3两种价态。', source: '§3.1 铁的氧化物' },
+            { id: 5, type: 'choice', section: '3.1', question: 'Fe(OH)₂在空气中放置，最终颜色变为（　）', options: ['白色', '灰绿色', '红褐色', '蓝色'], correct: 2, explanation: 'Fe(OH)₂是白色沉淀，在空气中迅速被氧化：白色→灰绿色→红褐色（Fe(OH)₃）。', mnemonic: '📝 口诀："白灰红"——白色→灰绿→红褐', source: '§3.1 铁的氢氧化物' },
+            { id: 6, type: 'choice', section: '3.1', question: '检验Fe³⁺常用的试剂是（　）', options: ['NaOH溶液', 'KSCN溶液', 'AgNO₃溶液', 'BaCl₂溶液'], correct: 1, explanation: 'Fe³⁺遇KSCN溶液变血红色，这是检验Fe³⁺最灵敏的方法。', tip: 'Fe³⁺遇KSCN变血红色；Fe²⁺遇KSCN不变色，需先加氧化剂。', source: '§3.1 Fe³⁺检验' },
+            { id: 7, type: 'choice', section: '3.1', question: 'Fe²⁺转化为Fe³⁺需要加入（　）', options: ['还原剂', '氧化剂', '酸', '碱'], correct: 1, explanation: 'Fe²⁺→Fe³⁺是化合价升高，需要加氧化剂（如Cl₂、O₂、H₂O₂）。', tip: '升铁需要氧化剂，降铁需要还原剂。', source: '§3.1 Fe²⁺与Fe³⁺转化' },
+            { id: 8, type: 'choice', section: '3.1', question: 'Fe³⁺转化为Fe²⁺需要加入（　）', options: ['氧化剂', '还原剂', '酸', '碱'], correct: 1, explanation: 'Fe³⁺→Fe²⁺是化合价降低，需要加还原剂（如Fe、Cu、H₂S）。', tip: '升铁需要氧化剂，降铁需要还原剂。', source: '§3.1 Fe²⁺与Fe³⁺转化' },
+            { id: 9, type: 'fill', section: '3.1', question: '铁与硫反应的化学方程式是【1】。', blanks: ['Fe + S --Δ--> FeS'], explanation: '硫是弱氧化剂，铁与硫反应生成FeS（Fe为+2价）。', tip: '铁与硫生成FeS，铁与氯气生成FeCl₃。', source: '§3.1 铁与非金属' },
+            { id: 10, type: 'fill', section: '3.1', question: 'Fe₂O₃的颜色是【1】，俗名是【2】。', blanks: ['红棕色', '铁红'], explanation: 'Fe₂O₃是红棕色粉末，俗称铁红，可用于红色油漆和颜料。', source: '§3.1 铁的氧化物' },
+            { id: 11, type: 'fill', section: '3.1', question: 'Fe(OH)₂在空气中被氧化的化学方程式是【1】。', blanks: ['4Fe(OH)₂ + O₂ + 2H₂O = 4Fe(OH)₃'], explanation: 'Fe(OH)₂是白色沉淀，在空气中迅速被氧化为红褐色的Fe(OH)₃。', source: '§3.1 铁的氢氧化物' },
+            { id: 12, type: 'fill', section: '3.1', question: '检验Fe²⁺的方法：先加KSCN溶液不变色，再加【1】后变血红色。', blanks: ['氯水'], explanation: 'Fe²⁺遇KSCN不变色，加氯水后Fe²⁺被氧化为Fe³⁺，遇KSCN变血红色。', source: '§3.1 Fe²⁺检验' },
+            { id: 13, type: 'fill', section: '3.1', question: 'Fe + CuSO₄的离子方程式是【1】。', blanks: ['Fe + Cu²⁺ = Fe²⁺ + Cu'], explanation: '铁与硫酸铜反应生成硫酸亚铁和铜，铁表面析出红色铜。', source: '§3.1 铁与盐' },
+            { id: 14, type: 'fill', section: '3.1', question: 'Fe + FeCl₃的离子方程式是【1】。', blanks: ['Fe + 2Fe³⁺ = 3Fe²⁺'], explanation: '铁与氯化铁反应生成氯化亚铁，溶液由黄变浅绿。', source: '§3.1 铁与盐' },
+
+            // ========== §3.2 金属材料 ==========
+            { id: 15, type: 'choice', section: '3.2', question: '合金与纯金属相比，下列说法正确的是（　）', options: ['硬度变小', '熔点升高', '抗腐蚀性增强', '导电性增强'], correct: 2, explanation: '合金与纯金属相比：硬度增大、熔点降低、抗腐蚀性增强、导电导热性降低。', tip: '合金硬度大、熔点低、抗腐蚀强。', source: '§3.2 合金' },
+            { id: 16, type: 'choice', section: '3.2', question: '生铁的含碳量大约是（　）', options: ['0.03%~2%', '2%~4.3%', '4.3%~6%', '6%以上'], correct: 1, explanation: '生铁含碳量2%~4.3%，钢含碳量0.03%~2%。', tip: '生铁含碳量高，硬而脆；钢含碳量低，硬而韧。', source: '§3.2 铁合金' },
+            { id: 17, type: 'choice', section: '3.2', question: '不锈钢的主要成分是（　）', options: ['Fe + C', 'Fe + Cr + Ni', 'Cu + Sn', 'Cu + Zn'], correct: 1, explanation: '不锈钢是Fe + Cr + Ni的合金，抗腐蚀性强，用于餐具、医疗器械。', tip: '不锈钢含Cr、Ni，抗腐蚀性强。', source: '§3.2 铁合金' },
+            { id: 18, type: 'choice', section: '3.2', question: '铝合金的特点是（　）', options: ['密度大', '密度小、强度高', '熔点高', '抗腐蚀性差'], correct: 1, explanation: '铝合金密度小、强度高，用于飞机、门窗等。', source: '§3.2 铝合金' },
+            { id: 19, type: 'choice', section: '3.2', question: '青铜的主要成分是（　）', options: ['Cu + Zn', 'Cu + Sn', 'Fe + C', 'Al + Cu'], correct: 1, explanation: '青铜是铜锡合金，耐磨、耐腐蚀，用于文物、雕塑。', tip: '青铜=Cu+Sn，黄铜=Cu+Zn。', source: '§3.2 铜合金' },
+            { id: 20, type: 'choice', section: '3.2', question: '金属冶炼中，适合用电解法冶炼的是（　）', options: ['不活泼金属', '较活泼金属', '活泼金属', '所有金属'], correct: 2, explanation: '电解法适用于活泼金属（如Al、Na、Mg），热还原法适用于较活泼金属（如Fe），热分解法适用于不活泼金属（如Hg）。', tip: '活泼金属用电解，较活泼金属用热还原，不活泼金属用热分解。', source: '§3.2 金属冶炼' },
+            { id: 21, type: 'fill', section: '3.2', question: '合金的定义：由两种或两种以上的金属（或金属与非金属）熔合而成的具有【1】特性的物质。', blanks: ['金属'], explanation: '合金是由两种或两种以上的金属（或金属与非金属）熔合而成的具有金属特性的物质。', source: '§3.2 合金' },
+            { id: 22, type: 'fill', section: '3.2', question: '钢的含碳量范围是【1】。', blanks: ['0.03%~2%'], explanation: '钢含碳量0.03%~2%，硬而韧，用于建筑、机械。', source: '§3.2 铁合金' },
+            { id: 23, type: 'fill', section: '3.2', question: '金属腐蚀分为化学腐蚀和【1】腐蚀两类。', blanks: ['电化学'], explanation: '金属腐蚀分为化学腐蚀和电化学腐蚀，其中电化学腐蚀更常见。', source: '§3.2 金属腐蚀' },
+            { id: 24, type: 'fill', section: '3.2', question: '金属防护的方法有：涂保护层、改变金属内部结构、【1】保护。', blanks: ['电化学'], explanation: '金属防护方法：涂保护层（刷漆、涂油、电镀）、改变金属内部结构（制成不锈钢）、电化学保护（牺牲阳极法）。', source: '§3.2 金属防护' }
+        ];
+
+        var state = { filteredIds: [], answeredIds: new Set(), results: {}, wrongIds: [], currentQuestion: null, isAnswered: false, currentFilter: 'all', fillInputs: {} };
+        var container = document.getElementById('questionContainer');
+        var progressFill = document.getElementById('progressFill');
+        var statsLabel = document.getElementById('statsLabel');
+        var correctRateEl = document.getElementById('correctRate');
+        var wrongCountEl = document.getElementById('wrongCount');
+        var wrongBadge = document.getElementById('wrongBadge');
+        var wrongBookBtn = document.getElementById('wrongBookBtn');
+
+        function getFilteredIds(filter) { if (filter === 'all') return questionBank.map(function(q) { return q.id; }); if (filter === 'wrong') return state.wrongIds.slice(); return questionBank.filter(function(q) { return q.section === filter; }).map(function(q) { return q.id; }); }
+        function shuffleArray(arr) { for (var i = arr.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var temp = arr[i]; arr[i] = arr[j]; arr[j] = temp; } return arr; }
+        function getQuestionById(id) { for (var i = 0; i < questionBank.length; i++) { if (questionBank[i].id === id) return questionBank[i]; } return null; }
+        function getUnansweredIds(filteredIds) { var result = []; for (var i = 0; i < filteredIds.length; i++) { if (!state.answeredIds.has(filteredIds[i])) result.push(filteredIds[i]); } return result; }
+
+        function updateStats() {
+            var total = state.filteredIds.length; var done = state.answeredIds.size;
+            var correctCount = 0, wrongCount = 0; var ids = Object.keys(state.results);
+            for (var i = 0; i < ids.length; i++) { if (state.results[ids[i]] === true) correctCount++; else if (state.results[ids[i]] === false) wrongCount++; }
+            var rate = done === 0 ? '--%' : Math.round((correctCount / done) * 100) + '%';
+            statsLabel.textContent = done + ' / ' + total;
+            progressFill.style.width = (total === 0 ? 0 : (done / total) * 100) + '%';
+            correctRateEl.textContent = '✅ 正确率：' + rate;
+            wrongCountEl.textContent = '❌ 错题：' + wrongCount;
+            wrongBadge.textContent = state.wrongIds.length;
+            wrongBookBtn.style.display = (state.wrongIds.length > 0 && state.currentFilter !== 'wrong') ? 'flex' : 'none';
+            var idxData = JSON.parse(localStorage.getItem('chem_index_data') || '{"doneMap":{}}');
+            idxData.doneMap['ch3_vocab'] = done;
+            localStorage.setItem('chem_index_data', JSON.stringify(idxData));
+        }
+
+        function addToWrong(q, userAns) {
+            if (state.wrongIds.indexOf(q.id) === -1) state.wrongIds.push(q.id);
+            var wrongList = JSON.parse(localStorage.getItem('chem_wrong_list') || '[]');
+            var exists = wrongList.some(function(w) { return w.chapter === 3 && w.type === 'vocab' && w.qId === q.id; });
+            if (!exists) {
+                var correctAns = q.type === 'choice' ? q.options[q.correct] : (q.blanks || []).join('、');
+                wrongList.push({ chapter: 3, type: 'vocab', qId: q.id, question: q.question, userAnswer: userAns || '', correctAnswer: correctAns });
+                localStorage.setItem('chem_wrong_list', JSON.stringify(wrongList));
+            }
+            updateStats();
+        }
+        function removeFromWrong(id) {
+            var idx = state.wrongIds.indexOf(id); if (idx !== -1) state.wrongIds.splice(idx, 1);
+            var wrongList = JSON.parse(localStorage.getItem('chem_wrong_list') || '[]');
+            wrongList = wrongList.filter(function(w) { return !(w.chapter === 3 && w.type === 'vocab' && w.qId === id); });
+            localStorage.setItem('chem_wrong_list', JSON.stringify(wrongList));
+            updateStats();
+        }
+
+        function renderQuestion() {
+            var filtered = state.filteredIds;
+            if (filtered.length === 0) { if (state.currentFilter === 'wrong') container.innerHTML = '<div class="empty-state"><div class="icon">🎉</div><p>错题本已清空！继续加油！</p></div>'; else container.innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>当前章节暂无题目</p></div>'; updateStats(); return; }
+            var unanswered = getUnansweredIds(filtered); var total = filtered.length;
+            if (unanswered.length === 0 && state.answeredIds.size >= total) {
+                var correctCount = 0; var ids = Object.keys(state.results);
+                for (var i = 0; i < ids.length; i++) { if (state.results[ids[i]] === true) correctCount++; }
+                var rate = total === 0 ? 0 : Math.round((correctCount / total) * 100);
+                container.innerHTML = '<div class="complete-screen"><div class="big-icon">🎉</div><h2>全部通关！</h2><p>第三章语言记忆已刷完</p><div class="score-big">' + rate + '%</div><p style="color:#6b7a8f;font-size:14px;">正确率 ' + rate + '% · 共 ' + total + ' 题</p><button class="btn-primary" style="margin-top:20px;max-width:200px;display:inline-block;" onclick="resetProgress()">🔄 重新开始</button></div>';
+                updateStats(); return;
+            }
+            var targetId = unanswered.length > 0 ? unanswered[0] : filtered[filtered.length - 1];
+            var q = getQuestionById(targetId);
+            if (!q) { container.innerHTML = '<div class="empty-state"><p>题目加载失败</p></div>'; return; }
+            state.currentQuestion = q; state.isAnswered = false;
+            var html = '<div class="question-card">';
+            var typeLabel = q.type === 'choice' ? '🎯 选择题' : '✍️ 填空题';
+            var sectionName = ''; if (q.section === '3.1') sectionName = '§3.1 铁及其化合物'; else if (q.section === '3.2') sectionName = '§3.2 金属材料';
+            html += '<span class="question-type">' + typeLabel + '</span>';
+            html += '<span class="question-section">' + sectionName + '</span>';
+            var isWrong = state.wrongIds.indexOf(q.id) !== -1;
+            if (isWrong && state.currentFilter !== 'wrong') html += '<span class="wrong-tag">📕 错题</span>';
+            if (state.answeredIds.has(q.id)) { if (state.results[q.id] === true) html += '<span class="status-badge done">✅ 已掌握</span>'; else if (state.results[q.id] === false) html += '<span class="status-badge wrong">❌ 需重练</span>'; }
+            var displayText = q.question;
+            if (q.type === 'fill' && q.blanks) { for (var b = 0; b < q.blanks.length; b++) { displayText = displayText.replace('【' + (b + 1) + '】', '<span class="blank">____</span>'); } }
+            html += '<div class="question-text">' + displayText + '</div>';
+            if (q.type === 'choice') {
+                var labels = ['A', 'B', 'C', 'D'];
+                html += '<div class="options">';
+                for (var i = 0; i < q.options.length; i++) { html += '<button class="option-btn" onclick="answerChoice(' + i + ', ' + q.id + ')" id="choiceOpt_' + i + '"><span class="option-label">' + labels[i] + '.</span> ' + q.options[i] + '</button>'; }
+                html += '</div>';
+                html += '<div class="explanation" id="explanation_' + q.id + '">';
+                html += '<span class="label">📖 解析：</span>' + q.explanation;
+                if (q.tip) html += '<div class="tip-yellow"><strong>🟡 ' + q.tip + '</strong></div>';
+                if (q.mnemonic) html += '<div class="mnemonic">' + q.mnemonic + '</div>';
+                if (q.source) html += '<div class="source-link">📎 ' + q.source + '</div>';
+                html += '</div>';
+                html += '<div class="action-row"><button class="btn-primary" id="nextBtnChoice" onclick="nextQuestion()" disabled>下一题 →</button></div>';
+            } else {
+                html += '<div class="fill-input-area" id="fillArea">';
+                for (var f = 0; f < q.blanks.length; f++) { var savedVal = state.fillInputs[q.id + '_' + f] || ''; html += '<div class="fill-row"><label>空' + (f + 1) + '：</label><input type="text" id="fill_' + q.id + '_' + f + '" placeholder="输入答案" value="' + savedVal + '" autocomplete="off"><span class="correct-answer-hint" id="fillHint_' + q.id + '_' + f + '" style="display:none;"></span></div>'; }
+                html += '</div>';
+                html += '<div class="action-row"><button class="btn-primary" id="fillSubmitBtn" onclick="submitFill()">✅ 提交答案</button></div>';
+                html += '<div class="explanation" id="explanation_' + q.id + '">';
+                html += '<span class="label">📖 解析：</span>' + q.explanation;
+                if (q.tip) html += '<div class="tip-yellow"><strong>🟡 ' + q.tip + '</strong></div>';
+                if (q.mnemonic) html += '<div class="mnemonic">' + q.mnemonic + '</div>';
+                if (q.source) html += '<div class="source-link">📎 ' + q.source + '</div>';
+                html += '</div>';
+                html += '<div class="action-row"><button class="btn-primary" id="nextBtnFill" onclick="nextQuestion()" disabled>下一题 →</button></div>';
+            }
+            html += '</div>';
+            container.innerHTML = html; updateStats();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (q.type === 'fill') { setTimeout(function() { var inputs = document.querySelectorAll('.fill-row input'); inputs.forEach(function(inp, idx) { inp.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); if (idx === inputs.length - 1) submitFill(); else inputs[idx + 1].focus(); } }); }); if (inputs.length > 0 && !state.isAnswered) inputs[0].focus(); }, 100); }
+        }
+
+        window.answerChoice = function(selected, qId) {
+            if (state.isAnswered) return; var q = getQuestionById(qId); if (!q) return; state.isAnswered = true;
+            var isCorrect = (selected === q.correct); var btns = document.querySelectorAll('.option-btn');
+            btns.forEach(function(b) { b.classList.add('disabled'); });
+            if (isCorrect) { btns[selected].classList.add('selected-correct'); state.results[qId] = true; }
+            else { btns[selected].classList.add('selected-wrong'); btns[q.correct].classList.add('show-correct'); state.results[qId] = false; addToWrong(q, q.options[selected]); }
+            state.answeredIds.add(qId);
+            var exp = document.getElementById('explanation_' + qId); if (exp) exp.classList.add('show');
+            if (state.currentFilter === 'wrong' && isCorrect) removeFromWrong(qId);
+            var nextBtn = document.getElementById('nextBtnChoice'); if (nextBtn) nextBtn.disabled = false;
+            updateStats();
+        };
+
+        window.submitFill = function() {
+            if (state.isAnswered) return; var q = state.currentQuestion; if (!q || q.type !== 'fill') return;
+            var allCorrect = true, allFilled = true, userAnswers = [];
+            for (var i = 0; i < q.blanks.length; i++) {
+                var input = document.getElementById('fill_' + q.id + '_' + i); if (!input) { allFilled = false; continue; }
+                var userVal = input.value.trim(); userAnswers.push(userVal); state.fillInputs[q.id + '_' + i] = userVal;
+                if (userVal === '') { allFilled = false; continue; }
+                var normalizedUser = userVal.replace(/\s/g, ''); var normalizedAnswer = q.blanks[i].replace(/\s/g, '');
+                if (normalizedUser === normalizedAnswer) input.classList.add('correct');
+                else { input.classList.add('wrong'); allCorrect = false; var hint = document.getElementById('fillHint_' + q.id + '_' + i); if (hint) { hint.style.display = 'inline'; hint.textContent = '→ 正确答案：' + q.blanks[i]; } }
+                input.disabled = true;
+            }
+            if (!allFilled) { alert('请填写所有空再提交'); return; }
+            state.isAnswered = true;
+            if (allCorrect) state.results[q.id] = true;
+            else { state.results[q.id] = false; addToWrong(q, userAnswers.join('、')); }
+            state.answeredIds.add(q.id);
+            var exp = document.getElementById('explanation_' + q.id); if (exp) exp.classList.add('show');
+            if (state.currentFilter === 'wrong' && allCorrect) removeFromWrong(q.id);
+            var submitBtn = document.getElementById('fillSubmitBtn'); if (submitBtn) submitBtn.disabled = true;
+            var nextBtn = document.getElementById('nextBtnFill'); if (nextBtn) nextBtn.disabled = false;
+            updateStats();
+        };
+
+        window.nextQuestion = function() { var q = state.currentQuestion; if (q && q.type === 'fill') { for (var i = 0; i < q.blanks.length; i++) { var inp = document.getElementById('fill_' + q.id + '_' + i); if (inp) state.fillInputs[q.id + '_' + i] = inp.value; } } renderQuestion(); };
+        window.resetProgress = function() { if (!confirm('确定重置所有进度吗？（错题本也会清空）')) return; state.answeredIds = new Set(); state.results = {}; state.wrongIds = []; state.fillInputs = {}; var wrongList = JSON.parse(localStorage.getItem('chem_wrong_list') || '[]'); wrongList = wrongList.filter(function(w) { return !(w.chapter === 3 && w.type === 'vocab'); }); localStorage.setItem('chem_wrong_list', JSON.stringify(wrongList)); setFilter('all'); };
+
+        function setFilter(filter) {
+            state.currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.toggle('active', b.dataset.filter === filter); });
+            if (filter === 'wrong') state.filteredIds = state.wrongIds.slice();
+            else { state.filteredIds = getFilteredIds(filter); shuffleArray(state.filteredIds); }
+            renderQuestion();
+        }
+
+        document.querySelectorAll('.filter-btn').forEach(function(btn) { btn.addEventListener('click', function() { var filter = this.dataset.filter; if (filter === 'wrong' && state.wrongIds.length === 0) { alert('🎉 错题本为空！继续保持！'); return; } setFilter(filter); }); });
+        document.getElementById('wrongBookBtn').addEventListener('click', function() { if (state.wrongIds.length === 0) { alert('🎉 错题本是空的！继续保持！'); return; } setFilter('wrong'); });
+
+        function init() { state.filteredIds = getFilteredIds('all'); shuffleArray(state.filteredIds); renderQuestion(); }
+        init();
+        console.log('🧪 第三章语言记忆已启动！共 ' + questionBank.length + ' 题');
+    </script>
+</body>
+</html>
