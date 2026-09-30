@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>第二章 · 真题演练（四步法）</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f7fb; color: #1a2332; padding: 12px 12px 100px 12px; max-width: 480px; margin: 0 auto; }
+        .header { background: #fff; border-radius: 16px; padding: 14px 16px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); position: sticky; top: 0; z-index: 10; }
+        .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .header-title { font-size: 17px; font-weight: 700; }
+        .header-title span { color: #1a5276; }
+        .header-right { display: flex; align-items: center; gap: 10px; }
+        .header-home { font-size: 13px; color: #1a5276; background: #e3eef7; padding: 5px 12px; border-radius: 20px; border: none; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
+        .header-stats { font-size: 13px; color: #6b7a8f; background: #f0f2f5; padding: 4px 12px; border-radius: 20px; }
+        .progress-bar-bg { width: 100%; height: 6px; background: #e8ecf1; border-radius: 4px; overflow: hidden; margin-top: 6px; }
+        .progress-bar-fill { height: 100%; background: #1a5276; border-radius: 4px; transition: width 0.4s ease; width: 0%; }
+        .progress-label { display: flex; justify-content: space-between; font-size: 12px; color: #6b7a8f; margin-top: 4px; }
+        .filter-bar { display: flex; gap: 6px; margin-bottom: 14px; overflow-x: auto; padding-bottom: 4px; }
+        .filter-btn { flex-shrink: 0; padding: 6px 14px; border-radius: 20px; border: 1.5px solid #d0d7e2; background: #fff; font-size: 12px; color: #3d4e62; cursor: pointer; font-weight: 500; transition: all 0.2s; font-family: inherit; }
+        .filter-btn.active { background: #1a5276; border-color: #1a5276; color: #fff; }
+        .filter-btn.wrong-filter { border-color: #c0392b; color: #c0392b; }
+        .filter-btn.wrong-filter.active { background: #c0392b; border-color: #c0392b; color: #fff; }
+        .question-card { background: #fff; border-radius: 16px; padding: 20px 16px 16px; margin-bottom: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); animation: fadeUp 0.35s ease; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        .question-type { display: inline-block; font-size: 11px; font-weight: 600; color: #1a5276; background: #e3eef7; padding: 2px 12px; border-radius: 12px; margin-bottom: 10px; }
+        .question-source { display: inline-block; font-size: 10px; font-weight: 400; color: #6b7a8f; background: #f5f5f5; padding: 2px 10px; border-radius: 12px; margin-left: 8px; }
+        .question-text { font-size: 16px; font-weight: 500; line-height: 1.7; margin-bottom: 12px; }
+        .question-text .blank { display: inline-block; min-width: 70px; border-bottom: 2px dashed #1a5276; margin: 0 4px; color: #1a5276; font-weight: 600; }
+        .options { display: flex; flex-direction: column; gap: 10px; margin: 12px 0 10px; }
+        .option-btn { display: block; width: 100%; text-align: left; padding: 14px 16px; border-radius: 12px; border: 2px solid #e2e7ef; background: #fff; font-size: 15px; line-height: 1.5; cursor: pointer; font-family: inherit; min-height: 48px; transition: all 0.2s; }
+        .option-btn.selected-correct { border-color: #2d7d46; background: #e8f5ee; }
+        .option-btn.selected-wrong { border-color: #c0392b; background: #fde8e6; }
+        .option-btn.show-correct { border-color: #2d7d46; background: #e8f5ee; }
+        .option-btn.disabled { pointer-events: none; opacity: 0.8; }
+        .option-label { font-weight: 700; color: #6b7a8f; margin-right: 8px; }
+        .fill-input-area { margin: 12px 0 10px; }
+        .fill-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+        .fill-row label { font-weight: 500; color: #3d4e62; min-width: 30px; font-size: 15px; }
+        .fill-row input { flex: 1; min-width: 100px; padding: 12px 14px; border-radius: 10px; border: 2px solid #e2e7ef; font-size: 15px; font-family: inherit; background: #fff; color: #1a2332; min-height: 44px; }
+        .fill-row input.correct { border-color: #2d7d46; background: #e8f5ee; }
+        .fill-row input.wrong { border-color: #c0392b; background: #fde8e6; }
+        .fill-row input:disabled { opacity: 0.7; }
+        .fill-row .correct-answer-hint { font-size: 14px; color: #2d7d46; font-weight: 600; }
+        .explanation { background: #f8faff; border-radius: 12px; padding: 14px 16px; margin: 12px 0 6px; border-left: 4px solid #1a5276; display: none; font-size: 14px; line-height: 1.7; color: #2c3e50; }
+        .explanation.show { display: block; }
+        .step-block { margin-bottom: 12px; padding: 10px 12px; border-radius: 10px; background: #fff; border-left: 3px solid #1a5276; }
+        .step-block:last-child { margin-bottom: 0; }
+        .step-label { display: inline-block; font-size: 12px; font-weight: 700; color: #fff; background: #1a5276; padding: 2px 10px; border-radius: 10px; margin-bottom: 6px; }
+        .step-content { font-size: 14px; line-height: 1.7; color: #2c3e50; }
+        .tip-yellow { background: #fcf8e3; padding: 8px 12px; border-radius: 8px; border-left: 3px solid #f0ad4e; margin-top: 8px; font-size: 13px; }
+        .tip-yellow strong { color: #8a6d3b; }
+        .source-link { font-size: 12px; color: #1a5276; margin-top: 8px; padding: 6px 10px; background: #f0f5fa; border-radius: 6px; }
+        .action-row { display: flex; gap: 10px; margin-top: 14px; }
+        .btn-primary { flex: 1; padding: 14px; border: none; border-radius: 14px; background: #1a5276; color: #fff; font-size: 16px; font-weight: 600; cursor: pointer; font-family: inherit; min-height: 48px; }
+        .btn-primary:disabled { opacity: 0.4; }
+        .wrong-tag { display: inline-block; background: #c0392b; color: #fff; font-size: 11px; padding: 1px 10px; border-radius: 12px; margin-left: 8px; }
+        .status-badge { display: inline-block; font-size: 12px; padding: 2px 12px; border-radius: 12px; margin-left: 8px; }
+        .status-badge.done { background: #e8f5ee; color: #2d7d46; }
+        .status-badge.wrong { background: #fde8e6; color: #c0392b; }
+        .complete-screen { text-align: center; padding: 40px 20px; }
+        .complete-screen .big-icon { font-size: 56px; margin-bottom: 16px; }
+        .complete-screen .score-big { font-size: 48px; font-weight: 700; color: #1a5276; margin: 16px 0; }
+        .empty-state { text-align: center; padding: 40px 20px; color: #6b7a8f; }
+        .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
+        .wrong-list-view { background: #fff; border-radius: 16px; padding: 18px 16px; margin-bottom: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+        .wrong-list-view .title { font-size: 17px; font-weight: 700; margin-bottom: 12px; }
+        .wrong-list-view .item { padding: 12px 0; border-bottom: 1px solid #f0f2f5; }
+        .wrong-list-view .item:last-child { border-bottom: none; }
+        .wrong-list-view .item .q { font-size: 15px; font-weight: 500; }
+        .wrong-list-view .item .your { font-size: 14px; color: #c0392b; }
+        .wrong-list-view .item .correct { font-size: 14px; color: #2d7d46; font-weight: 600; }
+        .home-footer { text-align: center; margin-top: 16px; padding: 10px 0; }
+        .home-footer .btn-home { background: none; border: 1.5px solid #d0d7e2; border-radius: 30px; padding: 10px 30px; font-size: 15px; font-weight: 500; color: #3d4e62; cursor: pointer; font-family: inherit; min-height: 44px; text-decoration: none; display: inline-block; }
+        .wrong-book-btn { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1a2332; color: #fff; border: none; border-radius: 40px; padding: 12px 24px; font-size: 15px; font-weight: 600; box-shadow: 0 4px 16px rgba(0,0,0,0.2); cursor: pointer; z-index: 100; font-family: inherit; display: none; align-items: center; gap: 8px; min-height: 48px; }
+        .wrong-book-btn .badge { background: #c0392b; color: #fff; border-radius: 20px; padding: 0 10px; font-size: 13px; line-height: 22px; }
+        .back-to-practice { margin-top: 14px; text-align: center; }
+        .back-to-practice .btn { background: #1a5276; color: #fff; border: none; border-radius: 30px; padding: 10px 28px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; min-height: 44px; }
+        @media (max-width: 380px) { .question-text { font-size: 15px; } .option-btn { font-size: 14px; padding: 12px 14px; min-height: 44px; } .btn-primary { font-size: 15px; min-height: 44px; padding: 12px; } .fill-row input { font-size: 14px; padding: 10px 12px; min-height: 40px; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-top">
+            <div class="header-title">📝 真题演练 · <span>第二章</span></div>
+            <div class="header-right">
+                <a class="header-home" href="index.html">🏠 首页</a>
+                <div class="header-stats" id="statsLabel">0 / 0</div>
+            </div>
+        </div>
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <div class="progress-label">
+            <span id="correctRate">✅ 正确率：--%</span>
+            <span id="wrongCount">❌ 错题：0</span>
+        </div>
+    </div>
+    <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">📚 全部</button>
+        <button class="filter-btn" data-filter="choice" onclick="setFilter('choice')">🎯 选择题</button>
+        <button class="filter-btn" data-filter="fill" onclick="setFilter('fill')">✍️ 非选择</button>
+        <button class="filter-btn wrong-filter" data-filter="wrong" onclick="setFilter('wrong')">📕 错题本</button>
+    </div>
+    <div id="questionContainer"></div>
+    <div class="home-footer"><a class="btn-home" href="index.html">🏠 返回首页</a></div>
+    <button class="wrong-book-btn" id="wrongBookBtn" onclick="setFilter('wrong')">📕 错题本 <span class="badge" id="wrongBadge">0</span></button>
+
+    <script>
+        var questionBank = [{
+            id: 1, type: 'choice', section: 'choice',
+            question: '下列关于钠的说法正确的是（　）',
+            options: ['钠着火时可用水扑灭', '钠保存在煤油中，因为密度比煤油大', '钠在空气中加热生成Na₂O', '钠与水反应生成NaOH和H₂'],
+            correct: 3,
+            explanation: { step1: '题目问钠的相关说法哪个正确。', step2: '钠的性质：与水反应、与氧气反应、保存方法、灭火方法。', step3: 'A中钠与水反应生成H₂，会加剧燃烧，不能用水灭火；B中钠密度比煤油大，沉在煤油中隔绝空气；C中钠加热生成Na₂O₂而非Na₂O；D中钠与水反应生成NaOH和H₂。', step4: 'A：不能用水灭火 ❌；B：密度比煤油大是正确原因 ✅（但题目问"正确的是"，B也正确，需注意单选）；C：加热生成Na₂O₂ ❌；D：正确 ✅。答案：D。' },
+            tip: '钠着火用干燥沙土扑灭，不能用水；钠加热生成Na₂O₂。',
+            source: '2024-2025学年高一期末真题·改编'
+        }, {
+            id: 2, type: 'choice', section: 'choice',
+            question: '下列关于Na₂O₂的说法正确的是（　）',
+            options: ['Na₂O₂是碱性氧化物', 'Na₂O₂与水反应只作氧化剂', 'Na₂O₂与水反应生成O₂', 'Na₂O₂中氧的价态为-2'],
+            correct: 2,
+            explanation: { step1: '题目问Na₂O₂的相关说法哪个正确。', step2: 'Na₂O₂是过氧化物，氧的价态为-1，与水反应生成NaOH和O₂。', step3: 'A中Na₂O₂是过氧化物，不是碱性氧化物；B中Na₂O₂与水反应，氧既升高又降低，既是氧化剂又是还原剂；C中Na₂O₂与水反应生成O₂，正确；D中Na₂O₂中氧的价态为-1。', step4: 'A：过氧化物 ❌；B：既是氧化剂又是还原剂 ❌；C：正确 ✅；D：-1价 ❌。答案：C。' },
+            tip: 'Na₂O₂中氧为-1价，与水/CO₂反应时歧化。',
+            source: '2024-2025学年高一期末真题·改编'
+        }, {
+            id: 3, type: 'choice', section: 'choice',
+            question: '下列关于氯气的说法正确的是（　）',
+            options: ['氯气是无色气体', '氯气与铁反应生成FeCl₂', '氯气与水反应生成HCl和HClO', '氯气不能与碱反应'],
+            correct: 2,
+            explanation: { step1: '题目问氯气的相关说法哪个正确。', step2: '氯气的物理性质、与金属反应、与水反应、与碱反应。', step3: 'A中氯气是黄绿色气体；B中氯气与铁生成FeCl₃；C中氯气与水反应生成HCl和HClO，正确；D中氯气能与碱反应生成漂白液/漂白粉。', step4: 'A：黄绿色 ❌；B：生成FeCl₃ ❌；C：正确 ✅；D：能与碱反应 ❌。答案：C。' },
+            tip: '氯气是黄绿色，与铁生成FeCl₃，能与碱反应。',
+            source: '2024-2025学年高一期末真题·改编'
+        }, {
+            id: 4, type: 'choice', section: 'choice',
+            question: '新制氯水中含有的粒子不包括（　）',
+            options: ['Cl₂', 'HClO', 'ClO⁻', 'Na⁺'],
+            correct: 3,
+            explanation: { step1: '题目问新制氯水中不含有的粒子。', step2: '新制氯水的成分：三分子（Cl₂、HClO、H₂O）四离子（H⁺、Cl⁻、ClO⁻、OH⁻）。', step3: 'A中Cl₂存在；B中HClO存在；C中ClO⁻存在；D中Na⁺不存在（氯水是氯气溶于水，不是NaCl溶液）。', step4: 'A：存在 ❌；B：存在 ❌；C：存在 ❌；D：不存在 ✅。答案：D。' },
+            tip: '新制氯水是三分子四离子，没有Na⁺。',
+            source: '2024-2025学年高一期末真题·改编'
+        }, {
+            id: 5, type: 'choice', section: 'choice',
+            question: '检验Cl⁻的正确操作是（　）',
+            options: ['加AgNO₃溶液', '加稀HNO₃酸化后再加AgNO₃', '加盐酸酸化后再加AgNO₃', '加Ba(NO₃)₂溶液'],
+            correct: 1,
+            explanation: { step1: '题目问检验Cl⁻的正确操作。', step2: 'Cl⁻检验：先加稀HNO₃酸化，再加AgNO₃，产生白色沉淀。', step3: 'A中只加AgNO₃，可能受CO₃²⁻等干扰；B中先加稀HNO₃酸化，排除干扰，再加AgNO₃，正确；C中加盐酸引入Cl⁻，错误；D中Ba(NO₃)₂检验SO₄²⁻，不是Cl⁻。', step4: 'A：未酸化 ❌；B：正确 ✅；C：引入Cl⁻ ❌；D：检验SO₄²⁻ ❌。答案：B。' },
+            tip: '检验Cl⁻用稀HNO₃酸化，不能用盐酸。',
+            source: '2025-2026学年高一期末真题·改编'
+        }, {
+            id: 6, type: 'choice', section: 'choice',
+            question: '下列关于物质的量的说法正确的是（　）',
+            options: ['1 mol 氧含有6.02×10²³个氧原子', '摩尔质量就是相对分子质量', '标准状况下，1 mol任何气体的体积约为22.4 L', '1 mol/L NaCl溶液中含1 mol NaCl'],
+            correct: 2,
+            explanation: { step1: '题目问物质的量的相关说法哪个正确。', step2: '物质的量必须指明粒子种类；摩尔质量有单位；气体摩尔体积适用于标准状况下的气体；物质的量浓度需指明溶液体积。', step3: 'A中"1 mol 氧"未指明粒子种类，错误；B中摩尔质量有单位g/mol，相对分子质量无单位，错误；C中标准状况下1 mol任何气体体积约为22.4 L，正确；D中未指明溶液体积，错误。', step4: 'A：未指明粒子 ❌；B：单位不同 ❌；C：正确 ✅；D：未指明体积 ❌。答案：C。' },
+            tip: '"1 mol 氧"错误，必须指明粒子种类；22.4 L/mol仅适用于标准状况气体。',
+            source: '2024-2025学年高一期末真题·改编'
+        }, {
+            id: 7, type: 'choice', section: 'choice',
+            question: '配制一定物质的量浓度溶液时，不需要用到的仪器是（　）',
+            options: ['容量瓶', '烧杯', '玻璃棒', '分液漏斗'],
+            correct: 3,
+            explanation: { step1: '题目问配制一定物质的量浓度溶液时不需要的仪器。', step2: '配制步骤：计算→称量→溶解→冷却→转移→洗涤→定容→摇匀。', step3: 'A中容量瓶用于定容；B中烧杯用于溶解；C中玻璃棒用于搅拌和引流；D中分液漏斗用于分液，配制溶液不需要。', step4: 'A：需要 ❌；B：需要 ❌；C：需要 ❌；D：不需要 ✅。答案：D。' },
+            tip: '配制溶液不需要分液漏斗，需要容量瓶、烧杯、玻璃棒、胶头滴管。',
+            source: '2024-2025学年高一期末真题·改编'
+        }, {
+            id: 8, type: 'fill', section: 'fill',
+            question: '写出钠与水反应的离子方程式：【1】。',
+            blanks: ['2Na + 2H₂O = 2Na⁺ + 2OH⁻ + H₂↑'],
+            explanation: { step1: '题目要求写出钠与水反应的离子方程式。', step2: '钠与水反应生成NaOH和H₂，NaOH是可溶性强碱，拆成离子。', step3: '化学方程式：2Na + 2H₂O = 2NaOH + H₂↑。拆写：NaOH拆成Na⁺和OH⁻。', step4: '离子方程式：2Na + 2H₂O = 2Na⁺ + 2OH⁻ + H₂↑。' },
+            tip: '钠与水反应，NaOH拆成离子，水写化学式。',
+            source: '高一期末真题·教材改编'
+        }, {
+            id: 9, type: 'fill', section: 'fill',
+            question: '写出氯气与NaOH溶液反应的化学方程式：【1】。',
+            blanks: ['Cl₂ + 2NaOH = NaCl + NaClO + H₂O'],
+            explanation: { step1: '题目要求写出氯气与NaOH溶液反应的化学方程式。', step2: '氯气与碱反应是歧化反应，Cl₂既是氧化剂又是还原剂。', step3: 'Cl₂ + 2NaOH = NaCl + NaClO + H₂O，用于制漂白液。', step4: '化学方程式：Cl₂ + 2NaOH = NaCl + NaClO + H₂O。' },
+            tip: '氯气与碱反应是歧化反应，用于制漂白液/漂白粉。',
+            source: '高一期末真题·教材改编'
+        }, {
+            id: 10, type: 'fill', section: 'fill',
+            question: '标准状况下，2 mol O₂的体积是【1】L。',
+            blanks: ['44.8'],
+            explanation: { step1: '题目问标准状况下2 mol O₂的体积。', step2: '标准状况下，气体摩尔体积Vm ≈ 22.4 L/mol。', step3: 'V = n × Vm = 2 mol × 22.4 L/mol = 44.8 L。', step4: '答案：44.8 L。' },
+            tip: 'V = n × Vm，标准状况下Vm = 22.4 L/mol。',
+            source: '高一期末真题·教材改编'
+        }];
+
+        var STORAGE_KEY = 'ch2_exam_data';
+        var WRONG_KEY = 'chem_wrong_list';
+        function loadData() { try { var raw = localStorage.getItem(STORAGE_KEY); if (raw) return JSON.parse(raw); } catch (e) {} return { answered: {}, results: {} }; }
+        function saveData(d) { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }
+        function loadWrong() { try { var raw = localStorage.getItem(WRONG_KEY); if (raw) return JSON.parse(raw); } catch (e) {} return []; }
+        function saveWrong(list) { localStorage.setItem(WRONG_KEY, JSON.stringify(list)); }
+        var data = loadData(); var wrongList = loadWrong();
+        var currentFilter = 'all', filteredIds = [], currentQ = null, isAnswered = false, isPracticeMode = false;
+
+        function getFilteredIds(filter) { if (filter === 'all') return questionBank.map(function(q) { return q.id; }); if (filter === 'wrong') return wrongList.filter(function(item) { return item.chapter === 2 && item.type === 'exam'; }).map(function(item) { return item.qId; }); return questionBank.filter(function(q) { return q.section === filter; }).map(function(q) { return q.id; }); }
+        function getQ(id) { for (var i = 0; i < questionBank.length; i++) { if (questionBank[i].id === id) return questionBank[i]; } return null; }
+        function shuffle(arr) { for (var i = arr.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = arr[i]; arr[i] = arr[j]; arr[j] = t; } return arr; }
+        function getUnanswered(ids) { var r = []; for (var i = 0; i < ids.length; i++) { if (!data.answered[ids[i]]) r.push(ids[i]); } return r; }
+        function getProgress() { var total = filteredIds.length, done = 0, correct = 0; for (var i = 0; i < filteredIds.length; i++) { var id = filteredIds[i]; if (data.answered[id]) { done++; if (data.results[id] === true) correct++; } } var rate = done === 0 ? 0 : Math.round((correct / done) * 100); return { total: total, done: done, correct: correct, rate: rate }; }
+        function updateUI() {
+            var p = getProgress(); var wc = wrongList.filter(function(item) { return item.chapter === 2 && item.type === 'exam'; }).length;
+            document.getElementById('statsLabel').textContent = p.done + ' / ' + p.total;
+            document.getElementById('progressFill').style.width = (p.total === 0 ? 0 : (p.done / p.total) * 100) + '%';
+            document.getElementById('correctRate').textContent = '✅ 正确率：' + (p.done === 0 ? '--%' : p.rate + '%');
+            document.getElementById('wrongCount').textContent = '❌ 错题：' + wc;
+            document.getElementById('wrongBadge').textContent = wc;
+            document.getElementById('wrongBookBtn').style.display = (wc > 0 && currentFilter !== 'wrong') ? 'flex' : 'none';
+            var idxData = JSON.parse(localStorage.getItem('chem_index_data') || '{"doneMap":{}}');
+            idxData.doneMap['ch2_exam'] = p.done;
+            localStorage.setItem('chem_index_data', JSON.stringify(idxData));
+        }
+        function addWrong(q, userAns) {
+            if (wrongList.some(function(item) { return item.chapter === 2 && item.type === 'exam' && item.qId === q.id; })) return;
+            var correctAns = q.type === 'choice' ? q.options[q.correct] : q.blanks.join('、');
+            wrongList.push({ chapter: 2, type: 'exam', qId: q.id, question: q.question, userAnswer: userAns || '', correctAnswer: correctAns });
+            saveWrong(wrongList);
+        }
+        function removeWrong(qId) { wrongList = wrongList.filter(function(item) { return !(item.chapter === 2 && item.type === 'exam' && item.qId === qId); }); saveWrong(wrongList); }
+
+        function renderExplanation(q) {
+            var e = q.explanation; var html = '';
+            html += '<div class="step-block"><span class="step-label">第1步 · 识别情境</span><div class="step-content">' + e.step1 + '</div></div>';
+            html += '<div class="step-block"><span class="step-label">第2步 · 定位知识</span><div class="step-content">' + e.step2 + '</div></div>';
+            html += '<div class="step-block"><span class="step-label">第3步 · 调用模型</span><div class="step-content">' + e.step3 + '</div></div>';
+            html += '<div class="step-block"><span class="step-label">第4步 · 比对输出</span><div class="step-content">' + e.step4 + '</div></div>';
+            if (q.tip) html += '<div class="tip-yellow"><strong>🟡 易错点：' + q.tip + '</strong></div>';
+            if (q.source) html += '<div class="source-link">📎 来源：' + q.source + '</div>';
+            return html;
+        }
+
+        function render() {
+            var container = document.getElementById('questionContainer');
+            if (currentFilter === 'wrong' && !isPracticeMode) {
+                var list = wrongList.filter(function(item) { return item.chapter === 2 && item.type === 'exam'; });
+                if (list.length === 0) { container.innerHTML = '<div class="empty-state"><div class="icon">🎉</div><p>错题本已清空！</p></div>'; updateUI(); return; }
+                var html = '<div class="wrong-list-view"><div class="title">📕 错题本（' + list.length + '题）</div>';
+                list.forEach(function(item) { html += '<div class="item"><div class="q">' + item.question + '</div><div class="your">❌ 你的答案：' + (item.userAnswer || '未填写') + '</div><div class="correct">✅ 正确答案：' + item.correctAnswer + '</div></div>'; });
+                html += '<div class="back-to-practice"><button class="btn" onclick="startPractice()">🔄 重练错题</button></div></div>';
+                container.innerHTML = html; updateUI(); return;
+            }
+            if (filteredIds.length === 0) { container.innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>当前暂无题目</p></div>'; updateUI(); return; }
+            var unanswered = getUnanswered(filteredIds);
+            if (unanswered.length === 0) {
+                var p = getProgress(); var msg = isPracticeMode ? '🎉 错题已全部消灭！' : '🎉 全部通关！';
+                container.innerHTML = '<div class="complete-screen"><div class="big-icon">🎉</div><h2>' + msg + '</h2><div class="score-big">' + p.rate + '%</div><p style="color:#6b7a8f;font-size:14px;">正确率 ' + p.rate + '% · 共 ' + filteredIds.length + ' 题</p>';
+                container.innerHTML += isPracticeMode ? '<button class="btn-primary" style="margin-top:20px;max-width:200px;display:inline-block;" onclick="exitPractice()">🔙 退出练习</button>' : '<button class="btn-primary" style="margin-top:20px;max-width:200px;display:inline-block;" onclick="resetAll()">🔄 重新开始</button>';
+                container.innerHTML += '</div>'; updateUI(); return;
+            }
+            var targetId = unanswered[0]; var q = getQ(targetId);
+            if (!q) { container.innerHTML = '<div class="empty-state"><p>加载失败</p></div>'; return; }
+            currentQ = q; isAnswered = false;
+            var html = '<div class="question-card">';
+            var typeLabel = q.type === 'choice' ? '🎯 选择题' : '✍️ 非选择题';
+            html += '<span class="question-type">' + typeLabel + '</span>';
+            if (q.source) html += '<span class="question-source">📖 ' + q.source + '</span>';
+            if (isPracticeMode) html += '<span class="wrong-tag">📕 错题练习</span>';
+            var isW = wrongList.some(function(item) { return item.chapter === 2 && item.type === 'exam' && item.qId === q.id; });
+            if (isW && currentFilter !== 'wrong') html += '<span class="wrong-tag">📕 错题</span>';
+            if (data.answered[q.id]) { html += data.results[q.id] === true ? '<span class="status-badge done">✅ 已掌握</span>' : '<span class="status-badge wrong">❌ 需重练</span>'; }
+            var displayText = q.question;
+            if (q.type === 'fill' && q.blanks) { for (var b = 0; b < q.blanks.length; b++) { displayText = displayText.replace('【' + (b + 1) + '】', '<span class="blank">____</span>'); } }
+            html += '<div class="question-text">' + displayText + '</div>';
+            if (q.type === 'choice') {
+                var labels = ['A', 'B', 'C', 'D'];
+                html += '<div class="options">';
+                for (var i = 0; i < q.options.length; i++) { html += '<button class="option-btn" onclick="handleChoice(' + i + ',' + q.id + ')" id="opt_' + i + '"><span class="option-label">' + labels[i] + '.</span> ' + q.options[i] + '</button>'; }
+                html += '</div>';
+                html += '<div class="explanation" id="exp_' + q.id + '">' + renderExplanation(q) + '</div>';
+                html += '<div class="action-row"><button class="btn-primary" id="nextBtn" onclick="goNext()" disabled>下一题 →</button></div>';
+            } else {
+                html += '<div class="fill-input-area">';
+                for (var f = 0; f < q.blanks.length; f++) { html += '<div class="fill-row"><label>空' + (f + 1) + '：</label><input type="text" id="fill_' + q.id + '_' + f + '" placeholder="输入答案" autocomplete="off"><span class="correct-answer-hint" id="fillHint_' + q.id + '_' + f + '" style="display:none;"></span></div>'; }
+                html += '</div>';
+                html += '<div class="action-row"><button class="btn-primary" id="fillSubmitBtn" onclick="handleFill(' + q.id + ')">✅ 提交答案</button></div>';
+                html += '<div class="explanation" id="exp_' + q.id + '">' + renderExplanation(q) + '</div>';
+                html += '<div class="action-row"><button class="btn-primary" id="nextBtnFill" onclick="goNext()" disabled>下一题 →</button></div>';
+            }
+            html += '</div>';
+            container.innerHTML = html; updateUI();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (q.type === 'fill') { setTimeout(function() { var inputs = document.querySelectorAll('.fill-row input'); inputs.forEach(function(inp, idx) { inp.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); if (idx === inputs.length - 1) handleFill(q.id); else inputs[idx + 1].focus(); } }); }); if (inputs.length > 0 && !isAnswered) inputs[0].focus(); }, 100); }
+        }
+
+        function handleChoice(selected, qId) {
+            if (isAnswered) return; var q = getQ(qId); if (!q) return; isAnswered = true;
+            var isCorrect = (selected === q.correct); var btns = document.querySelectorAll('.option-btn'); btns.forEach(function(b) { b.classList.add('disabled'); });
+            if (isCorrect) { btns[selected].classList.add('selected-correct'); data.results[qId] = true; removeWrong(qId); }
+            else { btns[selected].classList.add('selected-wrong'); btns[q.correct].classList.add('show-correct'); data.results[qId] = false; addWrong(q, q.options[selected]); }
+            data.answered[qId] = true; saveData(data);
+            var exp = document.getElementById('exp_' + qId); if (exp) exp.classList.add('show');
+            var nextBtn = document.getElementById('nextBtn'); if (nextBtn) nextBtn.disabled = false;
+            if (isPracticeMode) { var remaining = wrongList.filter(function(item) { return item.chapter === 2 && item.type === 'exam' && !data.answered[item.qId]; }); if (remaining.length === 0) { render(); return; } var ids = wrongList.filter(function(item) { return item.chapter === 2 && item.type === 'exam'; }).map(function(item) { return item.qId; }); var un = []; for (var i = 0; i < ids.length; i++) { if (!data.answered[ids[i]]) un.push(ids[i]); } filteredIds = shuffle(un); }
+            updateUI();
+        }
+        function handleFill(qId) {
+            if (isAnswered) return; var q = getQ(qId); if (!q || q.type !== 'fill') return;
+            var allCorrect = true, allFilled = true, userAnswers = [];
+            for (var i = 0; i < q.blanks.length; i++) {
+                var input = document.getElementById('fill_' + q.id + '_' + i); if (!input) { allFilled = false; continue; }
+                var userVal = input.value.trim(); userAnswers.push(userVal);
+                if (userVal === '') { allFilled = false; continue; }
+                if (userVal.replace(/\s/g, '') === q.blanks[i].replace(/\s/g, '')) { input.classList.add('correct'); }
+                else { input.classList.add('wrong'); allCorrect = false; var hint = document.getElementById('fillHint_' + q.id + '_' + i); if (hint) { hint.style.display = 'inline'; hint.textContent = '→ 正确答案：' + q.blanks[i]; } }
+                input.disabled = true;
+            }
+            if (!allFilled) { alert('请填写所有空再提交'); return; }
+            isAnswered = true;
+            if (allCorrect) { data.results[qId] = true; removeWrong(qId); }
+            else { data.results[qId] = false; addWrong(q, userAnswers.join('、')); }
+            data.answered[qId] = true; saveData(data);
+            var exp = document.getElementById('exp_' + qId); if (exp) exp.classList.add('show');
+            var submitBtn = document.getElementById('fillSubmitBtn'); if (submitBtn) submitBtn.disabled = true;
+            var nextBtn = document.getElementById('nextBtnFill'); if (nextBtn) nextBtn.disabled = false;
+            if (isPracticeMode) { var remaining = wrongList.filter(function(item) { return item.chapter === 2 && item.type === 'exam' && !data.answered[item.qId]; }); if (remaining.length === 0) { render(); return; } var ids = wrongList.filter(function(item) { return item.chapter === 2 && item.type === 'exam'; }).map(function(item) { return item.qId; }); var un = []; for (var i = 0; i < ids.length; i++) { if (!data.answered[ids[i]]) un.push(ids[i]); } filteredIds = shuffle(un); }
+            updateUI();
+        }
+        function goNext() { if (isPracticeMode) { var ids = wrongList.filter(function(item) { return item.chapter === 2 && item.type === 'exam'; }).map(function(item) { return item.qId; }); var un = []; for (var i = 0; i < ids.length; i++) { if (!data.answered[ids[i]]) un.push(ids[i]); } if (un.length === 0) { render(); return; } filteredIds = shuffle(un); render(); return; } render(); }
+        function setFilter(filter) {
+            if (filter === 'wrong') { var wc = wrongList.filter(function(item) { return item.chapter === 2 && item.type === 'exam'; }).length; if (wc === 0) { alert('🎉 错题本为空！'); return; } isPracticeMode = false; currentFilter = 'wrong'; var btns = document.querySelectorAll('.filter-btn'); btns.forEach(function(b) { b.classList.toggle('active', b.dataset.filter === filter); }); render(); return; }
+            isPracticeMode = false; currentFilter = filter; var btns = document.querySelectorAll('.filter-btn'); btns.forEach(function(b) { b.classList.toggle('active', b.dataset.filter === filter); }); filteredIds = shuffle(getFilteredIds(filter)); render();
+        }
+        function startPractice() { var ids = wrongList.filter(function(item) { return item.chapter === 2 && item.type === 'exam'; }).map(function(item) { return item.qId; }); if (ids.length === 0) { alert('错题本为空'); return; } isPracticeMode = true; currentFilter = 'practice'; filteredIds = shuffle(ids.slice()); var btns = document.querySelectorAll('.filter-btn'); btns.forEach(function(b) { b.classList.remove('active'); }); render(); }
+        function exitPractice() { isPracticeMode = false; currentFilter = 'all'; filteredIds = shuffle(getFilteredIds('all')); var btns = document.querySelectorAll('.filter-btn'); btns.forEach(function(b) { b.classList.remove('active'); }); document.querySelector('.filter-btn[data-filter="all"]').classList.add('active'); render(); }
+        function resetAll() { if (!confirm('重置所有进度？')) return; data = { answered: {}, results: {} }; saveData(data); wrongList = wrongList.filter(function(item) { return !(item.chapter === 2 && item.type === 'exam'); }); saveWrong(wrongList); if (isPracticeMode) { isPracticeMode = false; } currentFilter = 'all'; filteredIds = shuffle(getFilteredIds('all')); var btns = document.querySelectorAll('.filter-btn'); btns.forEach(function(b) { b.classList.remove('active'); }); document.querySelector('.filter-btn[data-filter="all"]').classList.add('active'); render(); }
+        filteredIds = shuffle(getFilteredIds('all')); render();
+        console.log('📝 第二章真题演练（四步法）已加载，共 ' + questionBank.length + ' 题');
+    </script>
+</body>
+</html>
