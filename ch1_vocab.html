@@ -68,11 +68,7 @@
         .fill-row input:disabled { opacity: 0.7; }
         .fill-row .correct-answer-hint { font-size: 14px; color: #2563eb; font-weight: 600; }
         .fill-input-area { margin: 14px 0 12px 0; }
-        @media (max-width: 380px) {
-            .question-text { font-size: 15px; }
-            .option-btn { font-size: 14px; padding: 12px 14px; min-height: 44px; }
-            .fill-row input { font-size: 14px; padding: 10px 12px; min-height: 40px; }
-        }
+        @media (max-width: 380px) { .question-text { font-size: 15px; } .option-btn { font-size: 14px; padding: 12px 14px; min-height: 44px; } .fill-row input { font-size: 14px; padding: 10px 12px; min-height: 40px; } }
         @media (min-width: 768px) { body { max-width: 480px; margin: 0 auto; } }
     </style>
 </head>
@@ -134,7 +130,7 @@
             { id: 18, type: 'choice', section: '1.3', question: '在反应 Fe + CuSO₄ = FeSO₄ + Cu 中，还原剂是（　）', options: ['Fe', 'CuSO₄', 'FeSO₄', 'Cu'], correct: 0, explanation: 'Fe 化合价升高（0→+2），失电子，是还原剂。', mnemonic: '📝 口诀："升失氧，降得还；若说剂，正相反"', source: '§1.3 判断' },
             { id: 19, type: 'choice', section: '1.3', question: '在反应 2Na + Cl₂ = 2NaCl 中，氧化剂是（　）', options: ['Na', 'Cl₂', 'NaCl', '都不是'], correct: 1, explanation: 'Cl₂ 得电子（0→-1），化合价降低，是氧化剂。Na 失电子，是还原剂。', source: '§1.3 判断' },
             { id: 20, type: 'choice', section: '1.3', question: '关于四种基本反应类型与氧化还原反应的关系，下列说法正确的是（　）', options: ['置换反应一定是氧化还原反应', '复分解反应一定是氧化还原反应', '化合反应一定不是氧化还原反应', '分解反应一定是氧化还原反应'], correct: 0, explanation: '置换反应一定是氧化还原；复分解反应一定不是；化合和分解反应可能是，可能不是。', tip: '置换一定氧化还原，复分解一定不是。', source: '§1.3 关系' },
-            { id: 21, type: 'choice', section: '1.3', question: '下列关于双线桥和单线桥的说法，正确的是（　）', options: ['双线桥跨过等号，单线桥不跨等号', '双线桥不跨等号，单线桥跨过等号', '两者都跨过等号', '两者都不跨等号'], correct: 1, explanation: '双线桥从反应物指向生成物，不跨等号；单线桥从还原剂指向氧化剂，跨过等号。', source: '§1.3 双线桥' },
+            { id: 21, type: 'choice', section: '1.3', question: '下列关于双线桥和单线桥的说法，正确的是（　）', options: ['双线桥从反应物指向生成物，单线桥从还原剂指向氧化剂', '双线桥从还原剂指向氧化剂，单线桥从反应物指向生成物', '两者都从反应物指向生成物', '两者都从还原剂指向氧化剂'], correct: 0, explanation: '双线桥：从反应物中的变价元素指向生成物中的同种元素，追踪同种元素的前后变化。单线桥：从还原剂中的变价元素指向氧化剂中的变价元素，直接表示电子转移方向。', tip: '双线桥——追踪同种元素；单线桥——电子从还原剂流向氧化剂。', source: '§1.3 双线桥' },
             { id: 22, type: 'fill', section: '1.3', question: '氧化还原反应的判断标准是【1】，本质是【2】。', blanks: ['有无化合价变化', '电子转移'], explanation: '判断标准：有无化合价变化；本质：电子转移（得失或偏移）。', source: '§1.3 判断' },
             { id: 23, type: 'fill', section: '1.3', question: '背出口诀"升失氧，降得还"：化合价升高，【1】电子，被【2】，是还原剂。', blanks: ['失', '氧化'], explanation: '升：化合价升高；失：失去电子；氧：被氧化，是还原剂。', mnemonic: '📝 "升失氧，降得还；若说剂，正相反"', source: '§1.3 口诀' },
             { id: 24, type: 'fill', section: '1.3', question: '配平：__ KMnO₄ + __ HCl(浓) = __ KCl + __ MnCl₂ + __ Cl₂↑ + __ H₂O，系数依次为【1】。', blanks: ['2、16、2、2、5、8'], explanation: '用电子守恒配平：Mn +7→+2 得 5e⁻，Cl -1→0 失 1e⁻，最小公倍数 10，故 KMnO₄ 系数 2，Cl₂ 系数 5，再配平其他。', tip: '电子守恒：氧化剂得电子总数 = 还原剂失电子总数。', source: '§1.3 配平' }
@@ -194,7 +190,6 @@
         function removeFromWrong(id) {
             var idx = state.wrongIds.indexOf(id);
             if (idx !== -1) state.wrongIds.splice(idx, 1);
-            // 从统一错题本移除
             var wrongList = JSON.parse(localStorage.getItem('chem_wrong_list') || '[]');
             wrongList = wrongList.filter(function(w) { return !(w.chapter === 1 && w.type === 'vocab' && w.qId === id); });
             localStorage.setItem('chem_wrong_list', JSON.stringify(wrongList));
@@ -337,7 +332,6 @@
         window.resetProgress = function() {
             if (!confirm('确定重置所有进度吗？（错题本也会清空）')) return;
             state.answeredIds = new Set(); state.results = {}; state.wrongIds = []; state.fillInputs = {};
-            // 清空统一错题本中本章语言记忆部分
             var wrongList = JSON.parse(localStorage.getItem('chem_wrong_list') || '[]');
             wrongList = wrongList.filter(function(w) { return !(w.chapter === 1 && w.type === 'vocab'); });
             localStorage.setItem('chem_wrong_list', JSON.stringify(wrongList));
