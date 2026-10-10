@@ -3,87 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>第四章 · 真题演练（四步法）</title>
+    <title>第四章 语言记忆 · 物质结构 元素周期律</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f7fb; color: #1a2332; padding: 12px 12px 100px 12px; max-width: 480px; margin: 0 auto; }
-        .header { background: #fff; border-radius: 16px; padding: 14px 16px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); position: sticky; top: 0; z-index: 10; }
-        .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .header-title { font-size: 17px; font-weight: 700; }
-        .header-title span { color: #1a5276; }
+        body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f7fb; color: #1a2332; padding: 16px 14px 100px 14px; min-height: 100vh; }
+        .header { background: white; border-radius: 16px; padding: 16px 18px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); position: sticky; top: 0; z-index: 10; }
+        .header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .header-title { font-size: 18px; font-weight: 700; color: #1a2332; }
+        .header-title span { color: #2563eb; }
         .header-right { display: flex; align-items: center; gap: 10px; }
-        .header-home { font-size: 13px; color: #1a5276; background: #e3eef7; padding: 5px 12px; border-radius: 20px; border: none; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block; }
+        .header-home { font-size: 13px; color: #2563eb; background: #e6efff; padding: 5px 12px; border-radius: 20px; text-decoration: none; font-weight: 600; }
         .header-stats { font-size: 13px; color: #6b7a8f; background: #f0f2f5; padding: 4px 12px; border-radius: 20px; }
-        .progress-bar-bg { width: 100%; height: 6px; background: #e8ecf1; border-radius: 4px; overflow: hidden; margin-top: 6px; }
-        .progress-bar-fill { height: 100%; background: #1a5276; border-radius: 4px; transition: width 0.4s ease; width: 0%; }
-        .progress-label { display: flex; justify-content: space-between; font-size: 12px; color: #6b7a8f; margin-top: 4px; }
-        .filter-bar { display: flex; gap: 6px; margin-bottom: 14px; overflow-x: auto; padding-bottom: 4px; }
-        .filter-btn { flex-shrink: 0; padding: 6px 14px; border-radius: 20px; border: 1.5px solid #d0d7e2; background: #fff; font-size: 12px; color: #3d4e62; cursor: pointer; font-weight: 500; transition: all 0.2s; font-family: inherit; }
-        .filter-btn.active { background: #1a5276; border-color: #1a5276; color: #fff; }
+        .progress-bar-bg { width: 100%; height: 6px; background: #e8ecf1; border-radius: 4px; overflow: hidden; }
+        .progress-bar-fill { height: 100%; background: #2563eb; border-radius: 4px; transition: width 0.4s ease; width: 0%; }
+        .progress-label { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #6b7a8f; margin-top: 4px; }
+        .btn-reset-small { background: none; border: none; color: #6b7a8f; font-size: 12px; text-decoration: underline; cursor: pointer; padding: 4px 8px; }
+        .filter-bar { display: flex; gap: 8px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px; }
+        .filter-btn { flex-shrink: 0; padding: 6px 16px; border-radius: 20px; border: 1.5px solid #d0d7e2; background: white; font-size: 13px; color: #3d4e62; cursor: pointer; transition: all 0.2s; font-weight: 500; font-family: inherit; }
+        .filter-btn.active { background: #2563eb; border-color: #2563eb; color: white; }
         .filter-btn.wrong-filter { border-color: #c0392b; color: #c0392b; }
-        .filter-btn.wrong-filter.active { background: #c0392b; border-color: #c0392b; color: #fff; }
-        .question-card { background: #fff; border-radius: 16px; padding: 20px 16px 16px; margin-bottom: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); animation: fadeUp 0.35s ease; }
+        .filter-btn.wrong-filter.active { background: #c0392b; border-color: #c0392b; color: white; }
+        .question-card { background: white; border-radius: 18px; padding: 24px 20px 20px 20px; margin-bottom: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); animation: fadeUp 0.35s ease; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-        .question-type { display: inline-block; font-size: 11px; font-weight: 600; color: #1a5276; background: #e3eef7; padding: 2px 12px; border-radius: 12px; margin-bottom: 10px; }
-        .question-source { display: inline-block; font-size: 10px; font-weight: 400; color: #6b7a8f; background: #f5f5f5; padding: 2px 10px; border-radius: 12px; margin-left: 8px; }
-        .question-text { font-size: 16px; font-weight: 500; line-height: 1.7; margin-bottom: 12px; }
-        .question-text .blank { display: inline-block; min-width: 70px; border-bottom: 2px dashed #1a5276; margin: 0 4px; color: #1a5276; font-weight: 600; }
-        .options { display: flex; flex-direction: column; gap: 10px; margin: 12px 0 10px; }
-        .option-btn { display: block; width: 100%; text-align: left; padding: 14px 16px; border-radius: 12px; border: 2px solid #e2e7ef; background: #fff; font-size: 15px; line-height: 1.5; cursor: pointer; font-family: inherit; min-height: 48px; transition: all 0.2s; }
-        .option-btn.selected-correct { border-color: #2d7d46; background: #e8f5ee; }
+        .question-type { display: inline-block; font-size: 11px; font-weight: 600; color: #2563eb; background: #e6efff; padding: 2px 12px; border-radius: 12px; margin-bottom: 12px; }
+        .question-section { display: inline-block; font-size: 11px; font-weight: 500; color: #6b7a8f; background: #f0f2f5; padding: 2px 10px; border-radius: 12px; margin-left: 8px; }
+        .question-text { font-size: 17px; font-weight: 500; line-height: 1.8; margin: 10px 0 4px 0; color: #1a2332; }
+        .question-text .blank { display: inline-block; min-width: 80px; border-bottom: 2px dashed #2563eb; margin: 0 4px; color: #2563eb; font-weight: 600; }
+        .options { display: flex; flex-direction: column; gap: 10px; margin: 14px 0 12px 0; }
+        .option-btn { display: block; width: 100%; text-align: left; padding: 14px 16px; border-radius: 12px; border: 2px solid #e2e7ef; background: white; font-size: 15px; line-height: 1.6; color: #1a2332; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+        .option-btn.selected-correct { border-color: #2563eb; background: #e6efff; }
         .option-btn.selected-wrong { border-color: #c0392b; background: #fde8e6; }
-        .option-btn.show-correct { border-color: #2d7d46; background: #e8f5ee; }
+        .option-btn.show-correct { border-color: #2563eb; background: #e6efff; }
         .option-btn.disabled { pointer-events: none; opacity: 0.8; }
-        .option-label { font-weight: 700; color: #6b7a8f; margin-right: 8px; }
-        .fill-input-area { margin: 12px 0 10px; }
-        .fill-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
-        .fill-row label { font-weight: 500; color: #3d4e62; min-width: 30px; font-size: 15px; }
-        .fill-row input { flex: 1; min-width: 100px; padding: 12px 14px; border-radius: 10px; border: 2px solid #e2e7ef; font-size: 15px; font-family: inherit; background: #fff; color: #1a2332; min-height: 44px; }
-        .fill-row input.correct { border-color: #2d7d46; background: #e8f5ee; }
-        .fill-row input.wrong { border-color: #c0392b; background: #fde8e6; }
-        .fill-row input:disabled { opacity: 0.7; }
-        .fill-row .correct-answer-hint { font-size: 14px; color: #2d7d46; font-weight: 600; }
-        .explanation { background: #f8faff; border-radius: 12px; padding: 14px 16px; margin: 12px 0 6px; border-left: 4px solid #1a5276; display: none; font-size: 14px; line-height: 1.7; color: #2c3e50; }
+        .option-label { display: inline-block; font-weight: 700; color: #6b7a8f; margin-right: 8px; }
+        .explanation { background: #f8faff; border-radius: 12px; padding: 14px 16px; margin: 12px 0 6px 0; border-left: 4px solid #2563eb; display: none; font-size: 14px; line-height: 1.8; color: #2c3e50; }
         .explanation.show { display: block; }
-        .step-block { margin-bottom: 12px; padding: 10px 12px; border-radius: 10px; background: #fff; border-left: 3px solid #1a5276; }
-        .step-block:last-child { margin-bottom: 0; }
-        .step-label { display: inline-block; font-size: 12px; font-weight: 700; color: #fff; background: #1a5276; padding: 2px 10px; border-radius: 10px; margin-bottom: 6px; }
-        .step-content { font-size: 14px; line-height: 1.7; color: #2c3e50; }
-        .tip-yellow { background: #fcf8e3; padding: 8px 12px; border-radius: 8px; border-left: 3px solid #f0ad4e; margin-top: 8px; font-size: 13px; }
+        .tip-yellow { background: #fcf8e3; padding: 8px 12px; border-radius: 8px; border-left: 3px solid #f0ad4e; margin-top: 6px; }
         .tip-yellow strong { color: #8a6d3b; }
-        .source-link { font-size: 12px; color: #1a5276; margin-top: 8px; padding: 6px 10px; background: #f0f5fa; border-radius: 6px; }
-        .action-row { display: flex; gap: 10px; margin-top: 14px; }
-        .btn-primary { flex: 1; padding: 14px; border: none; border-radius: 14px; background: #1a5276; color: #fff; font-size: 16px; font-weight: 600; cursor: pointer; font-family: inherit; min-height: 48px; }
+        .mnemonic { background: #eef3ff; padding: 8px 12px; border-radius: 8px; font-size: 13px; color: #1e40af; margin-top: 6px; border-left: 3px solid #2563eb; }
+        .source-link { font-size: 12px; color: #2563eb; margin-top: 8px; padding: 6px 10px; background: #f0f5fa; border-radius: 6px; }
+        .action-row { display: flex; gap: 10px; margin-top: 16px; }
+        .btn-primary { flex: 1; padding: 14px; border: none; border-radius: 14px; background: #2563eb; color: white; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; min-height: 48px; }
+        .btn-primary:active { transform: scale(0.97); background: #1d4ed8; }
         .btn-primary:disabled { opacity: 0.4; }
-        .wrong-tag { display: inline-block; background: #c0392b; color: #fff; font-size: 11px; padding: 1px 10px; border-radius: 12px; margin-left: 8px; }
-        .status-badge { display: inline-block; font-size: 12px; padding: 2px 12px; border-radius: 12px; margin-left: 8px; }
-        .status-badge.done { background: #e8f5ee; color: #2d7d46; }
-        .status-badge.wrong { background: #fde8e6; color: #c0392b; }
         .complete-screen { text-align: center; padding: 40px 20px; }
         .complete-screen .big-icon { font-size: 56px; margin-bottom: 16px; }
-        .complete-screen .score-big { font-size: 48px; font-weight: 700; color: #1a5276; margin: 16px 0; }
+        .complete-screen h2 { font-size: 22px; margin-bottom: 8px; }
+        .complete-screen p { color: #6b7a8f; font-size: 15px; margin-bottom: 6px; }
+        .complete-screen .score-big { font-size: 48px; font-weight: 700; color: #2563eb; margin: 16px 0; }
+        .wrong-book-btn { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1a2332; color: white; border: none; border-radius: 40px; padding: 12px 28px; font-size: 15px; font-weight: 600; box-shadow: 0 4px 16px rgba(0,0,0,0.2); cursor: pointer; transition: all 0.2s; z-index: 100; font-family: inherit; display: none; align-items: center; gap: 8px; min-height: 48px; }
+        .wrong-book-btn .badge { background: #c0392b; color: white; border-radius: 20px; padding: 0 10px; font-size: 13px; line-height: 22px; }
         .empty-state { text-align: center; padding: 40px 20px; color: #6b7a8f; }
         .empty-state .icon { font-size: 48px; margin-bottom: 12px; }
-        .wrong-list-view { background: #fff; border-radius: 16px; padding: 18px 16px; margin-bottom: 14px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
-        .wrong-list-view .title { font-size: 17px; font-weight: 700; margin-bottom: 12px; }
-        .wrong-list-view .item { padding: 12px 0; border-bottom: 1px solid #f0f2f5; }
-        .wrong-list-view .item:last-child { border-bottom: none; }
-        .wrong-list-view .item .q { font-size: 15px; font-weight: 500; }
-        .wrong-list-view .item .your { font-size: 14px; color: #c0392b; }
-        .wrong-list-view .item .correct { font-size: 14px; color: #2d7d46; font-weight: 600; }
-        .home-footer { text-align: center; margin-top: 16px; padding: 10px 0; }
-        .home-footer .btn-home { background: none; border: 1.5px solid #d0d7e2; border-radius: 30px; padding: 10px 30px; font-size: 15px; font-weight: 500; color: #3d4e62; cursor: pointer; font-family: inherit; min-height: 44px; text-decoration: none; display: inline-block; }
-        .wrong-book-btn { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #1a2332; color: #fff; border: none; border-radius: 40px; padding: 12px 24px; font-size: 15px; font-weight: 600; box-shadow: 0 4px 16px rgba(0,0,0,0.2); cursor: pointer; z-index: 100; font-family: inherit; display: none; align-items: center; gap: 8px; min-height: 48px; }
-        .wrong-book-btn .badge { background: #c0392b; color: #fff; border-radius: 20px; padding: 0 10px; font-size: 13px; line-height: 22px; }
-        .back-to-practice { margin-top: 14px; text-align: center; }
-        .back-to-practice .btn { background: #1a5276; color: #fff; border: none; border-radius: 30px; padding: 10px 28px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; min-height: 44px; }
-        @media (max-width: 380px) { .question-text { font-size: 15px; } .option-btn { font-size: 14px; padding: 12px 14px; min-height: 44px; } .btn-primary { font-size: 15px; min-height: 44px; padding: 12px; } .fill-row input { font-size: 14px; padding: 10px 12px; min-height: 40px; } }
+        .status-badge { display: inline-block; font-size: 11px; padding: 2px 10px; border-radius: 12px; margin-left: 8px; }
+        .status-badge.done { background: #e6efff; color: #2563eb; }
+        .status-badge.wrong { background: #fde8e6; color: #c0392b; }
+        .wrong-tag { display: inline-block; background: #c0392b; color: white; font-size: 11px; padding: 1px 10px; border-radius: 12px; margin-left: 8px; }
+        .fill-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+        .fill-row label { font-weight: 500; color: #3d4e62; min-width: 30px; }
+        .fill-row input { flex: 1; min-width: 120px; padding: 12px 14px; border-radius: 10px; border: 2px solid #e2e7ef; font-size: 15px; font-family: inherit; background: white; color: #1a2332; min-height: 44px; }
+        .fill-row input:focus { outline: none; border-color: #2563eb; }
+        .fill-row input.correct { border-color: #2563eb; background: #e6efff; }
+        .fill-row input.wrong { border-color: #c0392b; background: #fde8e6; }
+        .fill-row input:disabled { opacity: 0.7; }
+        .fill-row .correct-answer-hint { font-size: 14px; color: #2563eb; font-weight: 600; }
+        .fill-input-area { margin: 14px 0 12px 0; }
+        @media (max-width: 380px) { .question-text { font-size: 15px; } .option-btn { font-size: 14px; padding: 12px 14px; min-height: 44px; } .fill-row input { font-size: 14px; padding: 10px 12px; min-height: 40px; } }
+        @media (min-width: 768px) { body { max-width: 480px; margin: 0 auto; } }
     </style>
 </head>
 <body>
     <div class="header">
         <div class="header-top">
-            <div class="header-title">📝 真题演练 · <span>第四章</span></div>
+            <div class="header-title">🧪 语言记忆 · <span>第四章</span></div>
             <div class="header-right">
                 <a class="header-home" href="index.html">🏠 首页</a>
                 <div class="header-stats" id="statsLabel">0 / 0</div>
@@ -93,238 +85,217 @@
         <div class="progress-label">
             <span id="correctRate">✅ 正确率：--%</span>
             <span id="wrongCount">❌ 错题：0</span>
+            <button class="btn-reset-small" onclick="resetProgress()">重置</button>
         </div>
     </div>
+
     <div class="filter-bar" id="filterBar">
-        <button class="filter-btn active" data-filter="all" onclick="setFilter('all')">📚 全部</button>
-        <button class="filter-btn" data-filter="choice" onclick="setFilter('choice')">🎯 选择题</button>
-        <button class="filter-btn" data-filter="fill" onclick="setFilter('fill')">✍️ 非选择</button>
-        <button class="filter-btn wrong-filter" data-filter="wrong" onclick="setFilter('wrong')">📕 错题本</button>
+        <button class="filter-btn active" data-filter="all">📚 全部</button>
+        <button class="filter-btn" data-filter="4.1">§4.1 原子结构与周期表</button>
+        <button class="filter-btn" data-filter="4.2">§4.2 元素周期律</button>
+        <button class="filter-btn" data-filter="4.3">§4.3 化学键</button>
+        <button class="filter-btn wrong-filter" data-filter="wrong">📕 错题本</button>
     </div>
+
     <div id="questionContainer"></div>
-    <div class="home-footer"><a class="btn-home" href="index.html">🏠 返回首页</a></div>
-    <button class="wrong-book-btn" id="wrongBookBtn" onclick="setFilter('wrong')">📕 错题本 <span class="badge" id="wrongBadge">0</span></button>
+
+    <button class="wrong-book-btn" id="wrongBookBtn">
+        📕 错题本 <span class="badge" id="wrongBadge">0</span>
+    </button>
 
     <script>
-        var questionBank = [{
-            id: 1, type: 'choice', section: 'choice',
-            question: '应用元素周期律分析下列推断，正确的组合是（　）\n①碱金属单质的熔点随原子序数的增大而降低\n②砹(At)是第ⅦA族元素，其氢化物的稳定性强于HCl\n③第3周期金属元素的最高价氧化物对应的水化物，其碱性随原子序数的增大而减弱\n④磷与砷(As)位于同主族，砷元素的最高价氧化物对应的水化物的酸性强于磷酸',
-            options: ['①③', '①④', '②③', '②④'],
-            correct: 0,
-            explanation: { step1: '题目给出四条元素周期律推断，问正确的组合。', step2: '逐条判断：碱金属熔点递变、卤素氢化物稳定性、第三周期金属性递变、同主族非金属性递变。', step3: '①碱金属从上到下熔点降低，正确；②砹非金属性弱于Cl，HAt稳定性弱于HCl，错误；③第三周期从左到右金属性减弱，碱性减弱，正确；④砷非金属性弱于磷，H₃AsO₄酸性弱于H₃PO₄，错误。', step4: '①正确；②错误；③正确；④错误。答案：①③，选A。' },
-            tip: '同主族从上到下非金属性减弱，氢化物稳定性减弱，最高价氧化物水化物酸性减弱。',
-            source: '贵州省六盘水市2024-2025学年高一上学期期末质量监测化学试题'
-        }, {
-            id: 2, type: 'choice', section: 'choice',
-            question: '下列能说明氯元素原子得电子能力比硫元素原子强的是（　）\n①HCl的溶解度比H₂S大\n②HCl的酸性比H₂S强\n③HCl的稳定性比H₂S大\n④HCl的还原性比H₂S弱\n⑤HClO₄的酸性比H₂SO₄强\n⑥Cl₂与铁反应生成FeCl₃，而S与铁反应生成FeS\n⑦Cl₂能与H₂S反应生成S\n⑧在周期表中Cl处于S同周期的右侧',
-            options: ['③④⑤⑦⑧', '③⑥⑦⑧', '③④⑤⑥⑦⑧', '全部'],
-            correct: 2,
-            explanation: { step1: '题目问能说明氯元素原子得电子能力比硫元素原子强的选项组合。', step2: '非金属性强弱判断依据：氢化物稳定性、最高价氧化物水化物酸性、单质氧化性、与变价金属反应产物、置换反应、周期表位置。', step3: '①溶解度与得电子能力无关；②酸性强弱不能直接比较非金属性（应比较最高价含氧酸）；③HCl稳定性比H₂S大，正确；④HCl还原性比H₂S弱，正确；⑤HClO₄酸性比H₂SO₄强，正确；⑥Cl₂与Fe生成FeCl₃，S与Fe生成FeS，说明Cl₂氧化性强，正确；⑦Cl₂能置换出S，正确；⑧Cl在S同周期右侧，非金属性强，正确。', step4: '①无关；②不能直接比较；③④⑤⑥⑦⑧均可说明。答案：C。' },
-            tip: '不能比较最高价含氧酸酸性时，可用氢化物稳定性、单质置换反应、与变价金属反应产物判断非金属性。',
-            source: '贵州省六盘水市2024-2025学年高一上学期期末质量监测化学试题'
-        }, {
-            id: 3, type: 'choice', section: 'choice',
-            question: '目前"北京时间"授时以55号Cs原子钟为基准，已知Cs的最外层电子数是1，下列说法不正确的是（　）',
-            options: ['Cs是第六周期第ⅠA族元素', 'Cs单质还原性强于K', 'CsOH为强碱', '¹³³Cs的中子数为133'],
-            correct: 3,
-            explanation: { step1: '题目问Cs原子钟的相关说法中不正确的。', step2: 'Cs是碱金属元素，第六周期第ⅠA族，最外层1个电子。', step3: 'A中Cs是第六周期第ⅠA族，正确；B中同主族从上到下金属性增强，Cs还原性强于K，正确；C中CsOH是强碱，正确；D中¹³³Cs的质量数为133，质子数为55，中子数=133-55=78，不是133，错误。', step4: 'A：正确 ❌；B：正确 ❌；C：正确 ❌；D：中子数=133-55=78，错误 ✅。答案：D。' },
-            tip: '质量数 = 质子数 + 中子数。中子数 = 质量数 - 质子数。',
-            source: '浙江省金华十校2024-2025学年第一学期期末调研考试高一化学试卷'
-        }, {
-            id: 4, type: 'choice', section: 'choice',
-            question: '下列说法正确的是（　）',
-            options: ['用K、L、M、N等符号来表示从内到外的电子层', 'L电子层为次外层时，最多可容纳的电子数为8', '主族元素原子的最外层电子数等于该元素所在的族序数', '第IA族元素叫做碱金属元素，第VIIA族元素叫做卤族元素'],
-            correct: 2,
-            explanation: { step1: '题目问电子层和元素周期表的相关说法哪个正确。', step2: '电子层符号、每层最多电子数、主族序数与最外层电子数、族名。', step3: 'A中电子层符号从内到外是K、L、M、N，正确但B/C/D中有更准确的表述，注意A本身正确；B中L层为次外层时，最多容纳8个电子，正确；C中主族元素最外层电子数等于族序数，正确；D中第IA族包括H，不全是碱金属，错误。', step4: 'A：正确；B：正确；C：正确；D：错误。由于是单选，需根据选项准确性判断。C是最标准的说法。答案：C。' },
-            tip: '第IA族包括H，不全是碱金属。主族序数=最外层电子数。',
-            source: '新疆喀什市2024-2025学年高一上学期期末监测化学试卷'
-        }, {
-            id: 5, type: 'choice', section: 'choice',
-            question: 'W、X、Y、Z为原子序数依次增大的四种短周期主族元素，W的单质是理想的清洁能源，X、Y位于同一周期，X的最外层电子数是其内层电子数的三倍，Z元素的焰色为黄色。下列说法正确的是（　）',
-            options: ['W和Z形成的化合物中W的化合价为+1价', 'X、Y的简单离子半径：X > Y', '最简单氢化物的稳定性：X > Y', 'Z的最高价氧化物对应的水化物是弱碱'],
-            correct: 1,
-            explanation: { step1: '题目给出W、X、Y、Z四种短周期主族元素的推断条件，问说法正确的。', step2: 'W的单质是理想清洁能源→W=H；X的最外层电子数是内层电子数的三倍→X=O；X、Y同周期→Y在第二周期；Z焰色为黄色→Z=Na。', step3: 'W=H，X=O，Y=F（同周期且原子序数介于O和Na之间），Z=Na。A中H和Na形成NaH，H为-1价，错误；B中O²⁻和F⁻半径：O²⁻ > F⁻，正确；C中非金属性F > O，HF稳定性 > H₂O，错误；D中NaOH是强碱，错误。', step4: 'A：H为-1价 ❌；B：O²⁻ > F⁻ ✅；C：HF更稳定 ❌；D：NaOH是强碱 ❌。答案：B。' },
-            tip: '短周期元素推断：清洁能源→H，最外层是内层三倍→O，焰色黄色→Na。',
-            source: '贵州省六盘水市2024-2025学年高一上学期期末质量监测化学试题'
-        }, {
-            id: 6, type: 'choice', section: 'choice',
-            question: '几种短周期主族元素在周期表中的位置如下图所示，请回答下列问题。\n（元素：①C、②O、③F、④Na、⑤Mg、⑥Cl）\n下列能比较元素④(Na)和⑤(Mg)金属性强弱的实验事实是（　）',
-            options: ['在化合物中④的化合价比⑤的低', '④的单质与冷水反应比⑤的单质剧烈', '④的最高价氧化物的水化物的碱性比⑤的强', '④单质的熔点比⑤单质的低'],
-            correct: 1,
-            explanation: { step1: '题目问能比较Na和Mg金属性强弱的实验事实。', step2: '金属性强弱判断依据：与水/酸反应剧烈程度、最高价氧化物水化物碱性、金属间置换反应。', step3: 'A中化合价高低不能判断金属性；B中Na与冷水反应比Mg剧烈，正确；C中NaOH碱性比Mg(OH)₂强，正确；D中熔点不能判断金属性。', step4: 'A：不能判断 ❌；B：正确 ✅；C：正确 ✅；D：不能判断 ❌。题目为单选，B、C均可。答案：B或C（根据选项设置，B更直接）。' },
-            tip: '金属性强弱判断依据：与水/酸反应剧烈程度、最高价氧化物水化物碱性、金属间置换反应。',
-            source: '浙江省温州市2024-2025学年高一上学期期末考试化学试题（B卷）'
-        }, {
-            id: 7, type: 'fill', section: 'fill',
-            question: '元素周期表的建立成为化学发展史上的重要里程碑之一，下表是元素周期表的一部分，数字①~⑧代表八种短周期元素，请回答下列问题。\n（①C、②N、③O、④Mg、⑤Al、⑥Na、⑦P、⑧Cl）\n(1) ①~⑧中金属性最强的元素是【1】，化学性质最不活泼的元素是【2】。\n(2) ②在周期表中的位置是【3】。\n(3) 写出③的最简单气态氢化物的电子式：【4】。\n(4) ③、④、⑥按原子半径由大到小的顺序排列是【5】。\n(5) 写出⑤和⑦的最高价氧化物对应的水化物之间反应的离子方程式：【6】。\n(6) 欲比较③和⑧的非金属性强弱，下列说法可作为判断依据的是【7】(填标号)。\na. 两种元素单质的沸点高低\nb. 两种元素单质与H₂化合的难易程度\nc. 两种元素气态氢化物的稳定性\nd. 两种元素的氧化物对应水化物的酸性强弱',
-            blanks: ['Na', 'He', '第二周期第ⅤA族', 'H:O:H', 'Na > Mg > O', 'Al(OH)₃ + OH⁻ = [Al(OH)₄]⁻', 'bc'],
-            explanation: { step1: '题目给出元素周期表的一部分，要求填空。', step2: '①C、②N、③O、④Mg、⑤Al、⑥Na、⑦P、⑧Cl。', step3: '(1) 金属性最强的是Na（⑥），化学性质最不活泼的是He（但表中无He，题目应为稀有气体）；(2) N在第二周期第ⅤA族；(3) O的最简单气态氢化物是H₂O，电子式为H:O:H；(4) 原子半径：Na > Mg > O；(5) Al(OH)₃与H₃PO₄反应，Al(OH)₃ + OH⁻ = [Al(OH)₄]⁻（注意：P最高价水化物是H₃PO₄，不是OH⁻，需核对原卷）；(6) 比较O和Cl非金属性：b（与H₂化合难易）、c（氢化物稳定性）可作为判断依据。', step4: '答案：(1) Na、He；(2) 第二周期第ⅤA族；(3) H:O:H；(4) Na > Mg > O；(5) Al(OH)₃ + OH⁻ = [Al(OH)₄]⁻（需核对）；(6) bc。' },
-            tip: '非金属性强弱判断：与H₂化合难易、氢化物稳定性、最高价含氧酸酸性、单质置换反应。',
-            source: '贵州省六盘水市2024-2025学年高一上学期期末质量监测化学试题'
-        }, {
-            id: 8, type: 'fill', section: 'fill',
-            question: '1869年俄国化学家门捷列夫制出第一张元素周期表，元素周期表体现了元素位构性的关系，揭示了元素间的内在联系。几种短周期主族元素在周期表中的位置如下图所示，请回答下列问题。\n（①C、②O、③F、④Na、⑤Mg、⑥Cl）\n(1) 元素①在周期表中的位置为【1】。\n(2) ②、③、④三种元素的简单离子半径由大到小的顺序【2】(用离子符号表示)。\n(3) 元素②与④加热生成的化合物阴阳离子数之比为【3】，该化合物与CO₂反应的化学方程式为【4】。\n(4) 下列能比较元素④和⑤金属性强弱的实验事实是【5】(填字母)。\nA. 在化合物中④的化合价比⑤的低\nB. ④的单质与冷水反应比⑤的单质剧烈\nC. ④的最高价氧化物的水化物的碱性比⑤的强\nD. ④单质的熔点比⑤单质的低',
-            blanks: ['第二周期第ⅣA族', 'O²⁻ > F⁻ > Na⁺', '1:2', '2Na₂O₂ + 2CO₂ = 2Na₂CO₃ + O₂', 'BC'],
-            explanation: { step1: '题目给出短周期元素在周期表中的位置，要求填空。', step2: '①C、②O、③F、④Na、⑤Mg、⑥Cl。', step3: '(1) C在第二周期第ⅣA族；(2) O²⁻、F⁻、Na⁺半径：O²⁻ > F⁻ > Na⁺；(3) O与Na加热生成Na₂O₂，阴阳离子数之比为1:2（Na⁺:O₂²⁻=2:1，即阴阳比2:1，题中为阴阳离子数之比，Na₂O₂中Na⁺和O₂²⁻比例为2:1，所以阴阳离子数之比为2:1，需核对原卷）；(4) 能比较Na和Mg金属性强弱的是B、C。', step4: '答案：(1) 第二周期第ⅣA族；(2) O²⁻ > F⁻ > Na⁺；(3) 2:1（需核对）；(4) BC。' },
-            tip: '离子半径比较：电子层数越多半径越大，电子层数相同时核电荷数越大半径越小。',
-            source: '浙江省温州市2024-2025学年高一上学期期末考试化学试题（B卷）'
-        }, {
-            id: 9, type: 'fill', section: 'fill',
-            question: '元素周期律是元素的性质随原子序数的递增而呈周期性变化的规律。\n(1) 元素周期律的实质是【1】。\n(2) 同周期从左到右，原子半径逐渐【2】，金属性逐渐【3】，非金属性逐渐【4】。\n(3) 同主族从上到下，原子半径逐渐【5】，金属性逐渐【6】，非金属性逐渐【7】。',
-            blanks: ['元素原子核外电子排布的周期性变化', '减小', '减弱', '增强', '增大', '增强', '减弱'],
-            explanation: { step1: '题目问元素周期律的实质和递变规律。', step2: '元素周期律的实质是核外电子排布的周期性变化。', step3: '(1) 元素周期律的实质是元素原子核外电子排布的周期性变化；(2) 同周期从左到右，原子半径减小，金属性减弱，非金属性增强；(3) 同主族从上到下，原子半径增大，金属性增强，非金属性减弱。', step4: '答案：(1) 元素原子核外电子排布的周期性变化；(2) 减小、减弱、增强；(3) 增大、增强、减弱。' },
-            tip: '同周期从左到右：半径减小、金属性减弱、非金属性增强。同主族从上到下：半径增大、金属性增强、非金属性减弱。',
-            source: '高一期末真题·教材改编'
-        }, {
-            id: 10, type: 'fill', section: 'fill',
-            question: '下表是元素周期表的一部分，数字①~⑧代表八种短周期元素，请回答下列问题。\n（①C、②N、③O、④Mg、⑤Al、⑥Na、⑦P、⑧Cl）\n(1) ①~⑧中金属性最强的元素是【1】。\n(2) ②在周期表中的位置是【2】。\n(3) ③、④、⑥按原子半径由大到小的顺序排列是【3】。\n(4) 写出⑤的最高价氧化物对应的水化物与⑥的最高价氧化物对应的水化物反应的离子方程式：【4】。',
-            blanks: ['Na', '第二周期第ⅤA族', 'Na > Mg > O', 'Al(OH)₃ + OH⁻ = [Al(OH)₄]⁻'],
-            explanation: { step1: '题目给出元素周期表的一部分，要求填空。', step2: '①C、②N、③O、④Mg、⑤Al、⑥Na、⑦P、⑧Cl。', step3: '(1) 金属性最强的是Na；(2) N在第二周期第ⅤA族；(3) 原子半径：Na > Mg > O；(4) Al(OH)₃与NaOH反应：Al(OH)₃ + OH⁻ = [Al(OH)₄]⁻。', step4: '答案：(1) Na；(2) 第二周期第ⅤA族；(3) Na > Mg > O；(4) Al(OH)₃ + OH⁻ = [Al(OH)₄]⁻。' },
-            tip: '原子半径：同周期从左到右减小，同主族从上到下增大。',
-            source: '贵州省六盘水市2024-2025学年高一上学期期末质量监测化学试题'
-        }];
+        var questionBank = [
+            // ========== §4.1 原子结构与元素周期表 ==========
+            { id: 1, type: 'choice', section: '4.1', question: '原子的原子序数等于（　）', options: ['质子数', '中子数', '质量数', '电子数加中子数'], correct: 0, explanation: '原子序数 = 质子数 = 核电荷数 = 核外电子数。', tip: '原子序数 = 质子数 = 核电荷数 = 核外电子数。', source: '§4.1 原子构成' },
+            { id: 2, type: 'choice', section: '4.1', question: '质量数（A）等于（　）', options: ['质子数 + 电子数', '质子数 + 中子数', '中子数 + 电子数', '质子数 - 中子数'], correct: 1, explanation: '质量数（A）= 质子数（Z）+ 中子数（N）。', tip: '质量数 = 质子数 + 中子数。', source: '§4.1 原子构成' },
+            { id: 3, type: 'choice', section: '4.1', question: '同位素是指（　）', options: ['质子数相同、中子数不同的原子', '中子数相同、质子数不同的原子', '质子数和中子数都相同的原子', '电子数不同的原子'], correct: 0, explanation: '同位素是质子数相同、中子数不同的同一元素的不同原子，如¹H、²H、³H。', tip: '同位素：质子数相同，中子数不同，化学性质几乎相同。', source: '§4.1 同位素' },
+            { id: 4, type: 'choice', section: '4.1', question: '元素周期表中，周期序数等于（　）', options: ['最外层电子数', '电子层数', '质子数', '中子数'], correct: 1, explanation: '周期序数 = 电子层数，主族序数 = 最外层电子数。', tip: '周期序数=电子层数，主族序数=最外层电子数。', source: '§4.1 周期表结构' },
+            { id: 5, type: 'choice', section: '4.1', question: '碱金属元素从上到下，金属性变化趋势是（　）', options: ['减弱', '增强', '不变', '先增强后减弱'], correct: 1, explanation: '碱金属元素从上到下，原子半径增大，金属性增强，与水反应越来越剧烈。', tip: '碱金属从上到下金属性增强。', source: '§4.1 碱金属' },
+            { id: 6, type: 'choice', section: '4.1', question: '卤族元素从上到下，非金属性变化趋势是（　）', options: ['增强', '减弱', '不变', '先减弱后增强'], correct: 1, explanation: '卤族元素从上到下，原子半径增大，非金属性减弱，与H₂反应越来越难。', tip: '卤族从上到下非金属性减弱。', source: '§4.1 卤族元素' },
+            { id: 7, type: 'fill', section: '4.1', question: '原子序数 = 【1】 = 核电荷数 = 核外电子数。', blanks: ['质子数'], explanation: '原子序数 = 质子数 = 核电荷数 = 核外电子数。', source: '§4.1 原子构成' },
+            { id: 8, type: 'fill', section: '4.1', question: '质量数（A）= 质子数（Z）+ 【1】（N）。', blanks: ['中子数'], explanation: '质量数 = 质子数 + 中子数。', source: '§4.1 原子构成' },
+            { id: 9, type: 'fill', section: '4.1', question: '元素周期表有【1】个周期，【2】个族。', blanks: ['7', '16'], explanation: '元素周期表有7个周期（3短4长），16个族（7主族+7副族+Ⅷ族+0族）。', source: '§4.1 周期表结构' },
 
-        var STORAGE_KEY = 'ch4_exam_data';
-        var WRONG_KEY = 'chem_wrong_list';
-        function loadData() { try { var raw = localStorage.getItem(STORAGE_KEY); if (raw) return JSON.parse(raw); } catch (e) {} return { answered: {}, results: {} }; }
-        function saveData(d) { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }
-        function loadWrong() { try { var raw = localStorage.getItem(WRONG_KEY); if (raw) return JSON.parse(raw); } catch (e) {} return []; }
-        function saveWrong(list) { localStorage.setItem(WRONG_KEY, JSON.stringify(list)); }
-        var data = loadData(); var wrongList = loadWrong();
-        var currentFilter = 'all', filteredIds = [], currentQ = null, isAnswered = false, isPracticeMode = false;
+            // ========== §4.2 元素周期律 ==========
+            { id: 10, type: 'choice', section: '4.2', question: '元素周期律的实质是（　）', options: ['原子序数递增', '核外电子排布的周期性变化', '原子半径的周期性变化', '元素性质的周期性变化'], correct: 1, explanation: '元素周期律的实质是元素原子核外电子排布的周期性变化。', tip: '周期律的实质是核外电子排布周期性变化。', source: '§4.2 周期律' },
+            { id: 11, type: 'choice', section: '4.2', question: '同周期从左到右，原子半径的变化趋势是（　）', options: ['增大', '减小', '不变', '先增大后减小'], correct: 1, explanation: '同周期从左到右，原子半径逐渐减小（核电荷数增大，对电子吸引增强）。', tip: '同周期从左到右原子半径减小。', source: '§4.2 原子半径' },
+            { id: 12, type: 'choice', section: '4.2', question: '同周期从左到右，金属性的变化趋势是（　）', options: ['增强', '减弱', '不变', '先减弱后增强'], correct: 1, explanation: '同周期从左到右，金属性减弱，非金属性增强。', tip: '同周期从左到右金属性减弱，非金属性增强。', source: '§4.2 金属性' },
+            { id: 13, type: 'choice', section: '4.2', question: '同主族从上到下，金属性的变化趋势是（　）', options: ['减弱', '增强', '不变', '先增强后减弱'], correct: 1, explanation: '同主族从上到下，原子半径增大，金属性增强。', tip: '同主族从上到下金属性增强。', source: '§4.2 金属性' },
+            { id: 14, type: 'choice', section: '4.2', question: '非金属性越强，其氢化物的稳定性（　）', options: ['越弱', '越强', '不变', '无法判断'], correct: 1, explanation: '非金属性越强，氢化物越稳定。如稳定性：HF > HCl > HBr > HI。', tip: '非金属性越强，氢化物越稳定。', source: '§4.2 非金属性' },
+            { id: 15, type: 'fill', section: '4.2', question: '元素周期律的定义：元素的性质随【1】的递增而呈周期性变化的规律。', blanks: ['原子序数'], explanation: '元素的性质随原子序数的递增而呈周期性变化的规律。', source: '§4.2 周期律' },
+            { id: 16, type: 'fill', section: '4.2', question: '同主族从上到下，原子半径【1】，金属性【2】。', blanks: ['增大', '增强'], explanation: '同主族从上到下，原子半径增大，金属性增强，非金属性减弱。', source: '§4.2 递变规律' },
+            { id: 17, type: 'fill', section: '4.2', question: '非金属性越强，最高价氧化物对应水化物的酸性越【1】。', blanks: ['强'], explanation: '非金属性越强，最高价氧化物水化物酸性越强。', source: '§4.2 非金属性' },
 
-        function getFilteredIds(filter) { if (filter === 'all') return questionBank.map(function(q) { return q.id; }); if (filter === 'wrong') return wrongList.filter(function(item) { return item.chapter === 4 && item.type === 'exam'; }).map(function(item) { return item.qId; }); return questionBank.filter(function(q) { return q.section === filter; }).map(function(q) { return q.id; }); }
-        function getQ(id) { for (var i = 0; i < questionBank.length; i++) { if (questionBank[i].id === id) return questionBank[i]; } return null; }
-        function shuffle(arr) { for (var i = arr.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = arr[i]; arr[i] = arr[j]; arr[j] = t; } return arr; }
-        function getUnanswered(ids) { var r = []; for (var i = 0; i < ids.length; i++) { if (!data.answered[ids[i]]) r.push(ids[i]); } return r; }
-        function getProgress() { var total = filteredIds.length, done = 0, correct = 0; for (var i = 0; i < filteredIds.length; i++) { var id = filteredIds[i]; if (data.answered[id]) { done++; if (data.results[id] === true) correct++; } } var rate = done === 0 ? 0 : Math.round((correct / done) * 100); return { total: total, done: done, correct: correct, rate: rate }; }
-        function updateUI() {
-            var p = getProgress(); var wc = wrongList.filter(function(item) { return item.chapter === 4 && item.type === 'exam'; }).length;
-            document.getElementById('statsLabel').textContent = p.done + ' / ' + p.total;
-            document.getElementById('progressFill').style.width = (p.total === 0 ? 0 : (p.done / p.total) * 100) + '%';
-            document.getElementById('correctRate').textContent = '✅ 正确率：' + (p.done === 0 ? '--%' : p.rate + '%');
-            document.getElementById('wrongCount').textContent = '❌ 错题：' + wc;
-            document.getElementById('wrongBadge').textContent = wc;
-            document.getElementById('wrongBookBtn').style.display = (wc > 0 && currentFilter !== 'wrong') ? 'flex' : 'none';
+            // ========== §4.3 化学键 ==========
+            { id: 18, type: 'choice', section: '4.3', question: '离子键是（　）', options: ['原子间共用电子对', '阴阳离子间的静电作用', '金属阳离子与自由电子之间', '分子间作用力'], correct: 1, explanation: '离子键是阴阳离子之间的静电作用，形成于活泼金属和活泼非金属之间。', tip: '离子键=阴阳离子静电作用。', source: '§4.3 离子键' },
+            { id: 19, type: 'choice', section: '4.3', question: '下列物质中，只含共价键的是（　）', options: ['NaCl', 'NaOH', 'HCl', 'Na₂O₂'], correct: 2, explanation: 'HCl只含共价键。NaCl只含离子键，NaOH含离子键和共价键，Na₂O₂含离子键和非极性共价键。', tip: '共价化合物只含共价键。', source: '§4.3 共价键' },
+            { id: 20, type: 'choice', section: '4.3', question: '下列物质中，属于离子化合物的是（　）', options: ['HCl', 'H₂O', 'NaCl', 'CO₂'], correct: 2, explanation: 'NaCl是离子化合物。HCl、H₂O、CO₂都是共价化合物。', tip: '活泼金属+活泼非金属→离子化合物。', source: '§4.3 离子化合物' },
+            { id: 21, type: 'choice', section: '4.3', question: 'NaOH中含有的化学键是（　）', options: ['只含离子键', '只含共价键', '离子键和共价键', '无化学键'], correct: 2, explanation: 'NaOH中含Na⁺与OH⁻之间的离子键，以及O-H之间的共价键。', tip: 'NaOH含离子键和共价键，是离子化合物。', source: '§4.3 化学键' },
+            { id: 22, type: 'fill', section: '4.3', question: '化学键分为离子键、共价键和【1】键。', blanks: ['金属'], explanation: '化学键分为离子键、共价键和金属键。', source: '§4.3 化学键分类' },
+            { id: 23, type: 'fill', section: '4.3', question: '共价键分为极性共价键和【1】共价键。', blanks: ['非极性'], explanation: '共价键分为极性共价键（不同种原子）和非极性共价键（同种原子）。', source: '§4.3 共价键分类' },
+            { id: 24, type: 'fill', section: '4.3', question: '离子化合物一定含【1】键，可能含共价键。', blanks: ['离子'], explanation: '离子化合物一定含离子键，可能含共价键（如NaOH）。', tip: '共价化合物一定不含离子键。', source: '§4.3 化合物类型' }
+        ];
+
+        var state = { filteredIds: [], answeredIds: new Set(), results: {}, wrongIds: [], currentQuestion: null, isAnswered: false, currentFilter: 'all', fillInputs: {} };
+        var container = document.getElementById('questionContainer');
+        var progressFill = document.getElementById('progressFill');
+        var statsLabel = document.getElementById('statsLabel');
+        var correctRateEl = document.getElementById('correctRate');
+        var wrongCountEl = document.getElementById('wrongCount');
+        var wrongBadge = document.getElementById('wrongBadge');
+        var wrongBookBtn = document.getElementById('wrongBookBtn');
+
+        function getFilteredIds(filter) { if (filter === 'all') return questionBank.map(function(q) { return q.id; }); if (filter === 'wrong') return state.wrongIds.slice(); return questionBank.filter(function(q) { return q.section === filter; }).map(function(q) { return q.id; }); }
+        function shuffleArray(arr) { for (var i = arr.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var temp = arr[i]; arr[i] = arr[j]; arr[j] = temp; } return arr; }
+        function getQuestionById(id) { for (var i = 0; i < questionBank.length; i++) { if (questionBank[i].id === id) return questionBank[i]; } return null; }
+        function getUnansweredIds(filteredIds) { var result = []; for (var i = 0; i < filteredIds.length; i++) { if (!state.answeredIds.has(filteredIds[i])) result.push(filteredIds[i]); } return result; }
+
+        function updateStats() {
+            var total = state.filteredIds.length; var done = state.answeredIds.size;
+            var correctCount = 0, wrongCount = 0; var ids = Object.keys(state.results);
+            for (var i = 0; i < ids.length; i++) { if (state.results[ids[i]] === true) correctCount++; else if (state.results[ids[i]] === false) wrongCount++; }
+            var rate = done === 0 ? '--%' : Math.round((correctCount / done) * 100) + '%';
+            statsLabel.textContent = done + ' / ' + total;
+            progressFill.style.width = (total === 0 ? 0 : (done / total) * 100) + '%';
+            correctRateEl.textContent = '✅ 正确率：' + rate;
+            wrongCountEl.textContent = '❌ 错题：' + wrongCount;
+            wrongBadge.textContent = state.wrongIds.length;
+            wrongBookBtn.style.display = (state.wrongIds.length > 0 && state.currentFilter !== 'wrong') ? 'flex' : 'none';
             var idxData = JSON.parse(localStorage.getItem('chem_index_data') || '{"doneMap":{}}');
-            idxData.doneMap['ch4_exam'] = p.done;
+            idxData.doneMap['ch4_vocab'] = done;
             localStorage.setItem('chem_index_data', JSON.stringify(idxData));
         }
-        function addWrong(q, userAns) {
-            if (wrongList.some(function(item) { return item.chapter === 4 && item.type === 'exam' && item.qId === q.id; })) return;
-            var correctAns = q.type === 'choice' ? q.options[q.correct] : q.blanks.join('、');
-            wrongList.push({ chapter: 4, type: 'exam', qId: q.id, question: q.question, userAnswer: userAns || '', correctAnswer: correctAns });
-            saveWrong(wrongList);
-        }
-        function removeWrong(qId) { wrongList = wrongList.filter(function(item) { return !(item.chapter === 4 && item.type === 'exam' && item.qId === qId); }); saveWrong(wrongList); }
 
-        function renderExplanation(q) {
-            var e = q.explanation; var html = '';
-            html += '<div class="step-block"><span class="step-label">第1步 · 识别情境</span><div class="step-content">' + e.step1 + '</div></div>';
-            html += '<div class="step-block"><span class="step-label">第2步 · 定位知识</span><div class="step-content">' + e.step2 + '</div></div>';
-            html += '<div class="step-block"><span class="step-label">第3步 · 调用模型</span><div class="step-content">' + e.step3 + '</div></div>';
-            html += '<div class="step-block"><span class="step-label">第4步 · 比对输出</span><div class="step-content">' + e.step4 + '</div></div>';
-            if (q.tip) html += '<div class="tip-yellow"><strong>🟡 易错点：' + q.tip + '</strong></div>';
-            if (q.source) html += '<div class="source-link">📎 来源：' + q.source + '</div>';
-            return html;
+        function addToWrong(q, userAns) {
+            if (state.wrongIds.indexOf(q.id) === -1) state.wrongIds.push(q.id);
+            var wrongList = JSON.parse(localStorage.getItem('chem_wrong_list') || '[]');
+            var exists = wrongList.some(function(w) { return w.chapter === 4 && w.type === 'vocab' && w.qId === q.id; });
+            if (!exists) {
+                var correctAns = q.type === 'choice' ? q.options[q.correct] : (q.blanks || []).join('、');
+                wrongList.push({ chapter: 4, type: 'vocab', qId: q.id, question: q.question, userAnswer: userAns || '', correctAnswer: correctAns });
+                localStorage.setItem('chem_wrong_list', JSON.stringify(wrongList));
+            }
+            updateStats();
+        }
+        function removeFromWrong(id) {
+            var idx = state.wrongIds.indexOf(id); if (idx !== -1) state.wrongIds.splice(idx, 1);
+            var wrongList = JSON.parse(localStorage.getItem('chem_wrong_list') || '[]');
+            wrongList = wrongList.filter(function(w) { return !(w.chapter === 4 && w.type === 'vocab' && w.qId === id); });
+            localStorage.setItem('chem_wrong_list', JSON.stringify(wrongList));
+            updateStats();
         }
 
-        function render() {
-            var container = document.getElementById('questionContainer');
-            if (currentFilter === 'wrong' && !isPracticeMode) {
-                var list = wrongList.filter(function(item) { return item.chapter === 4 && item.type === 'exam'; });
-                if (list.length === 0) { container.innerHTML = '<div class="empty-state"><div class="icon">🎉</div><p>错题本已清空！</p></div>'; updateUI(); return; }
-                var html = '<div class="wrong-list-view"><div class="title">📕 错题本（' + list.length + '题）</div>';
-                list.forEach(function(item) { html += '<div class="item"><div class="q">' + item.question + '</div><div class="your">❌ 你的答案：' + (item.userAnswer || '未填写') + '</div><div class="correct">✅ 正确答案：' + item.correctAnswer + '</div></div>'; });
-                html += '<div class="back-to-practice"><button class="btn" onclick="startPractice()">🔄 重练错题</button></div></div>';
-                container.innerHTML = html; updateUI(); return;
+        function renderQuestion() {
+            var filtered = state.filteredIds;
+            if (filtered.length === 0) { if (state.currentFilter === 'wrong') container.innerHTML = '<div class="empty-state"><div class="icon">🎉</div><p>错题本已清空！继续加油！</p></div>'; else container.innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>当前章节暂无题目</p></div>'; updateStats(); return; }
+            var unanswered = getUnansweredIds(filtered); var total = filtered.length;
+            if (unanswered.length === 0 && state.answeredIds.size >= total) {
+                var correctCount = 0; var ids = Object.keys(state.results);
+                for (var i = 0; i < ids.length; i++) { if (state.results[ids[i]] === true) correctCount++; }
+                var rate = total === 0 ? 0 : Math.round((correctCount / total) * 100);
+                container.innerHTML = '<div class="complete-screen"><div class="big-icon">🎉</div><h2>全部通关！</h2><p>第四章语言记忆已刷完</p><div class="score-big">' + rate + '%</div><p style="color:#6b7a8f;font-size:14px;">正确率 ' + rate + '% · 共 ' + total + ' 题</p><button class="btn-primary" style="margin-top:20px;max-width:200px;display:inline-block;" onclick="resetProgress()">🔄 重新开始</button></div>';
+                updateStats(); return;
             }
-            if (filteredIds.length === 0) { container.innerHTML = '<div class="empty-state"><div class="icon">📭</div><p>当前暂无题目</p></div>'; updateUI(); return; }
-            var unanswered = getUnanswered(filteredIds);
-            if (unanswered.length === 0) {
-                var p = getProgress(); var msg = isPracticeMode ? '🎉 错题已全部消灭！' : '🎉 全部通关！';
-                container.innerHTML = '<div class="complete-screen"><div class="big-icon">🎉</div><h2>' + msg + '</h2><div class="score-big">' + p.rate + '%</div><p style="color:#6b7a8f;font-size:14px;">正确率 ' + p.rate + '% · 共 ' + filteredIds.length + ' 题</p>';
-                container.innerHTML += isPracticeMode ? '<button class="btn-primary" style="margin-top:20px;max-width:200px;display:inline-block;" onclick="exitPractice()">🔙 退出练习</button>' : '<button class="btn-primary" style="margin-top:20px;max-width:200px;display:inline-block;" onclick="resetAll()">🔄 重新开始</button>';
-                container.innerHTML += '</div>'; updateUI(); return;
-            }
-            var targetId = unanswered[0]; var q = getQ(targetId);
-            if (!q) { container.innerHTML = '<div class="empty-state"><p>加载失败</p></div>'; return; }
-            currentQ = q; isAnswered = false;
+            var targetId = unanswered.length > 0 ? unanswered[0] : filtered[filtered.length - 1];
+            var q = getQuestionById(targetId);
+            if (!q) { container.innerHTML = '<div class="empty-state"><p>题目加载失败</p></div>'; return; }
+            state.currentQuestion = q; state.isAnswered = false;
             var html = '<div class="question-card">';
-            var typeLabel = q.type === 'choice' ? '🎯 选择题' : '✍️ 非选择题';
+            var typeLabel = q.type === 'choice' ? '🎯 选择题' : '✍️ 填空题';
+            var sectionName = ''; if (q.section === '4.1') sectionName = '§4.1 原子结构与周期表'; else if (q.section === '4.2') sectionName = '§4.2 元素周期律'; else if (q.section === '4.3') sectionName = '§4.3 化学键';
             html += '<span class="question-type">' + typeLabel + '</span>';
-            if (q.source) html += '<span class="question-source">📖 ' + q.source + '</span>';
-            if (isPracticeMode) html += '<span class="wrong-tag">📕 错题练习</span>';
-            var isW = wrongList.some(function(item) { return item.chapter === 4 && item.type === 'exam' && item.qId === q.id; });
-            if (isW && currentFilter !== 'wrong') html += '<span class="wrong-tag">📕 错题</span>';
-            if (data.answered[q.id]) { html += data.results[q.id] === true ? '<span class="status-badge done">✅ 已掌握</span>' : '<span class="status-badge wrong">❌ 需重练</span>'; }
+            html += '<span class="question-section">' + sectionName + '</span>';
+            var isWrong = state.wrongIds.indexOf(q.id) !== -1;
+            if (isWrong && state.currentFilter !== 'wrong') html += '<span class="wrong-tag">📕 错题</span>';
+            if (state.answeredIds.has(q.id)) { if (state.results[q.id] === true) html += '<span class="status-badge done">✅ 已掌握</span>'; else if (state.results[q.id] === false) html += '<span class="status-badge wrong">❌ 需重练</span>'; }
             var displayText = q.question;
             if (q.type === 'fill' && q.blanks) { for (var b = 0; b < q.blanks.length; b++) { displayText = displayText.replace('【' + (b + 1) + '】', '<span class="blank">____</span>'); } }
             html += '<div class="question-text">' + displayText + '</div>';
             if (q.type === 'choice') {
                 var labels = ['A', 'B', 'C', 'D'];
                 html += '<div class="options">';
-                for (var i = 0; i < q.options.length; i++) { html += '<button class="option-btn" onclick="handleChoice(' + i + ',' + q.id + ')" id="opt_' + i + '"><span class="option-label">' + labels[i] + '.</span> ' + q.options[i] + '</button>'; }
+                for (var i = 0; i < q.options.length; i++) { html += '<button class="option-btn" onclick="answerChoice(' + i + ', ' + q.id + ')" id="choiceOpt_' + i + '"><span class="option-label">' + labels[i] + '.</span> ' + q.options[i] + '</button>'; }
                 html += '</div>';
-                html += '<div class="explanation" id="exp_' + q.id + '">' + renderExplanation(q) + '</div>';
-                html += '<div class="action-row"><button class="btn-primary" id="nextBtn" onclick="goNext()" disabled>下一题 →</button></div>';
+                html += '<div class="explanation" id="explanation_' + q.id + '">';
+                html += '<span class="label">📖 解析：</span>' + q.explanation;
+                if (q.tip) html += '<div class="tip-yellow"><strong>🟡 ' + q.tip + '</strong></div>';
+                if (q.mnemonic) html += '<div class="mnemonic">' + q.mnemonic + '</div>';
+                if (q.source) html += '<div class="source-link">📎 ' + q.source + '</div>';
+                html += '</div>';
+                html += '<div class="action-row"><button class="btn-primary" id="nextBtnChoice" onclick="nextQuestion()" disabled>下一题 →</button></div>';
             } else {
-                html += '<div class="fill-input-area">';
-                for (var f = 0; f < q.blanks.length; f++) { html += '<div class="fill-row"><label>空' + (f + 1) + '：</label><input type="text" id="fill_' + q.id + '_' + f + '" placeholder="输入答案" autocomplete="off"><span class="correct-answer-hint" id="fillHint_' + q.id + '_' + f + '" style="display:none;"></span></div>'; }
+                html += '<div class="fill-input-area" id="fillArea">';
+                for (var f = 0; f < q.blanks.length; f++) { var savedVal = state.fillInputs[q.id + '_' + f] || ''; html += '<div class="fill-row"><label>空' + (f + 1) + '：</label><input type="text" id="fill_' + q.id + '_' + f + '" placeholder="输入答案" value="' + savedVal + '" autocomplete="off"><span class="correct-answer-hint" id="fillHint_' + q.id + '_' + f + '" style="display:none;"></span></div>'; }
                 html += '</div>';
-                html += '<div class="action-row"><button class="btn-primary" id="fillSubmitBtn" onclick="handleFill(' + q.id + ')">✅ 提交答案</button></div>';
-                html += '<div class="explanation" id="exp_' + q.id + '">' + renderExplanation(q) + '</div>';
-                html += '<div class="action-row"><button class="btn-primary" id="nextBtnFill" onclick="goNext()" disabled>下一题 →</button></div>';
+                html += '<div class="action-row"><button class="btn-primary" id="fillSubmitBtn" onclick="submitFill()">✅ 提交答案</button></div>';
+                html += '<div class="explanation" id="explanation_' + q.id + '">';
+                html += '<span class="label">📖 解析：</span>' + q.explanation;
+                if (q.tip) html += '<div class="tip-yellow"><strong>🟡 ' + q.tip + '</strong></div>';
+                if (q.mnemonic) html += '<div class="mnemonic">' + q.mnemonic + '</div>';
+                if (q.source) html += '<div class="source-link">📎 ' + q.source + '</div>';
+                html += '</div>';
+                html += '<div class="action-row"><button class="btn-primary" id="nextBtnFill" onclick="nextQuestion()" disabled>下一题 →</button></div>';
             }
             html += '</div>';
-            container.innerHTML = html; updateUI();
+            container.innerHTML = html; updateStats();
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            if (q.type === 'fill') { setTimeout(function() { var inputs = document.querySelectorAll('.fill-row input'); inputs.forEach(function(inp, idx) { inp.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); if (idx === inputs.length - 1) handleFill(q.id); else inputs[idx + 1].focus(); } }); }); if (inputs.length > 0 && !isAnswered) inputs[0].focus(); }, 100); }
+            if (q.type === 'fill') { setTimeout(function() { var inputs = document.querySelectorAll('.fill-row input'); inputs.forEach(function(inp, idx) { inp.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); if (idx === inputs.length - 1) submitFill(); else inputs[idx + 1].focus(); } }); }); if (inputs.length > 0 && !state.isAnswered) inputs[0].focus(); }, 100); }
         }
 
-        function handleChoice(selected, qId) {
-            if (isAnswered) return; var q = getQ(qId); if (!q) return; isAnswered = true;
-            var isCorrect = (selected === q.correct); var btns = document.querySelectorAll('.option-btn'); btns.forEach(function(b) { b.classList.add('disabled'); });
-            if (isCorrect) { btns[selected].classList.add('selected-correct'); data.results[qId] = true; removeWrong(qId); }
-            else { btns[selected].classList.add('selected-wrong'); btns[q.correct].classList.add('show-correct'); data.results[qId] = false; addWrong(q, q.options[selected]); }
-            data.answered[qId] = true; saveData(data);
-            var exp = document.getElementById('exp_' + qId); if (exp) exp.classList.add('show');
-            var nextBtn = document.getElementById('nextBtn'); if (nextBtn) nextBtn.disabled = false;
-            if (isPracticeMode) { var remaining = wrongList.filter(function(item) { return item.chapter === 4 && item.type === 'exam' && !data.answered[item.qId]; }); if (remaining.length === 0) { render(); return; } var ids = wrongList.filter(function(item) { return item.chapter === 4 && item.type === 'exam'; }).map(function(item) { return item.qId; }); var un = []; for (var i = 0; i < ids.length; i++) { if (!data.answered[ids[i]]) un.push(ids[i]); } filteredIds = shuffle(un); }
-            updateUI();
-        }
-        function handleFill(qId) {
-            if (isAnswered) return; var q = getQ(qId); if (!q || q.type !== 'fill') return;
+        window.answerChoice = function(selected, qId) {
+            if (state.isAnswered) return; var q = getQuestionById(qId); if (!q) return; state.isAnswered = true;
+            var isCorrect = (selected === q.correct); var btns = document.querySelectorAll('.option-btn');
+            btns.forEach(function(b) { b.classList.add('disabled'); });
+            if (isCorrect) { btns[selected].classList.add('selected-correct'); state.results[qId] = true; }
+            else { btns[selected].classList.add('selected-wrong'); btns[q.correct].classList.add('show-correct'); state.results[qId] = false; addToWrong(q, q.options[selected]); }
+            state.answeredIds.add(qId);
+            var exp = document.getElementById('explanation_' + qId); if (exp) exp.classList.add('show');
+            if (state.currentFilter === 'wrong' && isCorrect) removeFromWrong(qId);
+            var nextBtn = document.getElementById('nextBtnChoice'); if (nextBtn) nextBtn.disabled = false;
+            updateStats();
+        };
+
+        window.submitFill = function() {
+            if (state.isAnswered) return; var q = state.currentQuestion; if (!q || q.type !== 'fill') return;
             var allCorrect = true, allFilled = true, userAnswers = [];
             for (var i = 0; i < q.blanks.length; i++) {
                 var input = document.getElementById('fill_' + q.id + '_' + i); if (!input) { allFilled = false; continue; }
-                var userVal = input.value.trim(); userAnswers.push(userVal);
+                var userVal = input.value.trim(); userAnswers.push(userVal); state.fillInputs[q.id + '_' + i] = userVal;
                 if (userVal === '') { allFilled = false; continue; }
-                if (userVal.replace(/\s/g, '') === q.blanks[i].replace(/\s/g, '')) { input.classList.add('correct'); }
+                var normalizedUser = userVal.replace(/\s/g, ''); var normalizedAnswer = q.blanks[i].replace(/\s/g, '');
+                if (normalizedUser === normalizedAnswer) input.classList.add('correct');
                 else { input.classList.add('wrong'); allCorrect = false; var hint = document.getElementById('fillHint_' + q.id + '_' + i); if (hint) { hint.style.display = 'inline'; hint.textContent = '→ 正确答案：' + q.blanks[i]; } }
                 input.disabled = true;
             }
             if (!allFilled) { alert('请填写所有空再提交'); return; }
-            isAnswered = true;
-            if (allCorrect) { data.results[qId] = true; removeWrong(qId); }
-            else { data.results[qId] = false; addWrong(q, userAnswers.join('、')); }
-            data.answered[qId] = true; saveData(data);
-            var exp = document.getElementById('exp_' + qId); if (exp) exp.classList.add('show');
+            state.isAnswered = true;
+            if (allCorrect) state.results[q.id] = true;
+            else { state.results[q.id] = false; addToWrong(q, userAnswers.join('、')); }
+            state.answeredIds.add(q.id);
+            var exp = document.getElementById('explanation_' + q.id); if (exp) exp.classList.add('show');
+            if (state.currentFilter === 'wrong' && allCorrect) removeFromWrong(q.id);
             var submitBtn = document.getElementById('fillSubmitBtn'); if (submitBtn) submitBtn.disabled = true;
             var nextBtn = document.getElementById('nextBtnFill'); if (nextBtn) nextBtn.disabled = false;
-            if (isPracticeMode) { var remaining = wrongList.filter(function(item) { return item.chapter === 4 && item.type === 'exam' && !data.answered[item.qId]; }); if (remaining.length === 0) { render(); return; } var ids = wrongList.filter(function(item) { return item.chapter === 4 && item.type === 'exam'; }).map(function(item) { return item.qId; }); var un = []; for (var i = 0; i < ids.length; i++) { if (!data.answered[ids[i]]) un.push(ids[i]); } filteredIds = shuffle(un); }
-            updateUI();
-        }
-        function goNext() { if (isPracticeMode) { var ids = wrongList.filter(function(item) { return item.chapter === 4 && item.type === 'exam'; }).map(function(item) { return item.qId; }); var un = []; for (var i = 0; i < ids.length; i++) { if (!data.answered[ids[i]]) un.push(ids[i]); } if (un.length === 0) { render(); return; } filteredIds = shuffle(un); render(); return; } render(); }
+            updateStats();
+        };
+
+        window.nextQuestion = function() { var q = state.currentQuestion; if (q && q.type === 'fill') { for (var i = 0; i < q.blanks.length; i++) { var inp = document.getElementById('fill_' + q.id + '_' + i); if (inp) state.fillInputs[q.id + '_' + i] = inp.value; } } renderQuestion(); };
+        window.resetProgress = function() { if (!confirm('确定重置所有进度吗？（错题本也会清空）')) return; state.answeredIds = new Set(); state.results = {}; state.wrongIds = []; state.fillInputs = {}; var wrongList = JSON.parse(localStorage.getItem('chem_wrong_list') || '[]'); wrongList = wrongList.filter(function(w) { return !(w.chapter === 4 && w.type === 'vocab'); }); localStorage.setItem('chem_wrong_list', JSON.stringify(wrongList)); setFilter('all'); };
+
         function setFilter(filter) {
-            if (filter === 'wrong') { var wc = wrongList.filter(function(item) { return item.chapter === 4 && item.type === 'exam'; }).length; if (wc === 0) { alert('🎉 错题本为空！'); return; } isPracticeMode = false; currentFilter = 'wrong'; var btns = document.querySelectorAll('.filter-btn'); btns.forEach(function(b) { b.classList.toggle('active', b.dataset.filter === filter); }); render(); return; }
-            isPracticeMode = false; currentFilter = filter; var btns = document.querySelectorAll('.filter-btn'); btns.forEach(function(b) { b.classList.toggle('active', b.dataset.filter === filter); }); filteredIds = shuffle(getFilteredIds(filter)); render();
+            state.currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.toggle('active', b.dataset.filter === filter); });
+            if (filter === 'wrong') state.filteredIds = state.wrongIds.slice();
+            else { state.filteredIds = getFilteredIds(filter); shuffleArray(state.filteredIds); }
+            renderQuestion();
         }
-        function startPractice() { var ids = wrongList.filter(function(item) { return item.chapter === 4 && item.type === 'exam'; }).map(function(item) { return item.qId; }); if (ids.length === 0) { alert('错题本为空'); return; } isPracticeMode = true; currentFilter = 'practice'; filteredIds = shuffle(ids.slice()); var btns = document.querySelectorAll('.filter-btn'); btns.forEach(function(b) { b.classList.remove('active'); }); render(); }
-        function exitPractice() { isPracticeMode = false; currentFilter = 'all'; filteredIds = shuffle(getFilteredIds('all')); var btns = document.querySelectorAll('.filter-btn'); btns.forEach(function(b) { b.classList.remove('active'); }); document.querySelector('.filter-btn[data-filter="all"]').classList.add('active'); render(); }
-        function resetAll() { if (!confirm('重置所有进度？')) return; data = { answered: {}, results: {} }; saveData(data); wrongList = wrongList.filter(function(item) { return !(item.chapter === 4 && item.type === 'exam'); }); saveWrong(wrongList); if (isPracticeMode) { isPracticeMode = false; } currentFilter = 'all'; filteredIds = shuffle(getFilteredIds('all')); var btns = document.querySelectorAll('.filter-btn'); btns.forEach(function(b) { b.classList.remove('active'); }); document.querySelector('.filter-btn[data-filter="all"]').classList.add('active'); render(); }
-        filteredIds = shuffle(getFilteredIds('all')); render();
-        console.log('📝 第四章真题演练（四步法）已加载，共 ' + questionBank.length + ' 题');
+
+        document.querySelectorAll('.filter-btn').forEach(function(btn) { btn.addEventListener('click', function() { var filter = this.dataset.filter; if (filter === 'wrong' && state.wrongIds.length === 0) { alert('🎉 错题本为空！继续保持！'); return; } setFilter(filter); }); });
+        document.getElementById('wrongBookBtn').addEventListener('click', function() { if (state.wrongIds.length === 0) { alert('🎉 错题本是空的！继续保持！'); return; } setFilter('wrong'); });
+
+        function init() { state.filteredIds = getFilteredIds('all'); shuffleArray(state.filteredIds); renderQuestion(); }
+        init();
+        console.log('🧪 第四章语言记忆已启动！共 ' + questionBank.length + ' 题');
     </script>
 </body>
 </html>
